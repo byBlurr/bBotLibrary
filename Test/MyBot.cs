@@ -58,10 +58,10 @@ namespace Test
             EmbedBuilder embed = new EmbedBuilder() { 
                 Author = new EmbedAuthorBuilder() { Name = name, IconUrl = ava }, 
                 Color = embedCol, 
-                Description = $"Created: {created}" 
+                Description = $"Created: {created}"
             };
 
-            await Util.PostTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);
+            await Util.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);
         }
     }
 }

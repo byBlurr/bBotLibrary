@@ -18,7 +18,7 @@ namespace Discord.Net.Bot
         }
 
         /// Post a message to a channel, automatically deletes after the time in milliseconds.
-        public static async Task PostTemporaryMessageAsync(ITextChannel channel, string text = null, bool isTTS = false, Embed embed = null, RequestOptions options = null, int time = 5000)
+        public static async Task SendTemporaryMessageAsync(ITextChannel channel, string text = null, bool isTTS = false, Embed embed = null, RequestOptions options = null, int time = 5000)
         {
             var message_thread = Task.Run(async () => { 
                 var msg = await channel.SendMessageAsync(text, isTTS, embed, options);
