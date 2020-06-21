@@ -1,4 +1,5 @@
 ﻿using Discord;
+using Discord.Commands;
 using Discord.Net.Bot;
 using Discord.WebSocket;
 using System.Threading.Tasks;
@@ -32,6 +33,35 @@ namespace Test
             {
                 await guild.DefaultChannel.SendMessageAsync("The bot is ready!");
             }
+        }
+    }
+
+    public class MyCommandModule : ModuleBase
+    {
+        [Command("who")]
+        [Alias("whodis", "whoisthis")]
+        private async Task WhoCommandAsync(IUser user)
+        {
+            await Context.Message.DeleteAsync();
+
+            string name = user.Username + "#" + user.Discriminator;
+            string ava = user.GetAvatarUrl().Replace("128", "2048");
+            UserStatus status = user.Status;
+            string created = user.CreatedAt.DateTime.ToUniversalTime().ToString();
+
+            Color embedCol;
+            if (status == UserStatus.Online) embedCol = Color.DarkGreen;
+            else if (status == UserStatus.DoNotDisturb) embedCol = Color.DarkRed;
+            else if (status == UserStatus.AFK || status == UserStatus.Idle) embedCol = Color.Orange;
+            else embedCol = Color.DarkGrey;
+
+            EmbedBuilder embed = new EmbedBuilder() { 
+                Author = new EmbedAuthorBuilder() { Name = name, IconUrl = ava }, 
+                Color = embedCol, 
+                Description = $"Created: {created}" 
+            };
+
+            await Util.PostTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);
         }
     }
 }
