@@ -9,8 +9,11 @@
     <Product />
     <Company />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>An extension to Discord.Net (2.1.1). Used to speed up creation of my Discord bots, released to allow others to benefit.</Description>
+    <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
+    <PackageTags>Discord, Bot, Library, Core, Discord.Net</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
