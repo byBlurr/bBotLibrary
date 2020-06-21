@@ -13,7 +13,7 @@ namespace Test
             CommandHandler commandHandler = new MyCommandHandler();
 
             // Start the bot by passing through the command handler created and strings for token and prefix.
-            StartBot(commandHandler, "NzI0Mjg0NzEwOTc2NDg3NDI1.Xu-O7w.8bpdJXN2IldCFPi7BEw4UlqVERk", "!"); // void StartBot(CommandHandler commandHandler, string token, string prefix = "!");
+            StartBot(commandHandler, "NzI0Mjg0NzEwOTc2NDg3NDI1.Xu-yTA.w9DjeFqwTRoIU4MRR8GSyuBBLPc", "!"); // void StartBot(CommandHandler commandHandler, string token, string prefix = "!");
         }
     }
 
@@ -28,7 +28,10 @@ namespace Test
 
         private async Task ReadyAsync()
         {
-            await Bot.Logger(new LogMessage(LogSeverity.Critical, this.ToString(), "The bot is ready!"));
+            foreach (var guild in GetBot().Guilds)
+            {
+                await guild.DefaultChannel.SendMessageAsync("The bot is ready!");
+            }
         }
     }
 }
