@@ -22,7 +22,7 @@ namespace Test
     public class MyCommandHandler : CommandHandler
     {
         // Override the SetupHandlers method, no need to call the base method
-        public override async Task SetupHandlers(DiscordSocketClient bot)
+        public override void SetupHandlers(DiscordSocketClient bot)
         {
             // Add any event handlers needed, for example UserJoined
             bot.Ready += ReadyAsync;

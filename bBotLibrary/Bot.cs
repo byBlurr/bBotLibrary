@@ -28,6 +28,7 @@ namespace Discord.Net.Bot
 
             var serviceProvider = ConfigureServices();
             handler = chandler;
+
             chandler.SetUp(serviceProvider, prefix);
             await handler.ConfigureAsync();
 

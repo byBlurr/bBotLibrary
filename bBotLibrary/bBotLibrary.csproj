@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.1.1</Version>
+    <Version>2.2.0</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.1.1" />
+    <PackageReference Include="Discord.Net" Version="2.2.0" />
   </ItemGroup>
 
 </Project>

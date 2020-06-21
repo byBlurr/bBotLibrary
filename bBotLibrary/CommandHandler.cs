@@ -2,7 +2,6 @@
 using System.Reflection;
 using Discord.Commands;
 using Discord.WebSocket;
-using Discord;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,7 +24,7 @@ namespace Discord.Net.Bot
             SetupHandlers(bot);
         }
 
-        public virtual async Task SetupHandlers(DiscordSocketClient bot) { }
+        public virtual void SetupHandlers(DiscordSocketClient bot) { }
         private async Task HandleCommandAsync(SocketMessage pMsg)
         {
             SocketUserMessage message = pMsg as SocketUserMessage;
