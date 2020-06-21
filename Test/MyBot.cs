@@ -35,6 +35,8 @@ namespace Test
                 // Send a message in their default channel, saying the bot is ready
                 await guild.DefaultChannel.SendMessageAsync("The bot is ready!");
             }
+
+            await Task.CompletedTask;
         }
     }
 
@@ -69,6 +71,7 @@ namespace Test
 
             // Send a temporary message with the embed we created, timer set to 10 seconds
             await Util.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);
+            await Task.CompletedTask;
         }
     }
 }

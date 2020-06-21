@@ -29,6 +29,45 @@ namespace Discord.Net.Bot
                 await Task.Delay(time);
                 await msg.DeleteAsync();
             });
+
+            await Task.CompletedTask;
+        }
+
+        /// Send a log message to the console
+        public static Task Logger(LogMessage lmsg)
+        {
+            // Set the foreground color based on severity
+            var cc = Console.ForegroundColor;
+            switch (lmsg.Severity)
+            {
+                case LogSeverity.Critical:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    break;
+                case LogSeverity.Error:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case LogSeverity.Warning:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                case LogSeverity.Info:
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                case LogSeverity.Verbose:
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    break;
+                case LogSeverity.Debug:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+            }
+
+            // Send the log
+            Console.WriteLine($"{DateTime.Now} [{lmsg.Severity,8}] {lmsg.Source}: {lmsg.Message}");
+
+            // Reset the foreground color
+            Console.ForegroundColor = cc;
+
+            // Task completed
+            return Task.CompletedTask;
         }
     }
 }

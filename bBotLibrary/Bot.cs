@@ -19,7 +19,7 @@ namespace Discord.Net.Bot
                 LogLevel = Discord.LogSeverity.Verbose
             });
 
-            client.Log += Logger;
+            client.Log += Util.Logger;
 
             await client.LoginAsync(TokenType.Bot, token);
             await client.StartAsync();
@@ -32,36 +32,7 @@ namespace Discord.Net.Bot
 
             await Task.Delay(-1);
         }
-        public static Task Logger(LogMessage lmsg)
-        {
-            var cc = Console.ForegroundColor;
-            switch (lmsg.Severity)
-            {
-                case LogSeverity.Critical:
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    break;
-                case LogSeverity.Error:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case LogSeverity.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case LogSeverity.Info:
-                    Console.ForegroundColor = ConsoleColor.Gray;
-                    break;
-                case LogSeverity.Verbose:
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    break;
-                case LogSeverity.Debug:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-            }
-            Console.WriteLine($"{DateTime.Now} [{lmsg.Severity,8}] {lmsg.Source}: {lmsg.Message}");
-            Console.ForegroundColor = cc;
-            return Task.CompletedTask;
-        }
-
-
+        
         public IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection().AddSingleton(client).AddSingleton(new CommandService(new CommandServiceConfig { CaseSensitiveCommands = false }));
