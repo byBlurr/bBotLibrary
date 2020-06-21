@@ -29,8 +29,10 @@ namespace Test
 
         private async Task ReadyAsync()
         {
+            // Loop through the guilds
             foreach (var guild in GetBot().Guilds)
             {
+                // Send a message in their default channel, saying the bot is ready
                 await guild.DefaultChannel.SendMessageAsync("The bot is ready!");
             }
         }
@@ -42,25 +44,30 @@ namespace Test
         [Alias("whodis", "whoisthis")]
         private async Task WhoCommandAsync(IUser user)
         {
+            // Delete the message containing the command
             await Context.Message.DeleteAsync();
 
+            // Collect the information that we want
             string name = user.Username + "#" + user.Discriminator;
             string ava = user.GetAvatarUrl().Replace("128", "2048");
-            UserStatus status = user.Status;
             string created = user.CreatedAt.DateTime.ToUniversalTime().ToString();
 
+            // Set embedCol based on their status
+            UserStatus status = user.Status;
             Color embedCol;
             if (status == UserStatus.Online) embedCol = Color.DarkGreen;
             else if (status == UserStatus.DoNotDisturb) embedCol = Color.DarkRed;
             else if (status == UserStatus.AFK || status == UserStatus.Idle) embedCol = Color.Orange;
             else embedCol = Color.DarkGrey;
 
+            // Create the embed builder based on the information
             EmbedBuilder embed = new EmbedBuilder() { 
                 Author = new EmbedAuthorBuilder() { Name = name, IconUrl = ava }, 
                 Color = embedCol, 
                 Description = $"Created: {created}"
             };
 
+            // Send a temporary message with the embed we created, timer set to 10 seconds
             await Util.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);
         }
     }
