@@ -13,7 +13,7 @@ namespace Test
             CommandHandler commandHandler = new MyCommandHandler();
 
             // Start the bot by passing through the command handler created and strings for token and prefix.
-            StartBot(commandHandler, "NzI0Mjg0NzEwOTc2NDg3NDI1.Xu98vw.VRyLwBVePOZX2J4Cn5Rbvq9_nak", "!"); // void StartBot(CommandHandler commandHandler, string token, string prefix = "!");
+            StartBot(commandHandler, "NzI0Mjg0NzEwOTc2NDg3NDI1.Xu-O7w.8bpdJXN2IldCFPi7BEw4UlqVERk", "!"); // void StartBot(CommandHandler commandHandler, string token, string prefix = "!");
         }
     }
 
