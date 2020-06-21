@@ -1,16 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>0.0.1</Version>
+    <Version>2.1.1</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>An extension to Discord.Net. Used to speed up creation of my Discord bots, released to allow others to benefit.</Description>
+    <Description>An extension to Discord.Net (2.1.1). Used to speed up creation of my Discord bots, released to allow others to benefit.</Description>
   </PropertyGroup>
 
   <ItemGroup>

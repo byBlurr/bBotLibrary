@@ -14,8 +14,7 @@ namespace Discord.Net.Bot
         private CommandService commands;
         private static DiscordSocketClient bot;
         private IServiceProvider map;
-
-        public CommandHandler(IServiceProvider provider, string _prefix = "!")
+        public void SetUp(IServiceProvider provider, string _prefix)
         {
             prefix = _prefix;
             map = provider;
@@ -23,8 +22,10 @@ namespace Discord.Net.Bot
             commands = map.GetService<CommandService>();
 
             bot.MessageReceived += HandleCommandAsync;
+            SetupHandlers(bot);
         }
 
+        public virtual async Task SetupHandlers(DiscordSocketClient bot) { }
         private async Task HandleCommandAsync(SocketMessage pMsg)
         {
             SocketUserMessage message = pMsg as SocketUserMessage;
