@@ -1,8 +1,6 @@
 ﻿using Discord;
 using Discord.Net.Bot;
 using Discord.WebSocket;
-using System;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace Test
