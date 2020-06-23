@@ -12,7 +12,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>An extension to Discord.Net. Used to speed up creation of my Discord bots, released to allow others to benefit. For example projects or to contribute head to https://github.com/byBlurr/bBotLibrary</Description>
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
-    <PackageTags>Discord, Bot, Library, Core, Discord.Net</PackageTags>
+    <PackageTags>discord, discordapp, bot, library, core, discord.net, disc, blurr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReleaseNotes>
 For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
