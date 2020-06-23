@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Discord.Commands;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -8,6 +9,19 @@ namespace Discord.Net.Bot
 {
     public class Util
     {
+        /// Send error message
+        public static async Task SendErrorAsync(ITextChannel channel, string source, string message, bool printConsole = false)
+        {
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Color = Color.Red,
+                Title = source,
+                Description = message
+            };
+
+            if (printConsole) await Logger(new LogMessage(LogSeverity.Error, source, message));
+            await channel.SendMessageAsync(null, false, embed.Build());
+        }
 
         /// Checks if the file exists, creates the directory if it doesn't exist.
         public static bool DoesFileExist(string directory, string filename)
