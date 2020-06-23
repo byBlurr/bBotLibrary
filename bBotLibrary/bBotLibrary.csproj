@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.2.0.1</Version>
+    <Version>2.2.0.2</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
@@ -14,6 +14,8 @@
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
     <PackageTags>Discord, Bot, Library, Core, Discord.Net</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>
+For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
