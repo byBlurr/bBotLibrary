@@ -13,9 +13,7 @@ namespace bModerator
         static void Main(string[] args)
         {
             CommandHandler handler = new MCommandHandler();
-
-            // Todo: Move token and prefix into a config file
-            StartBot(handler, "NzEzODcwMzIyNjYyNzY4NzI4.Xu_Pxw.DqT0a3HAfVF4DEy4s-_cBf0qlBY", "~");
+            StartBot(handler);
         }
     }
 
