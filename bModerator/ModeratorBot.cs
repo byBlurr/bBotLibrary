@@ -63,6 +63,10 @@ namespace bModerator
         [Alias("um")]
         [RequireUserPermission(GuildPermission.KickMembers)]
         private async Task UnmuteAsync(IGuildUser user) => await ModuleModerator.UnmuteAsync(Context, user);
-        
+
+        [Command("check")]
+        [Alias("c", "whois")]
+        private async Task CheckUserAsync(IGuildUser user) => await ModuleModerator.CheckUserAsync(Context, user);
+
     }
 }
