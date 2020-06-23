@@ -7,6 +7,8 @@ namespace Discord.Net.Bot.CommandModules
 {
     public static class ModuleModerator
     {
+
+        // Async Tasks for Commands
         public static async Task KickAsync(ICommandContext Context, IGuildUser user, [Remainder] string reason)
         {
             string message = $"{Context.User.ToString()} kicked {user.ToString()}\n{reason}";
@@ -125,6 +127,35 @@ namespace Discord.Net.Bot.CommandModules
 
             await Task.CompletedTask;
         }
+
+        public static async Task CheckUserAsync(ICommandContext Context, IGuildUser user)
+        {
+            string name = user.Username + "#" + user.Discriminator;
+            string ava = user.GetAvatarUrl().Replace("128", "2048");
+            string created = user.CreatedAt.DateTime.ToUniversalTime().ToString();
+
+            UserStatus status = user.Status;
+            Color embedCol;
+            if (status == UserStatus.Online) embedCol = Color.DarkGreen;
+            else if (status == UserStatus.DoNotDisturb) embedCol = Color.DarkRed;
+            else if (status == UserStatus.AFK || status == UserStatus.Idle) embedCol = Color.Orange;
+            else embedCol = Color.DarkGrey;
+
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Author = new EmbedAuthorBuilder() { Name = name, IconUrl = ava },
+                Color = embedCol,
+                Description = $"Created: {created}"
+            };
+
+            await Util.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 12500);
+            await Task.CompletedTask;
+        }
+
+
+        // Async Tasks for Events
+
+        /// Task for MessageReceived
         public static async Task FilterMutedAsync(SocketMessage message)
         {
             if (message.Author.IsBot) return;
