@@ -50,6 +50,55 @@ namespace Discord.Net.Bot.Database.Configs
             return File.Exists(Path.Combine(Dir, Filename));
         }
 
+        public static BotConfig CheckConfig()
+        {
+            BotConfig config;
+
+            if (BotConfig.Exists()) config = BotConfig.Load();
+            else
+            {
+                // Create config...
+                config = new BotConfig();
+                Console.Clear();
+                Console.WriteLine("No config file was found...\n");
+
+                Console.WriteLine("Bot Token: ");
+                Console.WriteLine("Create a bot at https://discord.com/developers \n");
+                config.Token = Console.ReadLine();
+                Console.Clear();
+
+                bool typeSelected = false;
+                while (!typeSelected)
+                {
+                    Console.WriteLine("Config Type: s | i\nS - Solo (One config for the whole bot)\nI - Individual (Different config for each guild)\n");
+                    string input = Console.ReadLine();
+                    if (input.ToLower().Equals("s"))
+                    {
+                        config.Type = ConfigType.Solo;
+                        typeSelected = true;
+                    }
+                    else if (input.ToLower().Equals("i"))
+                    {
+                        config.Type = ConfigType.Individual;
+                        typeSelected = true;
+                    }
+                    Console.Clear();
+                }
+
+                Console.WriteLine("Default Prefix: ");
+                config.SoloConfig.Prefix = Console.ReadLine();
+                Console.Clear();
+
+                Console.WriteLine($"Config file created...\nToken: {config.Token}\nPrefix: {config.SoloConfig.Prefix}\nType: {config.Type}");
+                config.Save();
+                Console.WriteLine("Config file saved...");
+                Console.Clear();
+            }
+
+            Console.WriteLine("Config file loaded.");
+            return config;
+        }
+
         public void Save() => File.WriteAllText(Path.Combine(Dir, Filename), ToJson());
 
         public static BotConfig Load()
@@ -65,11 +114,17 @@ namespace Discord.Net.Bot.Database.Configs
     {
         public ulong Guild { get; set; }
         public string Prefix { get; set; }
+        public bool LogCommands { get; set; }
+        public bool LogActions { get; set; }
+        public ulong LogChannel { get; set; }
 
         public IndividualConfig()
         {
             Guild = 0L;
             Prefix = "-";
+            LogCommands = false;
+            LogActions = false;
+            LogChannel = 0L;
         }
     }
 

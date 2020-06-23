@@ -1,4 +1,5 @@
 ﻿using Discord.Commands;
+using Discord.Net.Bot.Database.Configs;
 using Discord.WebSocket;
 using System;
 using System.Threading.Tasks;
@@ -178,6 +179,40 @@ namespace Discord.Net.Bot.CommandModules
             }
 
             await Task.CompletedTask;
+        }
+
+        // Other
+        public static void ToggleActionLogs(ulong guild = 0l, ulong channel = 0l)
+        {
+            BotConfig conf = BotConfig.Load();
+            if (conf.Type == ConfigType.Solo || guild == 0l)
+            {
+                conf.SoloConfig.LogActions = !conf.SoloConfig.LogActions;
+                if (conf.SoloConfig.LogActions && channel != 0l) conf.SoloConfig.LogChannel = channel;
+            }
+            else
+            {
+                IndividualConfig gconf = conf.GetConfig(guild);
+                gconf.LogActions = !gconf.LogActions;
+                if (gconf.LogActions && channel != 0l) gconf.LogChannel = channel;
+            }
+            conf.Save();
+        }
+        public static void ToggleCommandLogs(ulong guild = 0l, ulong channel = 0l)
+        {
+            BotConfig conf = BotConfig.Load();
+            if (conf.Type == ConfigType.Solo || guild == 0l)
+            {
+                conf.SoloConfig.LogCommands = !conf.SoloConfig.LogCommands;
+                if (conf.SoloConfig.LogCommands && channel != 0l) conf.SoloConfig.LogChannel = channel;
+            }
+            else
+            {
+                IndividualConfig gconf = conf.GetConfig(guild);
+                gconf.LogCommands = !gconf.LogCommands;
+                if (gconf.LogCommands && channel != 0l) gconf.LogChannel = channel;
+            }
+            conf.Save();
         }
     }
 }
