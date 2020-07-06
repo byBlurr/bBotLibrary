@@ -81,7 +81,11 @@ namespace Discord.Net.Bot
             else
                 prefix = config.GetConfig((message.Channel as IGuildChannel).GuildId).Prefix;
 
-            
+            if (message.Content.StartsWith(bot.CurrentUser.Mention) && message.Content.Length == bot.CurrentUser.Mention.Length)
+            {
+                await context.Channel.SendMessageAsync($"Try `{prefix}help`");
+                return;
+            }
 
             int argPos = 0;
             if (message.HasStringPrefix(prefix, ref argPos) || message.HasMentionPrefix(bot.CurrentUser, ref argPos))

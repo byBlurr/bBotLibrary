@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.Net.Bot;
+using Discord.Net.Bot.Database.Configs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -52,7 +53,7 @@ namespace LorisAngelBot.Modules
             {
                 Title = "Loris Angel Help",
                 Description = CommandHelpText,
-                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}."}
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Bot Prefix: {BotConfig.Load().GetConfig(Context.Guild.Id).Prefix}"}
             };
 
             await Context.User.SendMessageAsync(null, false, embed.Build());
