@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Discord.Net.Bot
 {
-    public enum Emojis
+    public enum Emoji
     {
         [StringValue("❤️")] HEART,
         [StringValue("💘")] CUPID,
@@ -17,7 +17,7 @@ namespace Discord.Net.Bot
         [StringValue("😀")] GRIN,
     }
 
-    public enum Hearts
+    public enum HeartEmoji
     {
         [StringValue("❤️")] RED,
         [StringValue("💚")] GREEN,
@@ -26,6 +26,11 @@ namespace Discord.Net.Bot
         [StringValue("🧡")] ORANGE,
         [StringValue("💜")] PURPLE,
         [StringValue("💖")] SPARKLING,
+    }
+
+    public enum CommandCategory
+    {
+        Games, Moderation, Help, BotRelated
     }
 
     public class StringValue : Attribute

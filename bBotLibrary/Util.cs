@@ -6,7 +6,7 @@ namespace Discord.Net.Bot
 {
     public class Util
     {
-        public static string GetInviteLink(string clientid, int permissions)
+        public static string GetInviteLink(ulong clientid, int permissions = 8)
         {
             return $"https://discordapp.com/oauth2/authorize?client_id={clientid}&scope=bot&permissions={permissions}";
         }
@@ -14,18 +14,18 @@ namespace Discord.Net.Bot
         /// Get a random emoji from the emojis enum (not all added because im lazy)
         public static string GetRandomEmoji()
         {
-            Array values = Enum.GetValues(typeof(Emojis));
+            Array values = Enum.GetValues(typeof(Emoji));
             Random random = new Random();
-            Emojis randomEmoji = (Emojis)values.GetValue(random.Next(values.Length));
+            Emoji randomEmoji = (Emoji)values.GetValue(random.Next(values.Length));
 
             return EnumUtil.GetString(randomEmoji);
         }
 
         public static string GetRandomHeartEmoji()
         {
-            Array values = Enum.GetValues(typeof(Hearts));
+            Array values = Enum.GetValues(typeof(HeartEmoji));
             Random random = new Random();
-            Hearts randomEmoji = (Hearts)values.GetValue(random.Next(values.Length));
+            HeartEmoji randomEmoji = (HeartEmoji)values.GetValue(random.Next(values.Length));
 
             return EnumUtil.GetString(randomEmoji);
         }
