@@ -81,8 +81,10 @@ namespace Discord.Net.Bot
             else
                 prefix = config.GetConfig((message.Channel as IGuildChannel).GuildId).Prefix;
 
+            
+
             int argPos = 0;
-            if (message.HasStringPrefix(prefix, ref argPos))
+            if (message.HasStringPrefix(prefix, ref argPos) || message.HasMentionPrefix(bot.CurrentUser, ref argPos))
             {
                 var result = await commands.ExecuteAsync(context, argPos, map);
                 if (!result.IsSuccess && result.ErrorReason != "Unknown command.") Console.WriteLine(result.ErrorReason);
