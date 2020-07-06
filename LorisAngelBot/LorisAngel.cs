@@ -24,7 +24,7 @@ namespace LorisAngelBot
                 while (true)
                 {
                     await bot.SetGameAsync($"{bot.Guilds.Count} servers {Util.GetRandomHeartEmoji()}", null, ActivityType.Watching);
-                    await Task.Delay(10000);
+                    await Task.Delay(2500);
                 }
             });
             
