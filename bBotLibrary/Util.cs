@@ -6,6 +6,11 @@ namespace Discord.Net.Bot
 {
     public class Util
     {
+        public static string GetInviteLink(string clientid, int permissions)
+        {
+            return $"https://discordapp.com/oauth2/authorize?client_id={clientid}&scope=bot&permissions={permissions}";
+        }
+
         /// Get a random emoji from the emojis enum (not all added because im lazy)
         public static string GetRandomEmoji()
         {
