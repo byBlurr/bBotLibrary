@@ -1,14 +1,30 @@
-﻿using Discord.Commands;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Discord.Net.Bot
 {
     public class Util
     {
+        /// Get a random emoji from the emojis enum (not all added because im lazy)
+        public static string GetRandomEmoji()
+        {
+            Array values = Enum.GetValues(typeof(Emojis));
+            Random random = new Random();
+            Emojis randomEmoji = (Emojis)values.GetValue(random.Next(values.Length));
+
+            return EnumUtil.GetString(randomEmoji);
+        }
+
+        public static string GetRandomHeartEmoji()
+        {
+            Array values = Enum.GetValues(typeof(Hearts));
+            Random random = new Random();
+            Hearts randomEmoji = (Hearts)values.GetValue(random.Next(values.Length));
+
+            return EnumUtil.GetString(randomEmoji);
+        }
+
         /// Send error message
         public static async Task SendErrorAsync(ITextChannel channel, string source, string message, bool printConsole = false)
         {

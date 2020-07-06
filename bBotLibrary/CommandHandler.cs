@@ -13,7 +13,7 @@ namespace Discord.Net.Bot
         private ConfigType configType;
 
         private CommandService commands;
-        private static DiscordSocketClient bot;
+        protected static DiscordSocketClient bot;
         private IServiceProvider map;
         public void SetUp(IServiceProvider provider, ConfigType ctype)
         {
