@@ -132,7 +132,7 @@ namespace Discord.Net.Bot.CommandModules
         public static async Task CheckUserAsync(ICommandContext Context, IGuildUser user)
         {
             string name = user.Username + "#" + user.Discriminator;
-            string ava = user.GetAvatarUrl().Replace("128", "2048");
+            string ava = user.GetAvatarUrl(size: 2048);
             string created = user.CreatedAt.DateTime.ToUniversalTime().ToString();
 
             UserStatus status = user.Status;

@@ -7,8 +7,14 @@ namespace Discord.Net.Bot
 {
     public enum Emoji
     {
-        [StringValue("❤️")] HEART,
-        [StringValue("💘")] CUPID,
+        [StringValue("❤️")] RED_HEART,
+        [StringValue("💚")] GREEN_HEART,
+        [StringValue("💛")] YELLOW_HEART,
+        [StringValue("💙")] BLUE_HEART,
+        [StringValue("🧡")] ORANGE_HEART,
+        [StringValue("💜")] PURPLE_HEART,
+        [StringValue("💖")] SPARKLING_HEART,
+        [StringValue("💘")] CUPID_HEART,
         [StringValue("😊")] SMILE,
         [StringValue("🤪")] WILD,
         [StringValue("🥰")] HEARTS,
@@ -26,11 +32,12 @@ namespace Discord.Net.Bot
         [StringValue("🧡")] ORANGE,
         [StringValue("💜")] PURPLE,
         [StringValue("💖")] SPARKLING,
+        [StringValue("💘")] CUPID,
     }
 
     public enum CommandCategory
     {
-        Games, Moderation, Help, BotRelated
+        Games, Moderation, Help, BotRelated, User
     }
 
     public class StringValue : Attribute

@@ -6,6 +6,7 @@ namespace Discord.Net.Bot
 {
     public class Util
     {
+        /// Get the invite link to add the bot to the server
         public static string GetInviteLink(ulong clientid, int permissions = 8)
         {
             return $"https://discordapp.com/oauth2/authorize?client_id={clientid}&scope=bot&permissions={permissions}";
@@ -28,6 +29,17 @@ namespace Discord.Net.Bot
             HeartEmoji randomEmoji = (HeartEmoji)values.GetValue(random.Next(values.Length));
 
             return EnumUtil.GetString(randomEmoji);
+        }
+
+        /// Returns the strink with an upper case first letter
+        public static string ToUppercaseFirst(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+
+            return char.ToUpper(s[0]) + s.Substring(1);
         }
 
         /// Send error message
