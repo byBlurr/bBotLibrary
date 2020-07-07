@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace Discord.Net.Bot.Database.Configs
@@ -20,6 +19,7 @@ namespace Discord.Net.Bot.Database.Configs
         public DateTime LastStartup { get; set; }
         public IndividualConfig SoloConfig { get; set; }
         public List<IndividualConfig> Configs { get; set; }
+        public List<BotCommand> Commands { get; set; }
 
         public BotConfig()
         {
@@ -29,6 +29,7 @@ namespace Discord.Net.Bot.Database.Configs
             LastStartup = DateTime.UtcNow;
             SoloConfig = new IndividualConfig();
             Configs = new List<IndividualConfig>();
+            Commands = new List<BotCommand>();
         }
 
         public IndividualConfig GetConfig(ulong guild)
@@ -119,28 +120,5 @@ namespace Discord.Net.Bot.Database.Configs
         
         public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
 
-    }
-
-    public class IndividualConfig
-    {
-        public ulong Guild { get; set; }
-        public string Prefix { get; set; }
-        public bool LogCommands { get; set; }
-        public bool LogActions { get; set; }
-        public ulong LogChannel { get; set; }
-
-        public IndividualConfig()
-        {
-            Guild = 0L;
-            Prefix = "-";
-            LogCommands = false;
-            LogActions = false;
-            LogChannel = 0L;
-        }
-    }
-
-    public enum ConfigType
-    {
-        Solo, Individual
     }
 }

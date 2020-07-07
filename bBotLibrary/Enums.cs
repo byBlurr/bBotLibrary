@@ -35,6 +35,10 @@ namespace Discord.Net.Bot
         [StringValue("💘")] CUPID,
     }
 
+    public enum ConfigType
+    {
+        Solo, Individual
+    }
     public enum CommandCategory
     {
         Games, Moderation, Help, BotRelated, User, Tools

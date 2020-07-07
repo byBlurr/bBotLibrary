@@ -5,16 +5,18 @@ using Discord.WebSocket;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Discord.Net.Bot.Database.Configs;
+using System.Collections.Generic;
 
 namespace Discord.Net.Bot
 {
     public abstract class CommandHandler
     {
-        private ConfigType configType;
+        private static ConfigType configType;
 
         private CommandService commands;
         protected static DiscordSocketClient bot;
         private IServiceProvider map;
+
         public void SetUp(IServiceProvider provider, ConfigType ctype)
         {
             configType = ctype;
@@ -27,6 +29,10 @@ namespace Discord.Net.Bot
             bot.JoinedGuild += JoinGuildAsync;
             bot.MessageReceived += HandleCommandAsync;
             SetupHandlers(bot);
+
+            BotConfig conf = BotConfig.Load();
+            RegisterCommands(conf.Commands);
+            conf.Save();
         }
 
         private async Task JoinGuildAsync(SocketGuild guild)
@@ -66,7 +72,17 @@ namespace Discord.Net.Bot
             conf.Save();
         }
 
+        public static string GetPrefix(ulong id = 0L)
+        {
+            BotConfig conf = BotConfig.Load();
+            if (configType == ConfigType.Individual)
+                return conf.GetConfig(id).Prefix;
+            else
+                return conf.SoloConfig.Prefix;
+        }
+
         public virtual void SetupHandlers(DiscordSocketClient bot) { }
+        public virtual void RegisterCommands(List<BotCommand> commands) { }
         private async Task HandleCommandAsync(SocketMessage pMsg)
         {
             SocketUserMessage message = pMsg as SocketUserMessage;
