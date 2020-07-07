@@ -1,7 +1,9 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.Net.Bot;
+using Discord.Net.Bot.Database.Configs;
 using Discord.WebSocket;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Test
@@ -20,6 +22,16 @@ namespace Test
 
     public class MyCommandHandler : CommandHandler
     {
+        // Override the RegisterCommands method, no need to call the base method
+        public override void RegisterCommands(List<BotCommand> commands)
+        {
+            // Clear the current list of commands saved
+            commands.Clear();
+
+            // Add any commands that need adding, this information will be used by the help module
+            commands.Add(new BotCommand("WHO", "who @user", "Retreive information on a member for the server.", CommandCategory.User));
+        }
+
         // Override the SetupHandlers method, no need to call the base method
         public override void SetupHandlers(DiscordSocketClient bot)
         {

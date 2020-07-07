@@ -19,7 +19,7 @@ namespace Discord.Net.Bot.CommandModules
                 if (command.Category.ToString().ToLower() == section.ToLower() || command.Handle.ToLower() == section.ToLower())
                 {
                     string help = $"{command.Handle}\nUsage:\n{command.Usage}\n{command.Description}";
-                    if (command.Request != "") help = $"{help}\nFeature requested by: {command.Request}";
+                    if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
 
                     CommandHelpText = CommandHelpText + "\n\n" + help;
                     SendInDm = true;
