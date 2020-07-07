@@ -24,46 +24,55 @@ namespace LorisAngelBot.Modules
             string result;
 
             Random rnd = new Random();
-            int random = rnd.Next(0, 11);
+            int random = rnd.Next(0, 14);
 
             switch (random)
             {
                 case 0:
-                    result = $"**{user} slapped {user2}!**";
+                    result = $"**_{user} slapped {user2}!_**";
                     break;
                 case 1:
-                    result = $"**{user} spanked {user2}!**";
+                    result = $"**_{user} spanked {user2}!_**";
                     break;
                 case 2:
-                    result = $"**{user} paddled {user2}!**";
+                    result = $"**_{user} paddled {user2}!_**";
                     break;
                 case 3:
-                    result = $"**{user} used the belt on {user2}!**";
+                    result = $"**_{user} used the belt on {user2}!_**";
                     break;
                 case 4:
-                    result = $"**{user} refused to spit on {user2} during sex!**";
+                    result = $"**_{user} refused to spit on {user2} during sex!_**";
                     break;
                 case 5:
-                    result = $"**{user} whipped {user2}!**";
+                    result = $"**_{user} whipped {user2}!_**";
                     break;
                 case 6:
-                    result = $"**{user} chained {user2} up!**";
+                    result = $"**_{user} chained {user2} up!_**";
                     break;
                 case 7:
-                    result = $"**{user} gagged {user2} with their toes!**";
+                    result = $"**_{user} gagged {user2} with their toes!_**";
                     break;
                 case 8:
-                    result = $"**{user} pegged {user2}!**";
+                    result = $"**_{user} pegged {user2}!_**";
                     break;
                 case 9:
-                    result = $"**{user} ball gagged {user2}!**";
+                    result = $"**_{user} ball gagged {user2}!_**";
                     break;
                 case 10:
-                    result = $"**{user} cucked {user2}!**";
+                    result = $"**_{user} cucked {user2}!_**";
+                    break;
+                case 11:
+                    result = $"**_{user} force fed {user2} cheese!_**";
+                    break;
+                case 12:
+                    result = $"**_{user} threw a spoon at {user2}'s forehead!_**";
+                    break;
+                case 13:
+                    result = $"**_{user} sat on {user2}'s face until they passed out!_**";
                     break;
 
                 default:
-                    result = $"**{user} punished {user2}!**";
+                    result = $"**_{user} punished {user2}!_**";
                     break;
             }
 
