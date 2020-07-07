@@ -45,7 +45,7 @@ namespace LorisAngelBot.Modules
 
             foreach (BotCommand command in Commands)
             {
-                if (command.Category.ToString().ToLower() == section.ToLower() || Commands.Length <= 5)
+                if (command.Category.ToString().ToLower() == section.ToLower() || command.Handle.ToLower() == section.ToLower())
                 {
                     string help = $"{command.Handle}\nUsage:\n{command.Usage}\n{command.Description}";
                     CommandHelpText = CommandHelpText + "\n\n" + help;

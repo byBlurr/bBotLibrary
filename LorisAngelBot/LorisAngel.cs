@@ -23,7 +23,7 @@ namespace LorisAngelBot
             var status = Task.Run(async () => {
                 while (true)
                 {
-                    await bot.SetGameAsync($"{bot.Guilds.Count} servers {Util.GetRandomHeartEmoji()}", null, ActivityType.Watching);
+                    await bot.SetGameAsync($"to {bot.Guilds.Count} servers {Util.GetRandomHeartEmoji()}", "https://www.twitch.tv/pengu", ActivityType.Streaming);
                     await Task.Delay(2500);
                 }
             });
