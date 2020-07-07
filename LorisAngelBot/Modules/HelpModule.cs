@@ -18,6 +18,7 @@ namespace LorisAngelBot.Modules
             new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.Games),
             new BotCommand("REVERSE", "`-reverse <message>`", "Reverse the message!", CommandCategory.Games),
             new BotCommand("QUOTE", "`-quote @author <message>`", "Save a quote to the database!", CommandCategory.Games),
+            new BotCommand("BINARY", "`-binary <text>`", "Convert text to binary!", CommandCategory.Games),
             new BotCommand("OLDEST", "`-oldest`", "Find out who the oldest user in the guild is!", CommandCategory.User),
             new BotCommand("AVATAR", "`-avatar @user`", "View the users avatar!", CommandCategory.User),
             new BotCommand("WHOIS", "`-whois @user`", "View details about the user!", CommandCategory.User),

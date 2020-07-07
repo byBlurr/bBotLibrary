@@ -6,6 +6,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Color = Discord.Color;
 
@@ -138,6 +140,32 @@ namespace LorisAngelBot.Modules
                 embed.Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}." };
                 await Context.Channel.SendMessageAsync(null, false, embed.Build());
             }
+        }
+
+        [Command("binary")]
+        [Alias("bin")]
+        private async Task BinaryAsync([Remainder] string text)
+        {
+            await Context.Message.DeleteAsync();
+            var binary = ToBinary(ConvertToByteArray(text, Encoding.ASCII));
+
+            EmbedBuilder embed = new EmbedBuilder() {
+                Title = $"Text to Binary",
+                Description = $"''{text}''\n\n{binary}",
+                Color = Color.DarkPurple
+            };
+            embed.Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}." };
+            await Context.Channel.SendMessageAsync(null, false, embed.Build());
+        }
+
+        public static byte[] ConvertToByteArray(string str, Encoding encoding)
+        {
+            return encoding.GetBytes(str);
+        }
+
+        public static String ToBinary(Byte[] data)
+        {
+            return string.Join(" ", data.Select(byt => Convert.ToString(byt, 2).PadLeft(8, '0')));
         }
     }
 }
