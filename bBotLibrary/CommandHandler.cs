@@ -47,10 +47,9 @@ namespace Discord.Net.Bot
 
         private async Task CheckConfigsAsync()
         {
+            BotConfig conf = BotConfig.Load();
             if (configType == ConfigType.Individual)
             {
-                BotConfig conf = BotConfig.Load();
-                bool save = false;
                 foreach (var guild in GetBot().Guilds)
                 {
                     IndividualConfig gconf = conf.GetConfig(guild.Id);
@@ -58,14 +57,13 @@ namespace Discord.Net.Bot
                     {
                         gconf = conf.FreshConfig(guild.Id);
                         conf.Configs.Add(gconf);
-                        save = true;
                     }
                 }
-
-                if (save) conf.Save();
             }
 
             await Util.Logger(new LogMessage(LogSeverity.Info, "Gateway", $"Successfully connected to {bot.Guilds.Count} guilds"));
+            conf.LastStartup = DateTime.UtcNow;
+            conf.Save();
         }
 
         public virtual void SetupHandlers(DiscordSocketClient bot) { }

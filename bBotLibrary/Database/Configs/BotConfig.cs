@@ -16,6 +16,8 @@ namespace Discord.Net.Bot.Database.Configs
 
         public ConfigType Type { get; set; }
         public string Token { get; set; }
+        public bool PrintVerbose { get; set; }
+        public DateTime LastStartup { get; set; }
         public IndividualConfig SoloConfig { get; set; }
         public List<IndividualConfig> Configs { get; set; }
 
@@ -23,6 +25,8 @@ namespace Discord.Net.Bot.Database.Configs
         {
             Type = ConfigType.Solo;
             Token = "";
+            PrintVerbose = false;
+            LastStartup = DateTime.UtcNow;
             SoloConfig = new IndividualConfig();
             Configs = new List<IndividualConfig>();
         }
@@ -67,11 +71,18 @@ namespace Discord.Net.Bot.Database.Configs
                 config.Token = Console.ReadLine();
                 Console.Clear();
 
+                Console.WriteLine("Print Verbose: ");
+                Console.WriteLine("Would you like the console to print Verbose logging? Y/N\n");
+                string input = Console.ReadLine();
+                if (input.ToLower()[0] == 'y') config.PrintVerbose = true;
+                else config.PrintVerbose = false;
+                Console.Clear();
+
                 bool typeSelected = false;
                 while (!typeSelected)
                 {
                     Console.WriteLine("Config Type: s | i\nS - Solo (One config for the whole bot)\nI - Individual (Different config for each guild)\n");
-                    string input = Console.ReadLine();
+                    input = Console.ReadLine();
                     if (input.ToLower().Equals("s"))
                     {
                         config.Type = ConfigType.Solo;

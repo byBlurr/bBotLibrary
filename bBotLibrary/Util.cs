@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Discord.Net.Bot.Database.Configs;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -83,7 +84,7 @@ namespace Discord.Net.Bot
         /// Send a log message to the console
         public static Task Logger(LogMessage lmsg)
         {
-            bool PRINT_VERBOSE = false;
+            bool PRINT_VERBOSE = BotConfig.Load().PrintVerbose;
 
             // Set the foreground color based on severity
             var cc = Console.ForegroundColor;
