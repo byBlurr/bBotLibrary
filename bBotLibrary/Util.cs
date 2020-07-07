@@ -83,6 +83,8 @@ namespace Discord.Net.Bot
         /// Send a log message to the console
         public static Task Logger(LogMessage lmsg)
         {
+            bool PRINT_VERBOSE = false;
+
             // Set the foreground color based on severity
             var cc = Console.ForegroundColor;
             switch (lmsg.Severity)
@@ -100,6 +102,7 @@ namespace Discord.Net.Bot
                     Console.ForegroundColor = ConsoleColor.Gray;
                     break;
                 case LogSeverity.Verbose:
+                    if (!PRINT_VERBOSE) return Task.CompletedTask;
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                     break;
                 case LogSeverity.Debug:

@@ -64,6 +64,8 @@ namespace Discord.Net.Bot
 
                 if (save) conf.Save();
             }
+
+            await Util.Logger(new LogMessage(LogSeverity.Info, "Gateway", $"Successfully connected to {bot.Guilds.Count} guilds"));
         }
 
         public virtual void SetupHandlers(DiscordSocketClient bot) { }
@@ -91,7 +93,19 @@ namespace Discord.Net.Bot
             if (message.HasStringPrefix(prefix, ref argPos) || message.HasMentionPrefix(bot.CurrentUser, ref argPos))
             {
                 var result = await commands.ExecuteAsync(context, argPos, map);
-                if (!result.IsSuccess && result.ErrorReason != "Unknown command.") Console.WriteLine(result.ErrorReason);
+                if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
+                {
+                    await Util.Logger(new LogMessage(LogSeverity.Warning, "Command Handler", result.ErrorReason, null));
+
+                    EmbedBuilder embed = new EmbedBuilder()
+                    {
+                        Title = "Command Error",
+                        Description = result.ErrorReason,
+                        Color = Color.DarkRed
+                    };
+
+                    await context.Channel.SendMessageAsync(null, false, embed.Build());
+                }
             }
         }
 
