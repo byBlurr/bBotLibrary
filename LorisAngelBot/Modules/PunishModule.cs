@@ -24,7 +24,7 @@ namespace LorisAngelBot.Modules
             string result;
 
             Random rnd = new Random();
-            int random = rnd.Next(0, 14);
+            int random = rnd.Next(0, 15);
 
             switch (random)
             {
@@ -69,6 +69,9 @@ namespace LorisAngelBot.Modules
                     break;
                 case 13:
                     result = $"**_{user} sat on {user2}'s face until they passed out!_**";
+                    break;
+                case 14:
+                    result = $"**_{user} shoved hard boiled eggs up {user2}'s ass whilst they were asleep... good luck in the morning!_**";
                     break;
 
                 default:
