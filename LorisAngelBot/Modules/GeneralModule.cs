@@ -13,7 +13,7 @@ using Color = Discord.Color;
 
 namespace LorisAngelBot.Modules
 {
-    public class CommandModule : ModuleBase
+    public class GeneralModule : ModuleBase
     {
         [Command("quote")]
         private async Task QuoteAsync(IUser author = null, [Remainder] string text = "")
