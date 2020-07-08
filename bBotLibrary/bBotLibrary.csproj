@@ -4,18 +4,19 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.2.0.2</Version>
+    <Version>2.2.0.3</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>An extension to Discord.Net. Used to speed up creation of my Discord bots, released to allow others to benefit. For example projects or to contribute head to https://github.com/byBlurr/bBotLibrary</Description>
+    <Description>An extension to Discord.Net. Used to speed up creation of my Discord bots, released to allow others to benefit. For example projects (HowTo) or to contribute head to https://github.com/byBlurr/bBotLibrary</Description>
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
     <PackageTags>discord, discordapp, bot, library, core, discord.net, disc, blurr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>
-For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
+    <PackageReleaseNotes>For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
+    <AssemblyVersion>2.2.0.3</AssemblyVersion>
+    <FileVersion>2.2.0.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
