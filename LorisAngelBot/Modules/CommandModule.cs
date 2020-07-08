@@ -54,7 +54,7 @@ namespace LorisAngelBot.Modules
                 
             }
 
-            await Context.Channel.SendFileAsync(path);
+            await Context.Channel.SendFileAsync(path, "This feature is still work in progress, I will be making the quotes look better!");
         }
 
         [Command("avatar")]
@@ -140,6 +140,28 @@ namespace LorisAngelBot.Modules
                 embed.Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}." };
                 await Context.Channel.SendMessageAsync(null, false, embed.Build());
             }
+        }
+
+        [Command("users")]
+        private async Task UsersAsync()
+        {
+            await Context.Message.DeleteAsync();
+
+            var bot = LCommandHandler.GetBot();
+            int guilds = bot.Guilds.Count;
+            int users = (await Context.Guild.GetUsersAsync()).Count;
+            int total = 0;
+            foreach (var guild in bot.Guilds) total += guild.Users.Count;
+
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Title = "Lori's Angels Statistics",
+                Color = Color.DarkPurple,
+                Description = $"Out of the {guilds} guilds I am in there are {total} total users, {users} of which are from this guild!",
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Id}"}
+            };
+
+            await Context.Channel.SendMessageAsync(null, false, embed.Build());
         }
 
         [Command("binary")]
