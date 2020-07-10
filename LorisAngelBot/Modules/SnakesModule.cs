@@ -14,8 +14,7 @@ namespace LorisAngelBot.Modules
 {
 
     /// TODO:
-    ///     Make the direction of play change each level
-    ///     Fix the errorrrrr
+    ///     Fix overlapping snakes and ladders
 
 
     public class SnakesModule : ModuleBase
@@ -27,8 +26,8 @@ namespace LorisAngelBot.Modules
             // Lock command for donators only...
             // Until further testing completed
 
-            int width = 12;
-            int height = 12;
+            int width = 10;
+            int height = 8;
 
             /**
             if (width < 5) width = 5;
@@ -58,7 +57,7 @@ namespace LorisAngelBot.Modules
                 string path = Path.Combine(AppContext.BaseDirectory, $"snakeladders/textures/{Context.Guild.Id}_board.jpg");
                 await board.DrawBlankBoardAsync(Context.Guild.Id);
                 await message.DeleteAsync();
-                IUserMessage msg = await Context.Channel.SendFileAsync(path, $"Next Up: **{board.Players[board.NextPlayer].Name}**");
+                IUserMessage msg = await Context.Channel.SendFileAsync(path, $"**Snakes and Ladders**\nNext Up: **{board.Players[board.NextPlayer].Name}**\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake r` to roll\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake e` to end the game\n\n(Please note that Snakes and Ladders is still beta and you may experience issues.)");
                 SnakeGames.UpdateGame(board, Context.Guild.Id, msg);
             }
             else
@@ -85,14 +84,31 @@ namespace LorisAngelBot.Modules
                     {
                         if (game.Board.Players[p].Id == Context.User.Id && p == game.Board.NextPlayer)
                         {
-                            int mov = (game.Board.SnakesBoard.GetLength(0) - 1) - (game.Board.Players[p].X + dice);
-                            if (mov >= 0)
-                                game.Board.Players[p].X += dice;
+                            // Rewritten move code
+                            if (game.Board.Players[p].Y % 2 != 0)
+                                game.Board.Players[p].X -= dice;
                             else
+                                game.Board.Players[p].X += dice;
+
+                            if (game.Board.Players[p].X < 0)
                             {
-                                game.Board.Players[p].X = -mov;
-                                game.Board.Players[p].Y = game.Board.Players[p].Y + 1;
+                                game.Board.Players[p].X = (-game.Board.Players[p].X) - 1;
+
+                                if (game.Board.Players[p].Y < game.Board.SnakesBoard.GetLength(1) - 1)
+                                    game.Board.Players[p].Y++;
+                                else
+                                    game.Board.Players[p].X = 0;
                             }
+                            else if(game.Board.Players[p].X >= game.Board.SnakesBoard.GetLength(0))
+                            {
+                                game.Board.Players[p].X = (game.Board.SnakesBoard.GetLength(0) - 1) - (game.Board.Players[p].X - game.Board.SnakesBoard.GetLength(0));
+
+                                if (game.Board.Players[p].Y < game.Board.SnakesBoard.GetLength(1) - 1)
+                                    game.Board.Players[p].Y++;
+                                else
+                                    game.Board.Players[p].X = game.Board.SnakesBoard.GetLength(0) - 1;
+                            }
+
 
                             // Check where we landed
                             var tileState = game.Board.SnakesBoard[game.Board.Players[p].X, game.Board.Players[p].Y].State;
@@ -120,7 +136,9 @@ namespace LorisAngelBot.Modules
                             int Y = game.Board.Players[p].Y;
 
                             if (dice != 6) game.Board.UpdateNextPlayer();
-                            var message = await Context.Channel.SendFileAsync(path, $"**{Context.User.Username}** [{X+1},{Y+1}] Rolled: {dice}\nNext Up: **{game.Board.Players[game.Board.NextPlayer].Name}**");
+
+                            var user = await Context.Guild.GetUserAsync(game.Board.Players[game.Board.NextPlayer].Id);
+                            var message = await Context.Channel.SendFileAsync(path, $"**Snakes and Ladders**\nRolled: **{dice}**\nNext Up: **{user.Mention}**\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake r` to roll\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake e` to end the game\n\n(Please note that Snakes and Ladders is still beta and you may experience issues.)");
                             SnakeGames.UpdateGame(game.Board, Context.Guild.Id, message);
 
                             if (tileState == TileState.END)
@@ -151,6 +169,7 @@ namespace LorisAngelBot.Modules
         {
             await Context.Message.DeleteAsync();
             SnakeGame game = SnakeGames.GetGame(Context.Guild.Id);
+            string description = "It appears you aren't part of the game!";
 
             if (game != null)
             {
@@ -161,20 +180,26 @@ namespace LorisAngelBot.Modules
                         if (game.Board.Players[i].Id == Context.User.Id)
                         {
                             SnakeGames.FinishGame(Context.Guild.Id);
-
-                            EmbedBuilder embed = new EmbedBuilder()
-                            {
-                                Title = "Snakes and Ladders",
-                                Description = "The game was ended.",
-                                Color = Discord.Color.DarkPurple,
-                                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}"}
-                            };
-
-                            await Context.Channel.SendMessageAsync(null, false, embed.Build());
+                            description = "Successfully ended the game!";
                         }
                     }
                 }
             }
+            else
+            {
+                description = "It appears there isn't a game in this guild!";
+            }
+
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Title = "Snakes and Ladders",
+                Description = description,
+                Color = Discord.Color.DarkPurple,
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}" }
+            };
+
+            await Context.Channel.SendMessageAsync(null, false, embed.Build());
+
         }
 
     }
@@ -219,7 +244,10 @@ namespace LorisAngelBot.Modules
             foreach (SnakeGame game in Games)
             {
                 if (game.Guild == guild)
+                {
                     Games.Remove(game);
+                    return;
+                }
             }
         }
 
@@ -255,7 +283,7 @@ namespace LorisAngelBot.Modules
         public Player[] Players;
         public int NextPlayer = 0;
 
-        public Board(Player[] players, int width = 10, int height = 10, int ladders = 8, int snakes = 7)
+        public Board(Player[] players, int width = 10, int height = 10, int ladders = 6, int snakes = 6)
         {
             SnakesBoard = new Tile[width, height];
             Players = players;
@@ -293,7 +321,7 @@ namespace LorisAngelBot.Modules
                 bool found = false;
                 while (!found)
                 {
-                    int size = rnd.Next(2, 6);
+                    int size = rnd.Next(2, 5);
                     int x = rnd.Next(0, width);
                     int y = rnd.Next(1, height);
 
@@ -325,7 +353,7 @@ namespace LorisAngelBot.Modules
                 bool found = false;
                 while (!found)
                 {
-                    int size = rnd.Next(2, 6);
+                    int size = rnd.Next(2, 5);
                     int x = rnd.Next(0, width);
                     int y = rnd.Next(1, height);
 

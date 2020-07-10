@@ -109,7 +109,9 @@ namespace Discord.Net.Bot
                 var result = await commands.ExecuteAsync(context, argPos, map);
                 if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
                 {
-                    await Util.Logger(new LogMessage(LogSeverity.Warning, "Command Handler", result.ErrorReason, null));
+                    if (result.ErrorReason.Contains("Collection was modified")) return;
+
+                    await Util.Logger(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
 
                     EmbedBuilder embed = new EmbedBuilder()
                     {
