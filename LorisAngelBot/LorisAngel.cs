@@ -22,8 +22,6 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("8BALL", "`-8ball <question>`", "Ask the bot a question!", CommandCategory.Games, "Starri"));
             commands.Add(new BotCommand("DICE", "`-dice <amount>`", "Roll a dice or 2 or 50!", CommandCategory.Games, "Mir"));
             commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay"));
-            commands.Add(new BotCommand("SNAKE R", "`-snake r`", "Roll the dice when its your turn! [BETA]", CommandCategory.Games, "Tay"));
-            commands.Add(new BotCommand("SNAKE E", "`-snake e`", "End the game of snake! [BETA]", CommandCategory.Games, "Tay"));
             //commands.Add(new BotCommand("QUOTE", "`-quote @author <message>`", "Save a quote to the database! (WIP)", CommandCategory.Games, ""));
     
             // User

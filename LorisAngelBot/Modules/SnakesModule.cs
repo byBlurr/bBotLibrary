@@ -141,10 +141,9 @@ namespace LorisAngelBot.Modules
                             var message = await Context.Channel.SendFileAsync(path, $"**Snakes and Ladders**\nRolled: **{dice}**\nNext Up: **{user.Mention}**\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake r` to roll\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake e` to end the game\n\n(Please note that Snakes and Ladders is still beta and you may experience issues.)");
                             SnakeGames.UpdateGame(game.Board, Context.Guild.Id, message);
 
-                            if (tileState == TileState.END)
+                            if (game.Board.SnakesBoard[game.Board.Players[p].X, game.Board.Players[p].Y].State == TileState.END)
                             {
                                 // We has a winner!
-                                Player winner = game.Board.Players[p];
                                 SnakeGames.FinishGame(Context.Guild.Id);
 
                                 EmbedBuilder embed = new EmbedBuilder()
