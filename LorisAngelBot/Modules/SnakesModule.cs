@@ -12,6 +12,12 @@ using Discord.Net.Bot;
 
 namespace LorisAngelBot.Modules
 {
+
+    /// TODO:
+    ///     Make the direction of play change each level
+    ///     Fix the errorrrrr
+
+
     public class SnakesModule : ModuleBase
     {
         [Command("snake")]
@@ -21,8 +27,8 @@ namespace LorisAngelBot.Modules
             // Lock command for donators only...
             // Until further testing completed
 
-            int width = 15;
-            int height = 15;
+            int width = 12;
+            int height = 12;
 
             /**
             if (width < 5) width = 5;
@@ -113,8 +119,8 @@ namespace LorisAngelBot.Modules
                             int X = game.Board.Players[p].X;
                             int Y = game.Board.Players[p].Y;
 
-                            game.Board.UpdateNextPlayer();
-                            var message = await Context.Channel.SendFileAsync(path, $"**{Context.User.Username}** [{X},{Y}] Rolled: {dice}\nNext Up: **{game.Board.Players[game.Board.NextPlayer].Name}**");
+                            if (dice != 6) game.Board.UpdateNextPlayer();
+                            var message = await Context.Channel.SendFileAsync(path, $"**{Context.User.Username}** [{X+1},{Y+1}] Rolled: {dice}\nNext Up: **{game.Board.Players[game.Board.NextPlayer].Name}**");
                             SnakeGames.UpdateGame(game.Board, Context.Guild.Id, message);
 
                             if (tileState == TileState.END)
@@ -249,7 +255,7 @@ namespace LorisAngelBot.Modules
         public Player[] Players;
         public int NextPlayer = 0;
 
-        public Board(Player[] players, int width = 10, int height = 10, int ladders = 5, int snakes = 7)
+        public Board(Player[] players, int width = 10, int height = 10, int ladders = 8, int snakes = 7)
         {
             SnakesBoard = new Tile[width, height];
             Players = players;
@@ -319,7 +325,7 @@ namespace LorisAngelBot.Modules
                 bool found = false;
                 while (!found)
                 {
-                    int size = rnd.Next(2, 7);
+                    int size = rnd.Next(2, 6);
                     int x = rnd.Next(0, width);
                     int y = rnd.Next(1, height);
 
