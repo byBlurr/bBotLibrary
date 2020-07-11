@@ -1,12 +1,43 @@
 ﻿using Discord.Net.Bot.Database.Configs;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Discord.Net.Bot
 {
     public class Util
     {
+        /// Convert a string with mentions to a string with readable names
+        public static async Task<string> GetReadableMentionsAsync(IGuild guild, string original)
+        {
+            List<string> splits = original.Split("<@").ToList<string>();
+            string result = "";
+
+            foreach (string split in splits)
+            {
+                if (split.StartsWith("!"))
+                {
+                    string nsplit = split.Substring(1);
+                    string[] splits1 = nsplit.Split(">", 2);
+                    Console.WriteLine(splits1[0]);
+                    ulong id = Convert.ToUInt64(splits1[0]);
+                    IGuildUser user = await guild.GetUserAsync(id);
+
+                    result = $"{result}@{user.Username}";
+                    for (int i = 1; i < splits1.Length; i++) result = $"{result}{splits1[i]}";
+                }
+                else
+                {
+                    result = $"{result}{split}";
+                }
+            }
+
+            return result;
+        }
+
+
         /// Get the invite link to add the bot to the server
         public static string GetInviteLink(ulong clientid, int permissions = 8)
         {
