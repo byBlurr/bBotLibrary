@@ -1,5 +1,7 @@
 ﻿using Discord.Commands;
 using Discord.Net.Bot.Database.Configs;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Discord.Net.Bot.CommandModules
@@ -13,6 +15,9 @@ namespace Discord.Net.Bot.CommandModules
 
             string CommandHelpText = "";
             bool SendInDm = false;
+            List<CommandCategory> Categories = new List<CommandCategory>();
+            string CategoryText = "";
+            string Prefix = CommandHandler.GetPrefix(Context.Guild.Id);
 
             foreach (BotCommand command in conf.Commands)
             {
@@ -24,27 +29,31 @@ namespace Discord.Net.Bot.CommandModules
                     CommandHelpText = CommandHelpText + "\n\n" + help;
                     SendInDm = true;
                 }
+
+                if (!Categories.Contains(command.Category))
+                {
+                    Categories.Add(command.Category);
+                    CategoryText = $"{CategoryText}, {Util.ToUppercaseFirst(command.Category.ToString())}";
+                }
             }
+            CategoryText = CategoryText.Split(",", 2)[1];
 
             if (CommandHelpText.Length <= 0)
             {
                 CommandHelpText = "No commands found in this category\n\n" +
-                    "Command Usage: -help <category>\n\n" +
+                    $"Command Usage: {Prefix}help <category>\n\n" +
                     "Categories:\n" +
-                    "BotRelated, Games, User, Tools"; // A way to check what categories are used...
+                    CategoryText;
 
                 SendInDm = false;
             }
 
-            
-
-            string prefix = CommandHandler.GetPrefix(Context.Guild.Id);
             EmbedBuilder embed = new EmbedBuilder()
             {
                 Title = "Bot Command Help",
                 Description = CommandHelpText,
                 Color = Color.DarkPurple,
-                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Bot Prefix: {prefix}" }
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Bot Prefix: {Prefix}" }
             };
 
             if (SendInDm)

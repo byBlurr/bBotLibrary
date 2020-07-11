@@ -21,7 +21,6 @@ namespace Discord.Net.Bot
                 {
                     string nsplit = split.Substring(1);
                     string[] splits1 = nsplit.Split(">", 2);
-                    Console.WriteLine(splits1[0]);
                     ulong id = Convert.ToUInt64(splits1[0]);
                     IGuildUser user = await guild.GetUserAsync(id);
 
