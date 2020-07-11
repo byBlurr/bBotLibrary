@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.Net.Bot;
 using Discord.Net.Bot.Database.Configs;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -15,6 +16,28 @@ namespace LorisAngelBot.Modules
 {
     public class GeneralModule : ModuleBase
     {
+        [Command("who")]
+        private async Task WhoAsync([Remainder] string question)
+        {
+            await Context.Message.DeleteAsync();
+
+            ulong[] mentions = Context.Message.MentionedUserIds.ToArray<ulong>();
+
+            Random rnd = new Random();
+            int answer = rnd.Next(0, mentions.Length);
+            IGuildUser answerUser = await Context.Guild.GetUserAsync(mentions[answer]);
+
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Title = $"Who {await Util.GetReadableMentionsAsync(Context.Guild as IGuild, question.ToLower())}",
+                Description = $"The answer to that would be {answerUser.Username}.",
+                Color = Color.DarkPurple,
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}"}
+            };
+
+            await Context.Channel.SendMessageAsync(null, false, embed.Build());
+        }
+
         [Command("quote")]
         private async Task QuoteAsync(IUser author = null, [Remainder] string text = "")
         {
@@ -77,7 +100,6 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("whois")]
-        [Alias("who")]
         private async Task WhoIsAsync(IUser user)
         {
             await Context.Message.DeleteAsync();
