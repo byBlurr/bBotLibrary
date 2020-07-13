@@ -16,18 +16,34 @@ namespace Discord.Net.Bot.CommandModules
             string CommandHelpText = "";
             bool SendInDm = false;
             List<CommandCategory> Categories = new List<CommandCategory>();
+            bool hasNewCommands = false;
             string CategoryText = "";
             string Prefix = CommandHandler.GetPrefix(Context.Guild.Id);
 
             foreach (BotCommand command in conf.Commands)
             {
-                if (command.Category.ToString().ToLower() == section.ToLower() || command.Handle.ToLower() == section.ToLower())
+                if (section.ToLower() != "new")
                 {
-                    string help = $"{command.Handle}\nUsage:\n{command.Usage}\n{command.Description}";
-                    if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
+                    if (command.Category.ToString().ToLower() == section.ToLower() || command.Handle.ToLower() == section.ToLower())
+                    {
+                        string help = $"**{command.Handle}**\nUsage:\n{command.Usage}\n{command.Description}";
+                        if (command.New) help = $"**NEW** - {help}";
+                        if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
 
-                    CommandHelpText = CommandHelpText + "\n\n" + help;
-                    SendInDm = true;
+                        CommandHelpText = CommandHelpText + "\n\n" + help;
+                        SendInDm = true;
+                    }
+                }
+                else
+                {
+                    if (command.New)
+                    {
+                        string help = $"**NEW** - **{command.Handle}**\nUsage:\n{command.Usage}\n{command.Description}";
+                        if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
+
+                        CommandHelpText = CommandHelpText + "\n\n" + help;
+                        SendInDm = true;
+                    }
                 }
 
                 if (!Categories.Contains(command.Category))
@@ -35,8 +51,10 @@ namespace Discord.Net.Bot.CommandModules
                     Categories.Add(command.Category);
                     CategoryText = $"{CategoryText}, {Util.ToUppercaseFirst(command.Category.ToString())}";
                 }
+                if (command.New) hasNewCommands = true;
             }
             CategoryText = CategoryText.Split(",", 2)[1];
+            if (hasNewCommands) CategoryText = $"{CategoryText}, New";
 
             if (CommandHelpText.Length <= 0)
             {
@@ -59,7 +77,7 @@ namespace Discord.Net.Bot.CommandModules
             if (SendInDm)
             {
                 await Context.User.SendMessageAsync(null, false, embed.Build());
-                await Context.Channel.SendMessageAsync($"Help has been sent to you {Context.User.Mention}!", false);
+                await Context.Channel.SendMessageAsync($"Help for `{section.ToLower()}` has been sent to you {Context.User.Mention}!", false);
             }
             else
             {
