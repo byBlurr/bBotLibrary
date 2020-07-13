@@ -17,7 +17,17 @@ namespace LorisAngelBot.Modules
         private async Task InviteAsybc()
         {
             await Context.Message.DeleteAsync();
-            await Context.User.SendMessageAsync($"Invite Loris Angel to your server: {Util.GetInviteLink(729696788097007717)}");
+            await Context.User.SendMessageAsync($"Invite Loris Angel to your server: {Util.GetInviteLink(729696788097007717)}\n\nJoin the support server: https://discord.gg/th7XNE8");
+        }
+
+
+        [Command("support")]
+        [Alias("server", "request", "support server", "supportserver")]
+        private async Task ServerAsync()
+        {
+            await Context.Message.DeleteAsync();
+
+            await Context.User.SendMessageAsync($"You can join our support server https://discord.gg/th7XNE8. There you can suggest new features, get help or use the bot with other users!");
         }
 
         [Command("prefix")]

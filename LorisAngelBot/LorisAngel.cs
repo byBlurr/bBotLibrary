@@ -35,6 +35,7 @@ namespace LorisAngelBot
 
             // BotRelated
             commands.Add(new BotCommand("INVITE", "`-invite`, `inv`", "Get the invite link to invite Loris Angel to your server!", CommandCategory.BotRelated, ""));
+            commands.Add(new BotCommand("REQUEST", "`-request`", "Get the invite link to the support server where you can request new features or get help!", CommandCategory.BotRelated, ""));
             commands.Add(new BotCommand("PREFIX", "`-prefix <prefix>`", "Change the prefix to the bot for your server!", CommandCategory.BotRelated, ""));
             //commands.Add(new BotCommand("STREAM", "`-stream <stream-url>`", "Every 24 hours a random stream will be picked and displayed on the status, list of streams resets each week.", CommandCategory.BotRelated, ""));
             commands.Add(new BotCommand("UPTIME", "`-uptime`", "Check how long the bot has been online.", CommandCategory.BotRelated, ""));
@@ -42,6 +43,7 @@ namespace LorisAngelBot
             // Tools
             commands.Add(new BotCommand("BINARY", "`-binary <text>`", "Convert text to binary!", CommandCategory.Tools, ""));
             commands.Add(new BotCommand("USERS", "`-users`", "Will tell you how many members are in this guild!", CommandCategory.Tools, ""));
+            commands.Add(new BotCommand("OLDEST", "`-oldest`", "Will check which user in the guild has the oldest account!", CommandCategory.Tools, ""));
         }
 
         public override void SetupHandlers(DiscordSocketClient bot)
