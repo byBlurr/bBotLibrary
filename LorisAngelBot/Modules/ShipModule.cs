@@ -44,7 +44,7 @@ namespace LorisAngelBot.Modules
 
         public async Task ShipAsync(ICommandContext Context, string user, string user2)
         {
-            var relationships = Relationships.Load();
+            var relationships = RelationshipFile.Load();
             string title;
             string message;
             float score = 0f;
@@ -120,7 +120,7 @@ namespace LorisAngelBot.Modules
         }
     }
 
-    public class Relationships
+    public class RelationshipFile
     {
         [JsonIgnore]
         static readonly string Dir = Path.Combine(AppContext.BaseDirectory, "ships");
@@ -130,7 +130,7 @@ namespace LorisAngelBot.Modules
 
         public List<Relationship> Couples { get; set; }
 
-        public Relationships()
+        public RelationshipFile()
         {
             Couples = new List<Relationship>();
         }
@@ -140,7 +140,7 @@ namespace LorisAngelBot.Modules
             if (!Directory.Exists(Dir)) Directory.CreateDirectory(Dir);
             if (!File.Exists(Path.Combine(Dir, Filename)))
             {
-                new Relationships().Save();
+                new RelationshipFile().Save();
             }
 
             return File.Exists(Path.Combine(Dir, Filename));
@@ -148,9 +148,9 @@ namespace LorisAngelBot.Modules
 
         public void Save() => File.WriteAllText(Path.Combine(Dir, Filename), ToJson());
 
-        public static Relationships Load()
+        public static RelationshipFile Load()
         {
-            return JsonConvert.DeserializeObject<Relationships>(File.ReadAllText(Path.Combine(Dir, Filename)));
+            return JsonConvert.DeserializeObject<RelationshipFile>(File.ReadAllText(Path.Combine(Dir, Filename)));
         }
 
         public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);

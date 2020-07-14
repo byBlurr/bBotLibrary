@@ -57,8 +57,9 @@ namespace LorisAngelBot
 
         private async Task ReadyAsync()
         {
-            Relationships.Exists();
+            RelationshipFile.Exists();
             StreamFile.Exists();
+            QuizFile.Exists();
 
             await bot.SetStatusAsync(UserStatus.Online);
 
@@ -81,6 +82,15 @@ namespace LorisAngelBot
                 }
             });
 
+            QuizFile qfile = QuizFile.Load();
+            if (qfile.GetTopicQuestions(QuizCategory.General).Count == 0)
+            {
+                string[] options = { "Knight", "Jeroen", "Blurr", "Kruze" };
+                qfile.Questions.Add(new QuizQuestion("Who wrote this bot?", 2, options, QuizCategory.General));
+                qfile.Save();
+            }
+
+            /**
             var streams = Task.Run(async () => {
                 while (true)
                 {
@@ -97,7 +107,7 @@ namespace LorisAngelBot
                     }
                     await Task.Delay(60000);
                 }
-            });
+            });**/
         }
     }
 
