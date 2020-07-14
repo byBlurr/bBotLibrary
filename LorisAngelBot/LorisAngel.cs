@@ -21,7 +21,11 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("8BALL", "`-8ball <question>`", "Ask the bot a question!", CommandCategory.Games, "Starri"));
             commands.Add(new BotCommand("DICE", "`-dice <amount>`", "Roll a dice or 2 or 50!", CommandCategory.Games, "Mir", true));
             commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay", true));
-            commands.Add(new BotCommand("WHO", "`who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Games, "", true));
+            commands.Add(new BotCommand("WHO", "`-who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Games, "", true));
+            //commands.Add(new BotCommand("QUIZ", "`-quiz <topic>`", "Start a quiz!", CommandCategory.Games, "", true));
+            //commands.Add(new BotCommand("TIC TAC TOE", "`-ttt`", "Start a game of Tic Tac Toe!", CommandCategory.Games, "", true));
+            //commands.Add(new BotCommand("PUZZLE", "`-puzzle`", "Start a puzzle!", CommandCategory.Games, "", true));
+
 
             //commands.Add(new BotCommand("QUOTE", "`-quote @author <message>`", "Save a quote to the database! (WIP)", CommandCategory.Games, ""));
 
