@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.Net.Bot;
+using Discord.Net.Bot.Modules;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace LorisAngelBot.Modules
         private async Task QuizAsync(string topic = "")
         {
             await Context.Message.DeleteAsync();
+            throw new NotImplementedException();
 
             if (QuizGames.GetGame(Context.Guild.Id) == null)
             {
@@ -62,8 +64,15 @@ namespace LorisAngelBot.Modules
                                 await message.AddReactionsAsync(reactions);
                                 await Task.Delay(10000);
 
-                                // See who was correct
-                                
+                                /** See who was correct
+                                MessageReactions answers = ReactionModule.GetMessageReactions(message.Id);
+                                if (answers != null)
+                                {
+                                    foreach (var r in answers.Reactions)
+                                    {
+                                        Console.WriteLine(r.Reaction.Name);
+                                    }
+                                }**/
 
                                 await message.RemoveAllReactionsAsync();
                                 embed.Description = $"Answer was **{questions[i].Options[questions[i].Answer]}**\n\nCorrect:\n**{"Not sure who got it correct because I am dumb!"}**";

@@ -16,6 +16,20 @@ namespace LorisAngelBot.Modules
 {
     public class GeneralModule : ModuleBase
     {
+        [Command("temp perm")]
+        [RequireOwner]
+        private async Task TempPermAsync(IRole role, string perm, int time)
+        {
+            var perms = role.Permissions;
+            var newPerms = role.Permissions.Modify(sendTTSMessages: true);
+       
+            await role.ModifyAsync(x => x.Permissions = newPerms);
+
+            await Task.Delay(time);
+
+            await role.ModifyAsync(x => x.Permissions = perms);
+        }
+
         [Command("who")]
         private async Task WhoAsync([Remainder] string question)
         {
@@ -42,6 +56,8 @@ namespace LorisAngelBot.Modules
         private async Task QuoteAsync(IUser author = null, [Remainder] string text = "")
         {
             await Context.Message.DeleteAsync();
+            throw new NotImplementedException();
+
             Random rnd = new Random();
             string path = "";
 
@@ -109,10 +125,14 @@ namespace LorisAngelBot.Modules
                 Author = new EmbedAuthorBuilder() { Name = user.Username, IconUrl = user.GetAvatarUrl(size: 1024) },
                 Color = Color.DarkPurple,
                 Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}." },
+                ImageUrl = user.GetAvatarUrl(size: 1024),
             };
 
+            if ((user as IGuildUser).Nickname.Length > 0) embed.AddField(new EmbedFieldBuilder() { Name = "Nickname", Value = (user as IGuildUser).Nickname, IsInline = true });
             embed.AddField(new EmbedFieldBuilder() { Name = "Created On", Value = user.CreatedAt.DateTime.ToUniversalTime().ToString(), IsInline = true });
+            embed.AddField(new EmbedFieldBuilder() { Name = "Joined At", Value = (user as IGuildUser).JoinedAt.Value.DateTime.ToUniversalTime().ToString(), IsInline = true });
             embed.AddField(new EmbedFieldBuilder() { Name = "User Id", Value = user.Id, IsInline = true });
+            if ((user as IGuildUser).IsBot) embed.AddField(new EmbedFieldBuilder() { Name = "Bot?", Value = "Yes", IsInline = true });
 
             await Context.Channel.SendMessageAsync(null, false, embed.Build());
         }
