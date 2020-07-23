@@ -38,7 +38,7 @@ namespace LorisAngelBot.Modules
                 if (board != null)
                 {
                     var msg = await Context.Channel.SendFileAsync(board.DrawBoard(), $"**TicTacToe | Naughts & Crosses**\n" +
-                        $"Next Up: {board.Players[0].SelectedState.ToString().ToUpper()} ({board.Players[0].User.Mention})\n" +
+                        $"Next Up: **{board.Players[0].SelectedState.ToString().ToUpper()} ({board.Players[0].User.Mention})**\n" +
                         $"`{CommandHandler.GetPrefix(Context.Guild.Id)}t <x> <y>` to take your turn\n`{CommandHandler.GetPrefix(Context.Guild.Id)}t end` to end the game\n\n" +
                         $"(Please note that Naughts and Crosses is still beta and you may experience issues.)");
 
@@ -107,7 +107,7 @@ namespace LorisAngelBot.Modules
                             else if (board.CurrentPlayer == 1) board.CurrentPlayer = 0;
 
                             var msg = await Context.Channel.SendFileAsync(board.DrawBoard(), $"**TicTacToe | Naughts & Crosses**\n" +
-                                $"Next Up: {board.Players[board.CurrentPlayer].SelectedState.ToString().ToUpper()} ({board.Players[board.CurrentPlayer].User.Mention})\n" +
+                                $"Next Up: **{board.Players[board.CurrentPlayer].SelectedState.ToString().ToUpper()} ({board.Players[board.CurrentPlayer].User.Mention})**\n" +
                                 $"`{CommandHandler.GetPrefix(Context.Guild.Id)}t <x> <y>` to take your turn\n`{CommandHandler.GetPrefix(Context.Guild.Id)}t end` to end the game\n\n" +
                                 $"(Please note that Naughts and Crosses is still beta and you may experience issues.)");
 
@@ -127,7 +127,7 @@ namespace LorisAngelBot.Modules
                             if (oldMsg != null) await oldMsg.DeleteAsync();
 
                             var msg = await Context.Channel.SendFileAsync(board.DrawBoard(), $"**TicTacToe | Naughts & Crosses**\n" +
-                                $"Well Done, {winner.Username} as won the game!");
+                                $"Well Done, {winner.Username} has won the game!");
                             NaughtsGames.EndGame(Context.Guild.Id);
                         }
                     }

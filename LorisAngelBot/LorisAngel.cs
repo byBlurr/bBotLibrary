@@ -26,7 +26,7 @@ namespace LorisAngelBot
             //commands.Add(new BotCommand("QUIZ", "`-quiz <topic>`", "Start a quiz!", CommandCategory.Games, "", true));
             //commands.Add(new BotCommand("TIC TAC TOE", "`-ttt`", "Start a game of Tic Tac Toe!", CommandCategory.Games, "", true));
             //commands.Add(new BotCommand("PUZZLE", "`-puzzle`", "Start a puzzle!", CommandCategory.Games, "", true));
-            commands.Add(new BotCommand("TICTACTOE | NAUGHTS & CROSSES", "`-ttt`", "Start a game of Tic Tac Toe (Naughts and Crosses)", "Libby", true));
+            commands.Add(new BotCommand("TICTACTOE | NAUGHTS & CROSSES", "`-ttt`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Games, "Libby", true));
 
 
             //commands.Add(new BotCommand("QUOTE", "`-quote @author <message>`", "Save a quote to the database! (WIP)", CommandCategory.Games, ""));

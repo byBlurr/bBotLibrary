@@ -468,13 +468,14 @@ namespace LorisAngelBot.Modules
                         Player player = Players[i];
 
                         string download = player.Image;
-                        string imagePath = Path.Combine(AppContext.BaseDirectory, player.Name);
+                        string imagePath = Path.Combine(AppContext.BaseDirectory, $"snakeladders/{player.Name}");
                         using (WebClient client = new WebClient()) client.DownloadFile(new Uri(download), imagePath);
                         Bitmap loadedTexture = new Bitmap(imagePath);
 
                         int truey = (SnakesBoard.GetLength(1) - player.Y) - 1;
                         graphicImage.DrawImage(loadedTexture, (player.X * tileSize) + ((tileSize / 6) * i), (truey * tileSize) + ((tileSize / 6) * i), tileSize / 2, tileSize / 2);
                         loadedTexture.Dispose();
+                        File.Delete(imagePath);
                     }
                 }
 
