@@ -108,18 +108,7 @@ namespace LorisAngelBot.Modules
             if (table != null)
             {
                 bool joined = await table.JoinTable(Context.User as IUser);
-                if (joined)
-                {
-                    EmbedBuilder embed = new EmbedBuilder()
-                    {
-                        Color = Discord.Color.DarkPurple,
-                        Title = "Blackjack",
-                        Description = "You joined the blackjack table.",
-                        Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}" },
-                    };
-                    await Context.Channel.SendMessageAsync(null, false, embed.Build());
-                }
-                else
+                if (!joined)
                 {
                     EmbedBuilder embed = new EmbedBuilder()
                     {
@@ -152,16 +141,7 @@ namespace LorisAngelBot.Modules
             BJTable table = BJGames.GetGame(Context.Guild.Id);
             if (table != null)
             {
-                table.LeaveTable(Context.User as IUser);
-
-                EmbedBuilder embed = new EmbedBuilder()
-                {
-                    Color = Discord.Color.DarkPurple,
-                    Title = "Blackjack",
-                    Description = "You left the blackjack table.",
-                    Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}" },
-                };
-                await Context.Channel.SendMessageAsync(null, false, embed.Build());
+                await table.LeaveTable(Context.User as IUser);
             }
             else
             {
@@ -222,6 +202,7 @@ namespace LorisAngelBot.Modules
 
 
         private bool TableStarted = false;
+        private bool LastRound = false;
 
         public BJTable(ITextChannel channel)
         {
@@ -237,7 +218,7 @@ namespace LorisAngelBot.Modules
             TableStarted = false;
         }
 
-        private async Task SendMessageUpdate(bool updateImage = true)
+        private async Task SendMessageUpdate(bool updateImage = true, string stage = "Waiting for players...")
         {
             bool ready = true;
             string prefix = CommandHandler.GetPrefix(TableId);
@@ -247,16 +228,17 @@ namespace LorisAngelBot.Modules
             string text = "**Blackjack**\n";
             if (!TableStarted)
             {
-                if (!ready) text = $"{text}Waiting for players to join...\n`{prefix}blackjack join`\n`{prefix}blackjack start`\n";
+                if (!ready) text = $"{text}{stage}\n`{prefix}blackjack join`\n`{prefix}blackjack start`\n";
             }
             else
             {
-                if (!ready) text = $"{text}Waiting for player actions...\n`{prefix}bj hit|hold`\n";
-                else text = $"{text}Dealing...";
+                if (!ready) text = $"{text}{stage}\n`{prefix}bj hit|hold`\n";
+                else text = $"{text}{stage}";
             }
 
-            foreach (BJPlayer player in Players) text = $"{text}\n**{player.Name}:** {player.State.ToString()}";
-            foreach (BJPlayer player in PlayersWaiting) text = $"{text}\n**{player.Name}:** {player.State.ToString()}";
+            text = $"{text}\n**Dealer ({DealersValue})**";
+            foreach (BJPlayer player in Players) text = $"{text}\n**{player.Name} ({player.Value}):** {player.State.ToString()}";
+            foreach (BJPlayer player in PlayersWaiting) text = $"{text}\n**{player.Name} ({player.Value}):** {player.State.ToString()}";
 
             if (updateImage)
             {
@@ -298,6 +280,7 @@ namespace LorisAngelBot.Modules
                 DealersDeck = new Deck();
                 DealersHand = new Deck();
                 DealersValue = 0;
+                LastRound = false;
                 DealersDeck.ResetDeck();
 
                 DealersDeck.ShuffleDeck();
@@ -307,8 +290,8 @@ namespace LorisAngelBot.Modules
                 DealDealersHand();
                 DealDealersHand(false);
                 DealDealersHand(false);
-                await SendMessageUpdate();
                 TableStarted = true;
+                await SendMessageUpdate();
             }
             else TableStarted = false;
         }
@@ -321,73 +304,70 @@ namespace LorisAngelBot.Modules
             foreach (BJPlayer player in Players)
             {
                 if (player.User.Id == id)
+                {
                     if (player.State == BJState.Waiting)
                     {
                         player.State = newState;
                     }
 
-                if (player.State == BJState.Waiting) ready = false;
+                }
+                else if (player.State == BJState.Waiting) ready = false;
             }
 
-            await SendMessageUpdate(false);
-
             if (ready) await Turn();
+            else await SendMessageUpdate(false);
+            
         }
 
         private async Task Turn()
         {
-            bool allHolding = true;
+            await SendMessageUpdate(false, "Dealing...");
+
+            bool ready = true;
             foreach (BJPlayer player in Players)
             {
                 if (player.State == BJState.Hit)
                 {
                     DealCard(true, player);
-                    if (player.Value > 21) player.State = BJState.SittingOut;
+                    if (player.Value > 21) player.State = BJState.Loser;
                     else player.State = BJState.Waiting;
-                    allHolding = false;
+                    ready = false;
                 }
                 else if (player.State == BJState.Double)
                 {
                     DealCard(true, player);
-                    if (player.Value > 21) player.State = BJState.SittingOut;
+                    if (player.Value > 21) player.State = BJState.Loser;
                     else player.State = BJState.Hold;
-                    allHolding = false;
+                    ready = false;
                 }
             }
 
-            foreach (Card card in DealersHand.Cards)
+            FlipDealerCard();
+            await SendMessageUpdate();
+            if (ready || LastRound) await End();
+        }
+
+        private bool TableHasWinner()
+        {
+            if (DealersValue > 21) return false;
+            foreach (BJPlayer player in Players)
             {
-                if (card.State == CardState.Unflipped)
+                if (player.State != BJState.SittingOut)
                 {
-                    card.State = CardState.Flipped;
-                    CalculateDealerValue();
-                    await SendMessageUpdate();
-                    if (allHolding) await End();
-                    return;
+                    if (player.Value <= 21 && player.Value > DealersValue && DealersValue < 21) return true;
                 }
             }
 
-            await End();
+            return false;
         }
 
         private async Task End()
         {
-            for (int i = 0; i < 3; i++)
+            bool hasWinner = TableHasWinner();
+            while (hasWinner || !LastRound)
             {
-                bool hasAWinner = false;
-                foreach (BJPlayer player in Players)
-                {
-                    if (player.State != BJState.SittingOut)
-                    {
-                        if (player.Value <= 21 && player.Value > DealersValue) hasAWinner = true;
-                    }
-                }
-
-                if (hasAWinner)
-                {
-                    DealersHand.Cards[i].State = CardState.Flipped;
-                    CalculateDealerValue();
-                }
+                FlipDealerCard();
+                hasWinner = TableHasWinner();
             }
 
             foreach (BJPlayer player in Players)
@@ -399,10 +379,24 @@ namespace LorisAngelBot.Modules
                     else player.State = BJState.Loser;
                 }
             }
-            await SendMessageUpdate();
+
+            await SendMessageUpdate(true, "End Game");
 
             await Task.Delay(10000);
             await Start();
+        }
+
+        private void FlipDealerCard()
+        {
+            foreach (Card card in DealersHand.Cards)
+            {
+                if (card.State == CardState.Unflipped)
+                {
+                    card.State = CardState.Flipped;
+                    CalculateDealerValue();
+                    return;
+                }
+            }
         }
 
         private void DealCards(bool flip = true)
@@ -440,11 +434,14 @@ namespace LorisAngelBot.Modules
         private void CalculateDealerValue()
         {
             int value = 0;
+            LastRound = true;
             foreach (Card card in DealersHand.Cards)
             {
                 if (card.State == CardState.Flipped) value += card.Value;
+                else LastRound = false;
             }
 
+            if (value >= 21) LastRound = true;
             DealersValue = value;
         }
 
@@ -467,17 +464,21 @@ namespace LorisAngelBot.Modules
             return true;
         }
 
-        public void LeaveTable(IUser user)
+        public async Task LeaveTable(IUser user)
         {
             if (Players.Count == 0 || PlayersWaiting.Count == 0) return;
 
             BJPlayer player = new BJPlayer(user);
             if (Players.Contains(player)) Players.Remove(player);
             if (PlayersWaiting.Contains(player)) PlayersWaiting.Remove(player);
+
+            await SendMessageUpdate(false);
+            await Act(0l, 0);
         }
 
         private string Draw()
         {
+            Random rnd = new Random();
             int width = 1280;
             int height = 720;
             int cardW = 691 / 5;
@@ -488,7 +489,7 @@ namespace LorisAngelBot.Modules
             graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
             graphicImage.FillRectangle(Brushes.DarkGreen, new Rectangle(0, 0, width, height));
 
-            Bitmap backTexture = new Bitmap(Path.Combine(AppContext.BaseDirectory, $"blackjack/textures/background1.png"));
+            Bitmap backTexture = new Bitmap(Path.Combine(AppContext.BaseDirectory, $"blackjack/textures/background3.png"));
             graphicImage.DrawImage(backTexture, 0, 0, width, height);
 
             // Render Deck
@@ -501,7 +502,7 @@ namespace LorisAngelBot.Modules
                 else cardTexturePath = Path.Combine(AppContext.BaseDirectory, $"blackjack/textures/back.png");
 
                 Bitmap cardTexture = new Bitmap(cardTexturePath);
-                graphicImage.DrawImage(cardTexture, 20 + (cardCount * 3), 30, cardW, cardH);
+                graphicImage.DrawImage(cardTexture, (20 + (cardCount * 3)), 30, cardW, cardH);
                 cardTexture.Dispose();
             }
 
@@ -515,7 +516,9 @@ namespace LorisAngelBot.Modules
                 else cardTexturePath = Path.Combine(AppContext.BaseDirectory, $"blackjack/textures/back.png");
 
                 Bitmap cardTexture = new Bitmap(cardTexturePath);
-                graphicImage.DrawImage(cardTexture, (640 - cardW) + (cardCount * (cardW + 5)), 30, cardW, cardH);
+                int rndX = rnd.Next(-6, 6);
+                int rndY = rnd.Next(-3, 3);
+                graphicImage.DrawImage(cardTexture, ((640 - cardW) + (cardCount * (cardW + 5))) + rndX, 30 + rndY, cardW, cardH);
                 cardTexture.Dispose();
             }
 
@@ -532,7 +535,9 @@ namespace LorisAngelBot.Modules
                     else cardTexturePath = Path.Combine(AppContext.BaseDirectory, $"blackjack/textures/back.png");
 
                     Bitmap cardTexture = new Bitmap(cardTexturePath);
-                    graphicImage.DrawImage(cardTexture, (20 + (cardCount * (cardW / 4))) + (playerCount * 225), 475, cardW, cardH);
+                    int rndX = rnd.Next(-4, 4);
+                    int rndY = rnd.Next(-4, 4);
+                    graphicImage.DrawImage(cardTexture, (20 + (cardCount * (cardW / 4))) + (playerCount * 225) + rndX, 475 + rndY, cardW, cardH);
                     cardTexture.Dispose();
                 }
 
