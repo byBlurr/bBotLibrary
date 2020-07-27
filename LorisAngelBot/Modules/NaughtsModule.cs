@@ -248,7 +248,7 @@ namespace LorisAngelBot.Modules
             // Todo: Make this compatible for bigger boards
 
             if (Board[0, 0].State == Board[1, 1].State && Board[0, 0].State == Board[2, 2].State) return Board[1, 1].State;
-            if (Board[0, 2].State == Board[1, 1].State && Board[0, 2].State == Board[0, 2].State) return Board[1, 1].State;
+            if (Board[0, 2].State == Board[1, 1].State && Board[0, 2].State == Board[2, 0].State) return Board[1, 1].State;
 
             for (int x = 0; x < 3; x++)
                 if (Board[x, 0].State == Board[x, 1].State && Board[x, 0].State == Board[x, 2].State) return Board[x, 0].State;
