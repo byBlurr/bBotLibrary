@@ -251,7 +251,7 @@ namespace LorisAngelBot.Modules
                 else text = $"{text}{stage}";
             }
 
-            text = $"{text}\n**Dealer ({DealersValue})**";
+            text = $"{text}\n**Dealer ({DealersValue})**\n\nPlease note blackjack is still in development and you may experience issues.";
             foreach (BJPlayer player in Players) text = $"{text}\n**{player.Name} ({player.Value}):** {player.State.ToString()}";
             foreach (BJPlayer player in PlayersWaiting) text = $"{text}\n**{player.Name} ({player.Value}):** {player.State.ToString()}";
 
