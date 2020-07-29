@@ -50,9 +50,6 @@ namespace LorisAngelBot
         public override void SetupHandlers(DiscordSocketClient bot)
         {
             bot.Ready += ReadyAsync;
-            //bot.ReactionAdded += ReactionModule.ReactionAddedAsync;
-            //bot.ReactionRemoved += ReactionModule.ReactionRemovedAsync;
-            //bot.ReactionsCleared += ReactionModule.ReactionsClearedAsync;
         }
 
         private async Task ReadyAsync()
