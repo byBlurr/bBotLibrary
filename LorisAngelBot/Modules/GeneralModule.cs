@@ -16,21 +16,10 @@ namespace LorisAngelBot.Modules
 {
     public class GeneralModule : ModuleBase
     {
-        [Command("temp perm")]
-        [RequireOwner]
-        private async Task TempPermAsync(IRole role, string perm, int time)
-        {
-            var perms = role.Permissions;
-            var newPerms = role.Permissions.Modify(sendTTSMessages: true);
-       
-            await role.ModifyAsync(x => x.Permissions = newPerms);
-
-            await Task.Delay(time);
-
-            await role.ModifyAsync(x => x.Permissions = perms);
-        }
 
         [Command("who")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task WhoAsync([Remainder] string question)
         {
             await Context.Message.DeleteAsync();
@@ -53,6 +42,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("quote")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task QuoteAsync(IUser author = null, [Remainder] string text = "")
         {
             await Context.Message.DeleteAsync();
@@ -98,6 +89,8 @@ namespace LorisAngelBot.Modules
 
         [Command("avatar")]
         [Alias("av")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task AvatarAsync(IUser user)
         {
             await Context.Message.DeleteAsync();
@@ -116,6 +109,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("whois")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task WhoIsAsync(IUser user)
         {
             await Context.Message.DeleteAsync();
@@ -139,6 +134,8 @@ namespace LorisAngelBot.Modules
 
         [Command("reverse")]
         [Alias("r")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         public async Task ReverseAsync([Remainder] string message = "")
         {
             if (message != "")
@@ -156,6 +153,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("oldest")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         public async Task OldestAsync()
         {
             await Context.Message.DeleteAsync();
@@ -185,6 +184,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("users")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task UsersAsync()
         {
             await Context.Message.DeleteAsync();
@@ -207,6 +208,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("uptime")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task UptimeAsync()
         {
             await Context.Message.DeleteAsync();
@@ -237,6 +240,8 @@ namespace LorisAngelBot.Modules
 
         [Command("binary")]
         [Alias("bin")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task BinaryAsync([Remainder] string text)
         {
             await Context.Message.DeleteAsync();

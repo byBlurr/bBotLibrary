@@ -20,6 +20,10 @@ namespace LorisAngelBot.Modules
     public class SnakesModule : ModuleBase
     {
         [Command("snake")]
+        [Alias("s")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task StartSnakeAsync(IUser P2 = null, IUser P3 = null, IUser P4 = null)
         {
             await Context.Message.DeleteAsync();
@@ -67,7 +71,10 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("snake roll")]
-        [Alias("snake r")]
+        [Alias("snake r", "s roll", "s r")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task SnakeRollAsync()
         {
             await Context.Message.DeleteAsync();
@@ -163,7 +170,10 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("snake end")]
-        [Alias("snake e")]
+        [Alias("snake e", "s end", "s e")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task SnakeEndAsync()
         {
             await Context.Message.DeleteAsync();

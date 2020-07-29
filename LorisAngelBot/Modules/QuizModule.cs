@@ -13,6 +13,8 @@ namespace LorisAngelBot.Modules
     public class QuizModule : ModuleBase
     {
         [Command("quiz")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task QuizAsync(string topic = "")
         {
             await Context.Message.DeleteAsync();

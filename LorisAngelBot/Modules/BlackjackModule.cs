@@ -14,6 +14,9 @@ namespace LorisAngelBot.Modules
     public class BlackjackModule : ModuleBase
     {
         [Command("blackjack")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task BlackjackAsync()
         {
             await Context.Message.DeleteAsync();
@@ -38,6 +41,9 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("bj")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task BlackjackActionAsync(string action = "")
         {
             await Context.Message.DeleteAsync();
@@ -77,6 +83,9 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("blackjack start")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task BlackjackStartAsync()
         {
             await Context.Message.DeleteAsync();
@@ -100,6 +109,9 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("blackjack join")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task BlackjackJoinAsync()
         {
             await Context.Message.DeleteAsync();
@@ -134,6 +146,9 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("blackjack leave")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task BlackjackLeaveAsync()
         {
             await Context.Message.DeleteAsync();
@@ -502,7 +517,8 @@ namespace LorisAngelBot.Modules
                 else cardTexturePath = Path.Combine(AppContext.BaseDirectory, $"blackjack/textures/back.png");
 
                 Bitmap cardTexture = new Bitmap(cardTexturePath);
-                graphicImage.DrawImage(cardTexture, (20 + (cardCount * 3)), 30, cardW, cardH);
+                int rndX = rnd.Next(-2, 6);
+                graphicImage.DrawImage(cardTexture, (20 + (cardCount * 3)) + rndX, 30, cardW, cardH);
                 cardTexture.Dispose();
             }
 
@@ -545,7 +561,7 @@ namespace LorisAngelBot.Modules
                 string imagePath = Path.Combine(AppContext.BaseDirectory, $"blackjack/{player.Name}");
                 using (WebClient client = new WebClient()) client.DownloadFile(new Uri(download), imagePath);
                 Bitmap loadedTexture = new Bitmap(imagePath);
-                graphicImage.DrawImage(loadedTexture, 20 + (playerCount * 225), 360, 75, 75);
+                graphicImage.DrawImage(loadedTexture, 40 + (playerCount * 250), 375, 50, 50);
                 loadedTexture.Dispose();
                 File.Delete(imagePath);
 

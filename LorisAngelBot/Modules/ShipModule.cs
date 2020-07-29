@@ -13,6 +13,8 @@ namespace LorisAngelBot.Modules
     public class ShipModule : ModuleBase
     {
         [Command("ship")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         public async Task ShipUsersAsync(IUser user, IUser user2)
         {
             await Context.Message.DeleteAsync();
@@ -20,6 +22,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("ship")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         public async Task ShipUserAsync(IUser user2)
         {
             await Context.Message.DeleteAsync();
@@ -27,6 +31,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("ship")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         public async Task ShipNamesAsync(string user, string user2)
         {
             await Context.Message.DeleteAsync();
@@ -34,6 +40,8 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("ship")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         public async Task ShipNameAsync(string user2)
         {
             await Context.Message.DeleteAsync();

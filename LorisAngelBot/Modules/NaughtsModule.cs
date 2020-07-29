@@ -14,6 +14,9 @@ namespace LorisAngelBot.Modules
     {
         [Command("naughts")]
         [Alias("ttt", "tictactoe", "tic tac toe")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task NaughtsAsync(IUser playerTwo)
         {
             await Context.Message.DeleteAsync();
@@ -60,6 +63,9 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("t")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task NaughtsTurnAsync(int x = -1, int y = -1)
         {
             await Context.Message.DeleteAsync();
@@ -147,12 +153,16 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("t end")]
+        [Alias("t e")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task NaughtsEndAsync()
         {
             NaughtsBoard board = NaughtsGames.GetBoard(Context.Guild.Id);
             if (board != null)
             {
-                if (board.Players[0].User.Id == Context.User.Id || board.Players[1].User.Id == Context.User.Id)
+                if (board.Players[0].User.Id == Context.User.Id || board.Players[1].User.Id == Context.User.Id || (Context.User as IGuildUser).GetPermissions(Context.Channel as IGuildChannel).ManageMessages)
                 {
                     await Context.Message.DeleteAsync();
 
@@ -262,7 +272,7 @@ namespace LorisAngelBot.Modules
         public string DrawBoard()
         {
             // Draw board
-            int tileSize = 64;
+            int tileSize = 128;
             int width = (Board.GetLength(0) * tileSize) + tileSize;
             int height = (Board.GetLength(1) * tileSize) + tileSize;
 

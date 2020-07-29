@@ -41,6 +41,8 @@ namespace LorisAngelBot.Modules
 
         [Command("8ball")]
         [Alias("8b")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task EightBallAsync([Remainder] string question)
         {
             await Context.Message.DeleteAsync();

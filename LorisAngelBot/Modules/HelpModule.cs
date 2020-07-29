@@ -14,6 +14,8 @@ namespace LorisAngelBot.Modules
     {
         [Command("invite")]
         [Alias("inv")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task InviteAsybc()
         {
             await Context.Message.DeleteAsync();
@@ -23,6 +25,8 @@ namespace LorisAngelBot.Modules
 
         [Command("support")]
         [Alias("server", "request", "support server", "supportserver")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task ServerAsync()
         {
             await Context.Message.DeleteAsync();
@@ -32,6 +36,8 @@ namespace LorisAngelBot.Modules
 
         [Command("prefix")]
         [RequireUserPermission(GuildPermission.ManageGuild)]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task PrefixAsybc(string prefix)
         {
             await Context.Message.DeleteAsync();
@@ -46,6 +52,8 @@ namespace LorisAngelBot.Modules
 
         [Command("help")]
         [Alias("h", "?")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task HelpAsync(string section = "")
         {
             await ModuleHelp.HelpAsync(Context, section);

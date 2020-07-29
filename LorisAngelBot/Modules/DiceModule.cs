@@ -12,6 +12,8 @@ namespace LorisAngelBot.Modules
     {
         [Command("dice")]
         [Alias("die")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task DiceAsync(int amount = 1)
         {
             await Context.Message.DeleteAsync();

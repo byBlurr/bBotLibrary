@@ -12,6 +12,8 @@ namespace LorisAngelBot.Modules
     {
         
         [Command("punish")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task PunishAsync(IUser user)
         {
             await Context.Message.DeleteAsync();
