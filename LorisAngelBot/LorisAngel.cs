@@ -1,7 +1,6 @@
 ﻿using Discord;
 using Discord.Net.Bot;
 using Discord.Net.Bot.Database.Configs;
-using Discord.Net.Bot.Modules;
 using Discord.WebSocket;
 using LorisAngelBot.Modules;
 using System;
@@ -51,11 +50,24 @@ namespace LorisAngelBot
         public override void SetupHandlers(DiscordSocketClient bot)
         {
             bot.Ready += ReadyAsync;
+            bot.MessageReceived += TriviaAnswerAsync;
+        }
+
+        public async Task TriviaAnswerAsync(SocketMessage msg)
+        {
+            if (msg.Author.IsBot) return;
+
+            if (TriviaGames.GetGame(msg.Author.Id) != null)
+            {
+                char answer = msg.Content.ToLower()[0];
+                await TriviaGames.TriviaAnswerAsync(msg.Author.Id, answer);
+            }
         }
 
         private async Task ReadyAsync()
         {
             RelationshipFile.Exists();
+            TriviaFile.Exists();
 
             await bot.SetStatusAsync(UserStatus.Online);
 
