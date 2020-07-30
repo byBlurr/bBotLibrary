@@ -3,9 +3,6 @@ using Discord.Commands;
 using Discord.Net.Bot;
 using Discord.Net.Bot.CommandModules;
 using Discord.Net.Bot.Database.Configs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace LorisAngelBot.Modules

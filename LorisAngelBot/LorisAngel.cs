@@ -3,7 +3,6 @@ using Discord.Net.Bot;
 using Discord.Net.Bot.Database.Configs;
 using Discord.WebSocket;
 using LorisAngelBot.Modules;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

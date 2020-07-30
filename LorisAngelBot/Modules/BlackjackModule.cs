@@ -488,7 +488,7 @@ namespace LorisAngelBot.Modules
             if (PlayersWaiting.Contains(player)) PlayersWaiting.Remove(player);
 
             await SendMessageUpdate(false);
-            await Act(0l, 0);
+            await Act(0L, 0);
         }
 
         private string Draw()

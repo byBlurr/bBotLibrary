@@ -1,14 +1,13 @@
-﻿using Discord.Commands;
-using System.Threading.Tasks;
+﻿using Discord;
+using Discord.Commands;
+using Discord.Net.Bot;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
-using System;
 using System.Net;
-using System.Collections.Generic;
-using Discord;
-using Discord.Net.Bot;
+using System.Threading.Tasks;
 
 namespace LorisAngelBot.Modules
 {
@@ -59,7 +58,7 @@ namespace LorisAngelBot.Modules
             if (canStart)
             {
                 string path = Path.Combine(AppContext.BaseDirectory, $"snakeladders/textures/{Context.Guild.Id}_board.jpg");
-                await board.DrawBlankBoardAsync(Context.Guild.Id);
+                board.DrawBlankBoardAsync(Context.Guild.Id);
                 await message.DeleteAsync();
                 IUserMessage msg = await Context.Channel.SendFileAsync(path, $"**Snakes and Ladders**\nNext Up: **{board.Players[board.NextPlayer].Name}**\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake r` to roll\n`{CommandHandler.GetPrefix(Context.Guild.Id)}snake e` to end the game\n\n(Please note that Snakes and Ladders is still beta and you may experience issues.)");
                 SnakeGames.UpdateGame(board, Context.Guild.Id, msg);
@@ -137,7 +136,7 @@ namespace LorisAngelBot.Modules
                             await game.Message.DeleteAsync();
 
                             string path = Path.Combine(AppContext.BaseDirectory, $"snakeladders/textures/{Context.Guild.Id}_board.jpg");
-                            await game.Board.DrawBlankBoardAsync(Context.Guild.Id);
+                            game.Board.DrawBlankBoardAsync(Context.Guild.Id);
 
                             int X = game.Board.Players[p].X;
                             int Y = game.Board.Players[p].Y;
@@ -282,6 +281,11 @@ namespace LorisAngelBot.Modules
         {
             return obj is SnakeGame game &&
                    Guild == game.Guild;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Guild);
         }
     }
 
@@ -442,7 +446,7 @@ namespace LorisAngelBot.Modules
             return board;
         }
 
-        public async Task DrawBlankBoardAsync(ulong id)
+        public void DrawBlankBoardAsync(ulong id)
         {
             try
             {

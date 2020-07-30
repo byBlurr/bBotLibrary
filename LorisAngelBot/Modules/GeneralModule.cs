@@ -3,10 +3,6 @@ using Discord.Commands;
 using Discord.Net.Bot;
 using Discord.Net.Bot.Database.Configs;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +45,7 @@ namespace LorisAngelBot.Modules
             await Context.Message.DeleteAsync();
             throw new NotImplementedException();
 
+            /**
             Random rnd = new Random();
             string path = "";
 
@@ -85,6 +82,7 @@ namespace LorisAngelBot.Modules
             }
 
             await Context.Channel.SendFileAsync(path, "This feature is still work in progress, I will be making the quotes look better!");
+            **/
         }
 
         [Command("avatar")]
