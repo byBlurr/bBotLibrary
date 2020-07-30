@@ -146,7 +146,7 @@ namespace LorisAngelBot.Modules
                 };
                 embed.AddField(new EmbedFieldBuilder() { IsInline = true, Name = "Category", Value = category.ToString() });
                 embed.AddField(new EmbedFieldBuilder() { IsInline = true, Name = "Time", Value = $"{question.Seconds} seconds" });
-                IUserMessage message = await Context.Channel.SendMessageAsync(null, false, embed.Build());
+                IUserMessage message = await Context.Channel.SendMessageAsync("BETA - In Testing", false, embed.Build());
 
                 TriviaGame game = new TriviaGame(Context.User.Id, message, category, question, a);
                 TriviaGames.Games.Add(game);
@@ -156,7 +156,7 @@ namespace LorisAngelBot.Modules
                 if (TriviaGames.GetGame(Context.User.Id) != null)
                 {
                     TriviaGames.Games.Remove(game);
-                    embed.AddField(new EmbedFieldBuilder() { IsInline = false, Name = "Answer", Value = $"You were wrong... (Correct: {question.Answer})" });
+                    embed.AddField(new EmbedFieldBuilder() { IsInline = false, Name = "Answer", Value = $"Out of time... (Correct: {question.Answer})" });
                     await message.ModifyAsync(x => x.Embed = embed.Build());
                 }
             }
@@ -222,7 +222,7 @@ namespace LorisAngelBot.Modules
                     }
                     embed.AddField(new EmbedFieldBuilder() { IsInline = true, Name = "Category", Value = game.Category.ToString() });
                     embed.AddField(new EmbedFieldBuilder() { IsInline = true, Name = "Time", Value = $"{game.Question.Seconds} seconds" });
-                    embed.AddField(new EmbedFieldBuilder() { IsInline = false, Name = "Answer", Value = $"You were correct! ({game.Question.Answer})" });
+                    embed.AddField(new EmbedFieldBuilder() { IsInline = false, Name = "Answer", Value = $"You were correct! (Answered: {game.Question.Answer})" });
                     await game.Message.ModifyAsync(x => x.Embed = embed.Build());
                 }
                 else
