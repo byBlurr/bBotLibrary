@@ -21,7 +21,7 @@ namespace LorisAngelBot.Modules
             Random rnd = new Random();
             List<string> deaths = DeathsFile.Load().Deaths;
             int d = rnd.Next(0, deaths.Count);
-            string death = deaths[d].Replace("USER1", Util.ToUppercaseFirst(Context.User.Username)).Replace("USER2", Util.ToUppercaseFirst(user.Username));
+            string death = deaths[d].Replace("USER1", Util.ToUppercaseFirst(Context.User.Mention)).Replace("USER2", Util.ToUppercaseFirst(user.Mention));
             await Context.Channel.SendMessageAsync(death);
         }
 
@@ -36,7 +36,7 @@ namespace LorisAngelBot.Modules
             Random rnd = new Random();
             List<string> roasts = RoastsFile.Load().Roasts;
             int d = rnd.Next(0, roasts.Count);
-            string roast = roasts[d].Replace("USER", Util.ToUppercaseFirst(user.Username));
+            string roast = roasts[d].Replace("USER", Util.ToUppercaseFirst(user.Mention));
             await Context.Channel.SendMessageAsync(roast);
         }
 
@@ -73,7 +73,7 @@ namespace LorisAngelBot.Modules
             List<string> punishments = PunishFile.Load().Punishments;
             int r = rnd.Next(0, punishments.Count);
 
-            string punishment = punishments[r].Replace("USER1", Util.ToUppercaseFirst(Context.User.Username)).Replace("USER2", Util.ToUppercaseFirst(user.Username));
+            string punishment = punishments[r].Replace("USER1", Util.ToUppercaseFirst(Context.User.Mention)).Replace("USER2", Util.ToUppercaseFirst(user.Mention));
 
             await Context.Channel.SendMessageAsync(punishment);
         }
