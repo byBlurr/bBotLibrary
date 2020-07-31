@@ -94,6 +94,7 @@ namespace LorisAngelBot
         static void Main(string[] args)
         {
             CommandHandler handler = new LCommandHandler();
+            handler.RestartEveryMs = 21600000; // Every 6 hours
             StartBot(handler);
         }
     }

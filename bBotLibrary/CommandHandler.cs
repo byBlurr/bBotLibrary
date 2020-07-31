@@ -6,6 +6,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using Discord.Net.Bot.Database.Configs;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Discord.Net.Bot
 {
@@ -16,6 +17,7 @@ namespace Discord.Net.Bot
         private CommandService commands;
         protected static DiscordSocketClient bot;
         private IServiceProvider map;
+        public int RestartEveryMs = 60000 * 6;
 
         public void SetUp(IServiceProvider provider, ConfigType ctype)
         {
@@ -78,6 +80,16 @@ namespace Discord.Net.Bot
             await Util.Logger(new LogMessage(LogSeverity.Info, "Gateway", $"Successfully connected to {bot.Guilds.Count} guilds"));
             conf.LastStartup = DateTime.UtcNow;
             conf.Save();
+
+            var restart = Task.Run(async () =>
+            {
+                await Task.Delay(RestartEveryMs);
+
+                // Code to restart bot
+                Process.Start("D:\\Coding and Development\\bProjects\\bBotLibrary\\LorisAngelBot\\Current\\LorisAngelBot.exe");
+                // Close this instance
+                Environment.Exit(0);
+            });
         }
 
         public static string GetPrefix(ulong id = 0L)
