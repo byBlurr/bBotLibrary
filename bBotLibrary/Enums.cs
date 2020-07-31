@@ -41,7 +41,7 @@ namespace Discord.Net.Bot
     }
     public enum CommandCategory
     {
-        Main, Games, Moderation, Help, BotRelated, User, Tools, NSFW
+        Main, Games, Leaderboards, Moderation, Help, BotRelated, User, Tools, NSFW
     }
 
     public class StringValue : Attribute

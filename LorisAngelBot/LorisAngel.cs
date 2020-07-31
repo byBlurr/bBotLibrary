@@ -27,6 +27,10 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("DICE", "`-dice <amount>`", "Roll a dice or 2 or 50!", CommandCategory.Games, "Mir"));
             commands.Add(new BotCommand("WHO", "`-who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Games, ""));
 
+            // Leaderboards
+            commands.Add(new BotCommand("TRIVIA SCORE", "`-score trivia` or `-score trivia @user`", "Check the users score on trivia.", CommandCategory.Leaderboards, newCommand: true));
+            commands.Add(new BotCommand("TRIVIA TOP SCORES", "`-top trivia`", "Check the users with the highest scores on trivia.", CommandCategory.Leaderboards, newCommand: true));
+
             // NSFW
             commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.NSFW, "Jimmy, Ras"));
 
@@ -60,7 +64,7 @@ namespace LorisAngelBot
             if (TriviaGames.GetGame(msg.Author.Id) != null)
             {
                 char answer = msg.Content.ToLower()[0];
-                await TriviaGames.TriviaAnswerAsync(msg.Author.Id, answer);
+                var thread = Task.Run(async () => { await TriviaGames.TriviaAnswerAsync(msg.Author.Id, answer); });
             }
         }
 
@@ -68,6 +72,7 @@ namespace LorisAngelBot
         {
             RelationshipFile.Exists();
             TriviaFile.Exists();
+            TriviaUsers.Exists();
 
             await bot.SetStatusAsync(UserStatus.Online);
 

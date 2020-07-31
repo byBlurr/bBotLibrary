@@ -32,7 +32,13 @@ namespace LorisAngelBot.Modules
                         case "sports":
                             category = TriviaCategory.Sports;
                             break;
+                        case "sport":
+                            category = TriviaCategory.Sports;
+                            break;
                         case "motorsports":
+                            category = TriviaCategory.Motorsports;
+                            break;
+                        case "motorsport":
                             category = TriviaCategory.Motorsports;
                             break;
                         case "gaming":
@@ -147,22 +153,109 @@ namespace LorisAngelBot.Modules
                 embed.AddField(new EmbedFieldBuilder() { IsInline = true, Name = "Time", Value = $"{question.Seconds} seconds" });
                 IUserMessage message = await Context.Channel.SendMessageAsync("BETA - In Testing", false, embed.Build());
 
-                TriviaGame game = new TriviaGame(Context.User.Id, message, category, question, a);
+                TriviaGame game = new TriviaGame(Context.User.Id, Context.Guild.Id, message, category, question, a);
                 TriviaGames.Games.Add(game);
 
                 await Task.Delay(question.Seconds * 1000);
 
-                if (TriviaGames.GetGame(Context.User.Id) != null)
+                var check = TriviaGames.GetGame(Context.User.Id);
+                if (check != null && check.Message.Id == message.Id)
                 {
                     TriviaGames.Games.Remove(game);
                     embed.AddField(new EmbedFieldBuilder() { IsInline = false, Name = "Answer", Value = $"Out of time... (Correct: {question.Answer})" });
                     await message.ModifyAsync(x => x.Embed = embed.Build());
+
+                    TriviaUsers users = TriviaUsers.Load();
+                    TriviaUser user = users.GetUser(Context.User.Id);
+                    if (user == null)
+                    {
+                        user = new TriviaUser();
+                        user.Name = Context.User.Username;
+                        user.Id = Context.User.Id;
+                        users.Users.Add(user);
+                    }
+
+                    if (!user.Guilds.Contains(Context.Guild.Id)) user.Guilds.Add(Context.Guild.Id);
+
+                    user.AddLoss();
+                    users.Save();
                 }
             }
             else
             {
                 await Context.Channel.SendMessageAsync("You already playing??");
             }
+        }
+
+        [Command("score trivia")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        private async Task TriviaScoreAsync(IUser user = null)
+        {
+            await Context.Message.DeleteAsync();
+            if (user == null) user = Context.User as IUser;
+
+            TriviaUsers users = TriviaUsers.Load();
+            TriviaUser tuser = users.GetUser(user.Id);
+            if (tuser == null)
+            {
+                EmbedBuilder embed = new EmbedBuilder()
+                {
+                    Title = "Trivia Score",
+                    Description = $"{user.Username} has not played trivia yet.",
+                    Color = Color.DarkPurple,
+                    Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}" }
+                };
+                await Context.Channel.SendMessageAsync(null, false, embed.Build());
+            }
+            else
+            {
+                EmbedBuilder embed = new EmbedBuilder()
+                {
+                    Title = "Trivia Score",
+                    Description = $"{user.Username} has a score of **{tuser.Points}/{tuser.Total}**.\nTheir average time to answer is **{tuser.GetAverageTime()} seconds**.",
+                    Color = Color.DarkPurple,
+                    Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}" }
+                };
+                await Context.Channel.SendMessageAsync(null, false, embed.Build());
+            }
+        }
+
+        [Command("top trivia")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        private async Task TriviaTopAsync()
+        {
+            await Context.Message.DeleteAsync();
+
+            TriviaUsers users = TriviaUsers.Load();
+            List<TriviaUser> sortedList = new List<TriviaUser>();
+
+            sortedList = users.Users.OrderByDescending(x => x.Points).ToList();
+            string global = $"**Global**";
+            for (int i = 0; i < 10 && i < sortedList.Count; i++)
+            {
+                global = $"{global}\n{sortedList[i].Name} - {sortedList[i].Points}/{sortedList[i].Total} - {sortedList[i].GetAverageTime()} seconds";
+            }
+            string guild = $"**{Context.Guild.Name}**";
+            int count = 0;
+            foreach (TriviaUser user in sortedList)
+            {
+                if (user.Guilds.Contains(Context.Guild.Id) && count < 10)
+                {
+                    guild = $"{guild}\n{user.Name} - {user.Points}/{user.Total} - {user.GetAverageTime()} seconds";
+                    count++;
+                }
+            }
+
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Title = "Trivia Leaderboard",
+                Description = guild + "\n\n" + global,
+                Color = Color.DarkPurple,
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}" }
+            };
+            await Context.Channel.SendMessageAsync(null, false, embed.Build());
         }
 
     }
@@ -185,7 +278,7 @@ namespace LorisAngelBot.Modules
 
         public static async Task TriviaAnswerAsync(ulong id, char answer)
         {
-            TriviaGame game = TriviaGames.GetGame(id);
+            TriviaGame game = GetGame(id);
             if (game != null)
             {
                 int a;
@@ -208,6 +301,18 @@ namespace LorisAngelBot.Modules
                 }
 
                 Games.Remove(game);
+                TriviaUsers users = TriviaUsers.Load();
+                TriviaUser user = users.GetUser(game.UserId);
+                if (user == null)
+                {
+                    user = new TriviaUser();
+                    IUser newUser = CommandHandler.GetBot().GetUser(game.UserId);
+                    user.Name = newUser.Username;
+                    user.Id = newUser.Id;
+                    users.Users.Add(user);
+                }
+                if (!user.Guilds.Contains(game.Guild)) user.Guilds.Add(game.Guild);
+
                 if (game.Answer == a)
                 {
                     // Correct
@@ -223,6 +328,9 @@ namespace LorisAngelBot.Modules
                     embed.AddField(new EmbedFieldBuilder() { IsInline = true, Name = "Time", Value = $"{game.Question.Seconds} seconds" });
                     embed.AddField(new EmbedFieldBuilder() { IsInline = false, Name = "Answer", Value = $"You were correct! (Answered: {game.Question.Answer})" });
                     await game.Message.ModifyAsync(x => x.Embed = embed.Build());
+
+                    TimeSpan timeSpan = DateTime.UtcNow - game.Message.CreatedAt.UtcDateTime;
+                    user.AddWin((int)timeSpan.TotalSeconds);
                 }
                 else
                 {
@@ -239,7 +347,9 @@ namespace LorisAngelBot.Modules
                     embed.AddField(new EmbedFieldBuilder() { IsInline = true, Name = "Time", Value = $"{game.Question.Seconds} seconds" });
                     embed.AddField(new EmbedFieldBuilder() { IsInline = false, Name = "Answer", Value = $"You were wrong... (Correct: {game.Question.Answer})" });
                     await game.Message.ModifyAsync(x => x.Embed = embed.Build());
+                    user.AddLoss();
                 }
+                users.Save();
             }
         }
     }
@@ -247,14 +357,16 @@ namespace LorisAngelBot.Modules
     public class TriviaGame
     {
         public ulong UserId { get; set; }
+        public ulong Guild { get; set; }
         public IUserMessage Message { get; set; }
         public TriviaCategory Category { get; set; }
         public TriviaQuestion Question { get; set; }
         public int Answer { get; set; }
 
-        public TriviaGame(ulong id, IUserMessage message, TriviaCategory category, TriviaQuestion question, int answer)
+        public TriviaGame(ulong id, ulong guild, IUserMessage message, TriviaCategory category, TriviaQuestion question, int answer)
         {
             UserId = id;
+            Guild = guild;
             Message = message;
             Category = category;
             Question = question;
@@ -336,6 +448,108 @@ namespace LorisAngelBot.Modules
             Question = "?";
             Answer = ".";
             Options = new string[3];
+        }
+    }
+
+    public class TriviaUsers
+    {
+        [JsonIgnore]
+        static readonly string Dir = Path.Combine(AppContext.BaseDirectory, "trivia");
+
+        [JsonIgnore]
+        static readonly string Filename = "users.json";
+
+        public List<TriviaUser> Users { get; set; }
+
+        public TriviaUsers()
+        {
+            Users = new List<TriviaUser>();
+        }
+
+        public TriviaUser GetUser(ulong id)
+        {
+            foreach (TriviaUser user in Users)
+            {
+                if (user.Id == id)
+                {
+                    return user;
+                }
+            }
+
+            return null;
+        }
+
+        public static bool Exists()
+        {
+            if (!Directory.Exists(Dir)) Directory.CreateDirectory(Dir);
+            if (!File.Exists(Path.Combine(Dir, Filename)))
+            {
+                TriviaUsers file = new TriviaUsers();
+                file.Save();
+            }
+
+            return File.Exists(Path.Combine(Dir, Filename));
+        }
+
+        public void Save() => File.WriteAllText(Path.Combine(Dir, Filename), ToJson());
+
+        public static TriviaUsers Load()
+        {
+            return JsonConvert.DeserializeObject<TriviaUsers>(File.ReadAllText(Path.Combine(Dir, Filename)));
+        }
+
+        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
+
+    public class TriviaUser
+    {
+        public string Name { get; set; }
+        public List<ulong> Guilds { get; set; }
+        public ulong Id { get; set; }
+        public int Points { get; set; }
+        public int Total { get; set; }
+        public List<int> Times { get; set; }
+
+        public TriviaUser()
+        {
+            Name = "";
+            Guilds = new List<ulong>();
+            Id = 0L;
+            Points = 0;
+            Total = 0;
+            Times = new List<int>();
+        }
+
+        public void AddLoss()
+        {
+            Total++;
+        }
+
+        public void AddWin(int time)
+        {
+            Total++;
+            Points++;
+            Times.Add(time);
+            if (Times.Count > 100) Times.RemoveAt(0);
+        }
+
+        public int GetAverageTime()
+        {
+            int games = 0;
+            int total = 0;
+            int average = 0;
+
+            foreach (int time in Times)
+            {
+                if (time > 0)
+                {
+                    total += time;
+                    games++;
+                }
+            }
+
+            if (total > 0) average = total / games;
+            return average;
         }
     }
 }
