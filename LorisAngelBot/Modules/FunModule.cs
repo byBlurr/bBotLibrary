@@ -52,6 +52,9 @@ namespace LorisAngelBot.Modules
             Random rnd = new Random();
             float rating = (float)(rnd.Next(0, 100) + rnd.NextDouble());
 
+            if (user.IsBot && user.Id != 729696788097007717L) rating = (float)(rnd.Next(0, 20) + rnd.NextDouble());
+            else if (user.IsBot && user.Id == 729696788097007717L) rating = (float)(rnd.Next(80, 20) + rnd.NextDouble());
+
             EmbedBuilder embed = new EmbedBuilder()
             {
                 Author = new EmbedAuthorBuilder() { IconUrl = user.GetAvatarUrl(), Name = user.Username },
