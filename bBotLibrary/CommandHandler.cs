@@ -28,11 +28,18 @@ namespace Discord.Net.Bot
             bot.Ready += CheckConfigsAsync;
             bot.JoinedGuild += JoinGuildAsync;
             bot.MessageReceived += HandleCommandAsync;
+            bot.MessagesBulkDeleted += BulkDeleteAsync;
             SetupHandlers(bot);
 
             BotConfig conf = BotConfig.Load();
             RegisterCommands(conf.Commands);
             conf.Save();
+        }
+
+        private async Task BulkDeleteAsync(IReadOnlyCollection<Cacheable<IMessage, ulong>> messages, ISocketMessageChannel channel)
+        {
+            // Trying to get rid of the bulk delete warning
+            await Task.CompletedTask;
         }
 
         private async Task JoinGuildAsync(SocketGuild guild)
