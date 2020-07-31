@@ -67,6 +67,10 @@ namespace LorisAngelBot
                 char answer = msg.Content.ToLower()[0];
                 var thread = Task.Run(async () => { await TriviaGames.TriviaAnswerAsync(msg.Author.Id, answer); });
             }
+            else if (CrackGames.GetGame(msg.Author.Id) != null)
+            {
+                var thread = Task.Run(async () => { await CrackGames.CheckPasswordAsync(msg.Author.Id, msg.Content); });
+            }
         }
 
         private async Task ReadyAsync()
@@ -77,6 +81,7 @@ namespace LorisAngelBot
             DeathsFile.Exists();
             RoastsFile.Exists();
             PunishFile.Exists();
+            CrackFile.Exists();
 
             await bot.SetStatusAsync(UserStatus.Online);
 
