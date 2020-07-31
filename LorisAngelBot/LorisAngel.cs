@@ -14,25 +14,25 @@ namespace LorisAngelBot
         {
             commands.Clear();
 
-            // Main
-            commands.Add(new BotCommand("TRIVIA", "`-trivia` or `-trivia <category>`", "Request a trivia question!", CommandCategory.Main, "Siena, Libby", true));
-            commands.Add(new BotCommand("TICTACTOE | NAUGHTS & CROSSES", "`-ttt`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Main, "Libby", true));
-            commands.Add(new BotCommand("BLACKJACK", "`-blackjack`", "Open a game of blackjack.", CommandCategory.Main, "Libby", true));
-            commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Main, "Tay", true));
-
             // Games
-            commands.Add(new BotCommand("SHIP", "`-ship @user1 @user2`, `-ship name1 name2`, `-ship user2`, `-ship name2`", "Test how strong your relationship is!", CommandCategory.Games, "Jimmy"));
-            commands.Add(new BotCommand("REVERSE", "`-reverse <message>`", "Reverse the message!", CommandCategory.Games, ""));
-            commands.Add(new BotCommand("8BALL", "`-8ball <question>`", "Ask the bot a question!", CommandCategory.Games, "Siena"));
-            commands.Add(new BotCommand("DICE", "`-dice <amount>`", "Roll a dice or 2 or 50!", CommandCategory.Games, "Mir"));
-            commands.Add(new BotCommand("WHO", "`-who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Games, ""));
+            commands.Add(new BotCommand("TRIVIA", "`-trivia` or `-trivia <category>`", "Request a trivia question!", CommandCategory.Games, "Siena, Libby", true));
+            commands.Add(new BotCommand("TICTACTOE | NAUGHTS & CROSSES", "`-ttt`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Games, "Libby", true));
+            commands.Add(new BotCommand("BLACKJACK", "`-blackjack`", "Open a game of blackjack.", CommandCategory.Games, "Libby", true));
+            commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay", true));
+
+            // Fun
+            commands.Add(new BotCommand("SHIP", "`-ship @user1 @user2`, `-ship name1 name2`, `-ship user2`, `-ship name2`", "Test how strong your relationship is!", CommandCategory.Fun, "Jimmy"));
+            commands.Add(new BotCommand("8BALL", "`-8ball <question>`", "Ask the bot a question!", CommandCategory.Fun, "Siena"));
+            commands.Add(new BotCommand("DICE", "`-dice <amount>`", "Roll a dice or 2 or 50!", CommandCategory.Fun, "Mir"));
+            commands.Add(new BotCommand("WHO", "`-who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Fun, ""));
+            commands.Add(new BotCommand("KILL", "`-kill @user`", "Kill the user!", CommandCategory.Fun, "", true));
+            commands.Add(new BotCommand("ROAST", "`-roast @user`", "Roast the user!", CommandCategory.Fun, "", true));
+            commands.Add(new BotCommand("EPIC RATING", "`-epic @user` or `-rate @user`", "See just how epic they are!", CommandCategory.Fun, "Libby", true));
+            commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.Fun, "Jimmy, Ras"));
 
             // Leaderboards
             commands.Add(new BotCommand("TRIVIA SCORE", "`-score trivia` or `-score trivia @user`", "Check the users score on trivia.", CommandCategory.Leaderboards, newCommand: true));
             commands.Add(new BotCommand("TRIVIA TOP SCORES", "`-top trivia`", "Check the users with the highest scores on trivia.", CommandCategory.Leaderboards, newCommand: true));
-
-            // NSFW
-            commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.NSFW, "Jimmy, Ras"));
 
             // User
             commands.Add(new BotCommand("OLDEST", "`-oldest`", "Find out who the oldest user in the guild is!", CommandCategory.User, ""));
@@ -49,6 +49,7 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("BINARY", "`-binary <text>`", "Convert text to binary!", CommandCategory.Tools, ""));
             commands.Add(new BotCommand("USERS", "`-users`", "Will tell you how many members are in this guild!", CommandCategory.Tools, ""));
             commands.Add(new BotCommand("OLDEST", "`-oldest`", "Will check which user in the guild has the oldest account!", CommandCategory.Tools, ""));
+            commands.Add(new BotCommand("REVERSE", "`-reverse <message>`", "Reverse the message!", CommandCategory.Tools, ""));
         }
 
         public override void SetupHandlers(DiscordSocketClient bot)
@@ -73,6 +74,9 @@ namespace LorisAngelBot
             RelationshipFile.Exists();
             TriviaFile.Exists();
             TriviaUsers.Exists();
+            DeathsFile.Exists();
+            RoastsFile.Exists();
+            PunishFile.Exists();
 
             await bot.SetStatusAsync(UserStatus.Online);
 
