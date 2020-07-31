@@ -28,6 +28,7 @@ namespace Discord.Net.Bot
             bot.Ready += CheckConfigsAsync;
             bot.JoinedGuild += JoinGuildAsync;
             bot.MessageReceived += HandleCommandAsync;
+            bot.MessageUpdated += HandleEditCommandAsync;
             bot.MessagesBulkDeleted += BulkDeleteAsync;
             SetupHandlers(bot);
 
@@ -90,14 +91,60 @@ namespace Discord.Net.Bot
 
         public virtual void SetupHandlers(DiscordSocketClient bot) { }
         public virtual void RegisterCommands(List<BotCommand> commands) { }
-        private async Task HandleCommandAsync(SocketMessage pMsg)
+
+        private async Task HandleEditCommandAsync(Cacheable<IMessage, ulong> msg, SocketMessage pMsg, ISocketMessageChannel channel)
         {
+            if (pMsg.Author.IsBot) return;
             var cmd = Task.Run(async () =>
             {
                 SocketUserMessage message = pMsg as SocketUserMessage;
                 if (message == null) return;
                 var context = new SocketCommandContext(bot, message);
-                if (message.Author.IsBot) return;
+
+                string prefix = "";
+                BotConfig config = BotConfig.Load();
+                if (configType == ConfigType.Solo)
+                    prefix = config.SoloConfig.Prefix;
+                else
+                    prefix = config.GetConfig((message.Channel as IGuildChannel).GuildId).Prefix;
+
+                if (message.Content.StartsWith(bot.CurrentUser.Mention) && message.Content.Length == bot.CurrentUser.Mention.Length)
+                {
+                    await context.Channel.SendMessageAsync($"Try `{prefix}help`");
+                    return;
+                }
+
+                int argPos = 0;
+                if (message.HasStringPrefix(prefix, ref argPos) || message.HasMentionPrefix(bot.CurrentUser, ref argPos))
+                {
+                    var result = await commands.ExecuteAsync(context, argPos, map);
+                    if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
+                    {
+                        if (result.ErrorReason.Contains("Collection was modified")) return;
+
+                        await Util.Logger(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
+
+                        EmbedBuilder embed = new EmbedBuilder()
+                        {
+                            Title = "Command Error",
+                            Description = result.ErrorReason,
+                            Color = Color.DarkRed
+                        };
+
+                        await context.Channel.SendMessageAsync(null, false, embed.Build());
+                    }
+                }
+            });
+        }
+
+        private async Task HandleCommandAsync(SocketMessage pMsg)
+        {
+            if (pMsg.Author.IsBot) return;
+            var cmd = Task.Run(async () =>
+            {
+                SocketUserMessage message = pMsg as SocketUserMessage;
+                if (message == null) return;
+                var context = new SocketCommandContext(bot, message);
 
                 string prefix = "";
                 BotConfig config = BotConfig.Load();
