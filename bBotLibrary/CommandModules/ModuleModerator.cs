@@ -60,7 +60,7 @@ namespace Discord.Net.Bot.CommandModules
             IRole mutedRole = null;
             foreach (IRole role in Context.Guild.Roles)
             {
-                if (role.Name.ToLower().Equals("[muted]")) mutedRole = role;
+                if (role.Name.ToLower().StartsWith("[muted]")) mutedRole = role;
             }
 
             if (mutedRole != null)
@@ -97,7 +97,7 @@ namespace Discord.Net.Bot.CommandModules
             IRole mutedRole = null;
             foreach (IRole role in Context.Guild.Roles)
             {
-                if (role.Name.ToLower().Equals("[muted]")) mutedRole = role;
+                if (role.Name.ToLower().StartsWith("[muted]")) mutedRole = role;
             }
 
             if (mutedRole != null)
@@ -127,6 +127,15 @@ namespace Discord.Net.Bot.CommandModules
             }
 
             await Task.CompletedTask;
+        }
+        public static async Task MakeMuteRoleAsunc(ICommandContext Context)
+        {
+            foreach (IRole role in Context.Guild.Roles)
+            {
+                if (role.Name.ToLower().StartsWith("[muted]")) return;
+            }
+
+            var mutedRole = await Context.Guild.CreateRoleAsync("[muted]", GuildPermissions.None, Color.DarkGrey, true, false);
         }
 
         public static async Task CheckUserAsync(ICommandContext Context, IGuildUser user)
@@ -166,7 +175,7 @@ namespace Discord.Net.Bot.CommandModules
 
             foreach (IRole role in guild.Roles)
             {
-                if (role.Name.ToLower().Equals("[muted]")) mutedRole = role;
+                if (role.Name.ToLower().StartsWith("[muted]")) mutedRole = role;
             }
 
             if (mutedRole != null)

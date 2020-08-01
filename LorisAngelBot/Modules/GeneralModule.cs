@@ -72,7 +72,7 @@ namespace LorisAngelBot.Modules
                 ImageUrl = user.GetAvatarUrl(size: 1024),
             };
 
-            if ((user as IGuildUser).Nickname.Length > 0) embed.AddField(new EmbedFieldBuilder() { Name = "Nickname", Value = (user as IGuildUser).Nickname, IsInline = true });
+            if ((user as IGuildUser).Nickname != null) embed.AddField(new EmbedFieldBuilder() { Name = "Nickname", Value = (user as IGuildUser).Nickname, IsInline = true });
             embed.AddField(new EmbedFieldBuilder() { Name = "Created On", Value = user.CreatedAt.DateTime.ToUniversalTime().ToString(), IsInline = true });
             embed.AddField(new EmbedFieldBuilder() { Name = "Joined At", Value = (user as IGuildUser).JoinedAt.Value.DateTime.ToUniversalTime().ToString(), IsInline = true });
             embed.AddField(new EmbedFieldBuilder() { Name = "User Id", Value = user.Id, IsInline = true });

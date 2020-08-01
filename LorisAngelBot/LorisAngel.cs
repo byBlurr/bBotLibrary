@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Net.Bot;
+using Discord.Net.Bot.CommandModules;
 using Discord.Net.Bot.Database.Configs;
 using Discord.WebSocket;
 using LorisAngelBot.Modules;
@@ -55,15 +56,23 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("USERS", "`-users`", "Will tell you how many members are in this guild!", CommandCategory.Tools, ""));
             commands.Add(new BotCommand("OLDEST", "`-oldest`", "Will check which user in the guild has the oldest account!", CommandCategory.Tools, ""));
             commands.Add(new BotCommand("REVERSE", "`-reverse <message>`", "Reverse the message!", CommandCategory.Tools, ""));
+
+            // Moderation
+            commands.Add(new BotCommand("KICK", "`-kick @user <reason>`", "Kick the member from the guild!", CommandCategory.Moderation, ""));
+            commands.Add(new BotCommand("BAN", "`-ban @user <reason>`", "Ban the member from the guild!", CommandCategory.Moderation, ""));
+            commands.Add(new BotCommand("MUTE", "`-mute @user <reason>`", "Mute the member!", CommandCategory.Moderation, ""));
+            commands.Add(new BotCommand("UNMUTE", "`-unmute @user`", "Unmute the member!", CommandCategory.Moderation, ""));
+            commands.Add(new BotCommand("CREATEMUTE", "`-createmute`", "Create the mute role!", CommandCategory.Moderation, ""));
         }
 
         public override void SetupHandlers(DiscordSocketClient bot)
         {
             bot.Ready += ReadyAsync;
-            bot.MessageReceived += TriviaAnswerAsync;
+            bot.MessageReceived += MessageReceivedAsync;
+            bot.MessageReceived += ModuleModerator.FilterMutedAsync;
         }
 
-        public async Task TriviaAnswerAsync(SocketMessage msg)
+        public async Task MessageReceivedAsync(SocketMessage msg)
         {
             if (msg.Author.IsBot) return;
 
