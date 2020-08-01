@@ -14,36 +14,28 @@ namespace Discord.Net.Bot.CommandModules
             BotConfig conf = BotConfig.Load();
 
             string CommandHelpText = "";
-            bool SendInDm = false;
             List<CommandCategory> Categories = new List<CommandCategory>();
             bool hasNewCommands = false;
+            bool isSpecificCommand = false;
             string CategoryText = "";
             string Prefix = CommandHandler.GetPrefix(Context.Guild.Id);
 
             foreach (BotCommand command in conf.Commands)
             {
-                if (section.ToLower() != "new")
+                if (command.Category.ToString().ToLower() == section.ToLower() || (section.ToLower() == "new" && command.New))
                 {
-                    if (command.Category.ToString().ToLower() == section.ToLower() || command.Handle.ToLower() == section.ToLower())
-                    {
-                        string help = $"**{command.Handle}**\nUsage:\n{command.Usage}\n{command.Description}";
-                        if (command.New) help = $"**NEW** - {help}";
-                        if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
-
-                        CommandHelpText = CommandHelpText + "\n\n" + help;
-                        SendInDm = true;
-                    }
+                    if (CommandHelpText.Length > 0) CommandHelpText = CommandHelpText + ", " + Util.ToUppercaseFirst(command.Handle);
+                    else CommandHelpText = Util.ToUppercaseFirst(command.Handle);
                 }
-                else
-                {
-                    if (command.New)
-                    {
-                        string help = $"**NEW** - **{command.Handle}**\nUsage:\n{command.Usage}\n{command.Description}";
-                        if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
 
-                        CommandHelpText = CommandHelpText + "\n\n" + help;
-                        SendInDm = true;
-                    }
+                if (command.Handle.ToLower() == section.ToLower())
+                {
+                    string help = $"**{command.Handle}**\nUsage:\n{command.Usage}\n{command.Description}";
+                    if (command.New) help = $"**NEW** - {help}";
+                    if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
+
+                    CommandHelpText = CommandHelpText + "\n\n" + help;
+                    isSpecificCommand = true;
                 }
 
                 if (!Categories.Contains(command.Category))
@@ -56,15 +48,8 @@ namespace Discord.Net.Bot.CommandModules
             CategoryText = CategoryText.Split(",", 2)[1];
             if (hasNewCommands) CategoryText = $"{CategoryText}, New";
 
-            if (CommandHelpText.Length <= 0)
-            {
-                CommandHelpText = "No commands found in this category\n\n" +
-                    $"Command Usage: {Prefix}help <category>\n\n" +
-                    "Categories:\n" +
-                    CategoryText;
-
-                SendInDm = false;
-            }
+            if (CommandHelpText.Length <= 0) CommandHelpText = $"Command Usage: {Prefix}help <category>\n\nCategories:\n{CategoryText}";
+            else if (!isSpecificCommand) CommandHelpText = $"Command Usage: {Prefix}help <command>\n\nCommands:\n{CommandHelpText}";
 
             EmbedBuilder embed = new EmbedBuilder()
             {
@@ -74,15 +59,8 @@ namespace Discord.Net.Bot.CommandModules
                 Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Bot Prefix: {Prefix}" }
             };
 
-            if (SendInDm)
-            {
-                await Context.User.SendMessageAsync(null, false, embed.Build());
-                await Context.Channel.SendMessageAsync($"Help for `{section.ToLower()}` has been sent to you {Context.User.Mention}!", false);
-            }
-            else
-            {
-                await Context.Channel.SendMessageAsync(null, false, embed.Build());
-            }
+            await Context.Channel.SendMessageAsync(null, false, embed.Build());
+            
         }
     }
 }

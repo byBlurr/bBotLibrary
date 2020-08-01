@@ -27,7 +27,7 @@ namespace LorisAngelBot.Modules
                 EmbedBuilder embed = new EmbedBuilder()
                 {
                     Title = "Password Cracking",
-                    Description = $"The following line from a password file has been leaked.\n{game.Username}:{game.Hash}\n\nCrack the password and enter it below in plaintext.",
+                    Description = $"The following line from a password file has been leaked.\n{game.Username}:{game.Hash}\n\nCrack the password and enter it below in plaintext.\n(Hint: Use a dictionary attack)",
                     Color = Color.DarkPurple,
                     Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.Username}#{Context.User.Discriminator}" }
                 };
@@ -108,10 +108,14 @@ namespace LorisAngelBot.Modules
         public int Attempts { get; set; }
         public IUserMessage Message { get; set; }
 
-        public CrackGame(ulong user, HashingAlgorithm algorithm = HashingAlgorithm.MD5)
+        public CrackGame(ulong user)
         {
             User = user;
-            Algorithm = algorithm;
+
+            Array values = Enum.GetValues(typeof(HashingAlgorithm));
+            Random random = new Random();
+            Algorithm = (HashingAlgorithm) values.GetValue(random.Next(values.Length));
+
             Attempts = 0;
 
             List<string> words = CrackFile.Load().Words;
@@ -119,14 +123,27 @@ namespace LorisAngelBot.Modules
             Random rnd = new Random();
             int u = rnd.Next(0, words.Count);
             int p = rnd.Next(0, words.Count);
-            Username = words[u];
+            Username = words[u] + "@blurrmail.co.uk";
             Plaintext = words[p];
 
-            switch (algorithm)
+            switch (Algorithm)
             {
                 case HashingAlgorithm.MD5:
                     Hash = CreateMD5(Plaintext);
                     break;
+                case HashingAlgorithm.SHA1:
+                    Hash = CreateSHA1(Plaintext);
+                    break;
+                case HashingAlgorithm.SHA256:
+                    Hash = CreateSHA256(Plaintext);
+                    break;
+                case HashingAlgorithm.SHA384:
+                    Hash = CreateSHA384(Plaintext);
+                    break;
+                case HashingAlgorithm.SHA512:
+                    Hash = CreateSHA512(Plaintext);
+                    break;
+
             }
         }
 
@@ -137,6 +154,78 @@ namespace LorisAngelBot.Modules
             {
                 byte[] inputBytes = Encoding.ASCII.GetBytes(input);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
+        }
+
+        private string CreateSHA1(string input)
+        {
+            // Use input string to calculate MD5 hash
+            using (SHA1 sha = SHA1.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = sha.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
+        }
+
+        private string CreateSHA256(string input)
+        {
+            // Use input string to calculate MD5 hash
+            using (SHA256 sha = SHA256.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = sha.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
+        }
+
+        private string CreateSHA384(string input)
+        {
+            // Use input string to calculate MD5 hash
+            using (SHA384 sha = SHA384.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = sha.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
+        }
+
+        private string CreateSHA512(string input)
+        {
+            // Use input string to calculate MD5 hash
+            using (SHA512 sha = SHA512.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = sha.ComputeHash(inputBytes);
 
                 // Convert the byte array to hexadecimal string
                 StringBuilder sb = new StringBuilder();

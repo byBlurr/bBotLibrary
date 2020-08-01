@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Discord.Net.Bot.Database.Configs;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Discord.Net.Bot.CommandModules;
 
 namespace Discord.Net.Bot
 {
@@ -122,7 +123,7 @@ namespace Discord.Net.Bot
 
                 if (message.Content.StartsWith(bot.CurrentUser.Mention) && message.Content.Length == bot.CurrentUser.Mention.Length)
                 {
-                    await context.Channel.SendMessageAsync($"Try `{prefix}help`");
+                    await ModuleHelp.HelpAsync(context, "");
                     return;
                 }
 
@@ -167,7 +168,7 @@ namespace Discord.Net.Bot
 
                 if (message.Content.StartsWith(bot.CurrentUser.Mention) && message.Content.Length == bot.CurrentUser.Mention.Length)
                 {
-                    await context.Channel.SendMessageAsync($"Try `{prefix}help`");
+                    await ModuleHelp.HelpAsync(context, "");
                     return;
                 }
 
