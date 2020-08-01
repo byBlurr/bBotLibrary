@@ -36,54 +36,6 @@ namespace LorisAngelBot.Modules
             await Context.Channel.SendMessageAsync(null, false, embed.Build());
         }
 
-        [Command("quote")]
-        [RequireBotPermission(ChannelPermission.ManageMessages)]
-        [RequireBotPermission(ChannelPermission.SendMessages)]
-        private async Task QuoteAsync(IUser author = null, [Remainder] string text = "")
-        {
-            await Context.Message.DeleteAsync();
-            throw new NotImplementedException();
-
-            /**
-            Random rnd = new Random();
-            string path = "";
-
-            if (text != "")
-            {
-                string quote = $"''{Util.ToUppercaseFirst(text)}'' - {Util.ToUppercaseFirst(author.Username)}";
-
-                int fontSize = 40;
-                int textureWidth = (quote.Length * (fontSize + 4)) / 3;
-
-                Bitmap quoteBitmap = new Bitmap(textureWidth, fontSize);
-                Graphics quoteImage = Graphics.FromImage(quoteBitmap);
-
-                quoteImage.SmoothingMode = SmoothingMode.AntiAlias;
-                quoteImage.FillRectangle(Brushes.SlateGray, new Rectangle(0, 0, textureWidth, fontSize));
-
-                StringFormat format = new StringFormat();
-                format.LineAlignment = StringAlignment.Center;
-                format.Alignment = StringAlignment.Center;
-                quoteImage.DrawString(quote, new Font("Arial", fontSize / 2, FontStyle.Bold), Brushes.White, textureWidth / 2, fontSize / 2, format);
-
-                path = Path.Combine(AppContext.BaseDirectory, $"Quotes/{Context.User.Id}_{rnd.Next(0, 9999)}.jpg");
-                quoteBitmap.Save(path);
-
-                quoteImage.Dispose();
-                quoteBitmap.Dispose();
-            }
-            else
-            {
-                string[] files = Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, "Quotes"));
-                int index = rnd.Next(0, files.Length - 1);
-                path = files[index];
-                
-            }
-
-            await Context.Channel.SendFileAsync(path, "This feature is still work in progress, I will be making the quotes look better!");
-            **/
-        }
-
         [Command("avatar")]
         [Alias("av")]
         [RequireBotPermission(ChannelPermission.ManageMessages)]

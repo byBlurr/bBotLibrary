@@ -22,6 +22,7 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay", true));
 
             // Fun
+            commands.Add(new BotCommand("QUOTE", "`-quote @user <message>`", "Create a fake quote (Use shift enter for new lines, will look like multiple messages)!", CommandCategory.Fun, "", true));
             commands.Add(new BotCommand("CRACK", "`-crack`", "Retrieve a hashed password to crack!", CommandCategory.Fun, "", true));
             commands.Add(new BotCommand("SHIP", "`-ship @user1 @user2`, `-ship name1 name2`, `-ship user2`, `-ship name2`", "Test how strong your relationship is!", CommandCategory.Fun, "Jimmy"));
             commands.Add(new BotCommand("8BALL", "`-8ball <question>`", "Ask the bot a question!", CommandCategory.Fun, "Siena"));

@@ -56,7 +56,7 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("epic")]
-        [Alias("rate")]
+        [Alias("rate", "epicrating")]
         [RequireBotPermission(ChannelPermission.ManageMessages)]
         [RequireBotPermission(ChannelPermission.SendMessages)]
         private async Task EpicRatingAsync(IUser user = null)
