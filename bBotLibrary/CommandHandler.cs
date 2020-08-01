@@ -178,15 +178,15 @@ namespace Discord.Net.Bot
                     var result = await commands.ExecuteAsync(context, argPos, map);
                     if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
                     {
-                        if (result.ErrorReason.Contains("Collection was modified")) return;
+                        if (result.ErrorReason.Contains("Collection was modified")) return; // We dont wanna log this warning
 
-                        await Util.Logger(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
+                        //await Util.Logger(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
 
                         EmbedBuilder embed = new EmbedBuilder()
                         {
                             Title = "Command Error",
-                            Description = result.ErrorReason,
-                            Color = Color.DarkRed
+                            Description = result.ErrorReason + $"\nTry typing `{bot.CurrentUser.Mention}` for help!",
+                            Color = new Color(230, 100, 75)
                         };
 
                         await context.Channel.SendMessageAsync(null, false, embed.Build());
