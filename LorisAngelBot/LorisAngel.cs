@@ -29,6 +29,7 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("WHO", "`-who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Fun, ""));
             commands.Add(new BotCommand("KILL", "`-kill @user`", "Kill the user!", CommandCategory.Fun, "", true));
             commands.Add(new BotCommand("ROAST", "`-roast @user`", "Roast the user!", CommandCategory.Fun, "", true));
+            commands.Add(new BotCommand("COMPLIMENTS", "`-compliment @user`", "Compliment the user!", CommandCategory.Fun, "", true));
             commands.Add(new BotCommand("EPICRATING", "`-epic @user` or `-rate @user`", "See just how epic they are!", CommandCategory.Fun, "Libby", true));
             commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.Fun, "Jimmy, Ras"));
 
@@ -84,6 +85,7 @@ namespace LorisAngelBot
             TriviaUsers.Exists();
             DeathsFile.Exists();
             RoastsFile.Exists();
+            ComplimentsFile.Exists();
             PunishFile.Exists();
             CrackFile.Exists();
 
@@ -119,7 +121,7 @@ namespace LorisAngelBot
                         await bot.SetGameAsync($"try -{conf.Commands[j].Handle.ToLower()} {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
                         i = 0;
                     }
-                    await Task.Delay(10000);
+                    await Task.Delay(15000);
                 }
             });
         }

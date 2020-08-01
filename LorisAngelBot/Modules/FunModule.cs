@@ -40,6 +40,21 @@ namespace LorisAngelBot.Modules
             await Context.Channel.SendMessageAsync(roast);
         }
 
+        [Command("compliment")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        private async Task ComplimentsAsync(IUser user)
+        {
+            await Context.Message.DeleteAsync();
+            if (user == null) user = Context.User as IUser;
+
+            Random rnd = new Random();
+            List<string> compliments = ComplimentsFile.Load().Compliments;
+            int d = rnd.Next(0, compliments.Count);
+            string compliment = compliments[d].Replace("USER", Util.ToUppercaseFirst(user.Mention));
+            await Context.Channel.SendMessageAsync(compliment);
+        }
+
         [Command("epic")]
         [Alias("rate")]
         [RequireBotPermission(ChannelPermission.ManageMessages)]
@@ -150,6 +165,42 @@ namespace LorisAngelBot.Modules
         public static RoastsFile Load()
         {
             return JsonConvert.DeserializeObject<RoastsFile>(File.ReadAllText(Path.Combine(Dir, Filename)));
+        }
+
+        public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
+    public class ComplimentsFile
+    {
+        [JsonIgnore]
+        static readonly string Dir = Path.Combine(AppContext.BaseDirectory, "fun");
+
+        [JsonIgnore]
+        static readonly string Filename = "compliments.json";
+
+        public List<string> Compliments { get; set; }
+
+        public ComplimentsFile()
+        {
+            Compliments = new List<string>();
+        }
+
+        public static bool Exists()
+        {
+            if (!Directory.Exists(Dir)) Directory.CreateDirectory(Dir);
+            if (!File.Exists(Path.Combine(Dir, Filename)))
+            {
+                ComplimentsFile file = new ComplimentsFile();
+                file.Save();
+            }
+
+            return File.Exists(Path.Combine(Dir, Filename));
+        }
+
+        public void Save() => File.WriteAllText(Path.Combine(Dir, Filename), ToJson());
+
+        public static ComplimentsFile Load()
+        {
+            return JsonConvert.DeserializeObject<ComplimentsFile>(File.ReadAllText(Path.Combine(Dir, Filename)));
         }
 
         public string ToJson() => JsonConvert.SerializeObject(this, Formatting.Indented);

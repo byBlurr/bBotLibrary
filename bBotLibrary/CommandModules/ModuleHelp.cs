@@ -49,7 +49,7 @@ namespace Discord.Net.Bot.CommandModules
             if (hasNewCommands) CategoryText = $"{CategoryText}, New";
 
             if (CommandHelpText.Length <= 0) CommandHelpText = $"Command Usage: {Prefix}help <category>\n\nCategories:\n{CategoryText}";
-            else if (!isSpecificCommand) CommandHelpText = $"Command Usage: {Prefix}help <command>\n\nCommands:\n{CommandHelpText}";
+            else if (!isSpecificCommand) CommandHelpText = $"Command Usage: {Prefix}help <command>\n\n{Util.ToUppercaseFirst(section)} Commands:\n{CommandHelpText}";
 
             EmbedBuilder embed = new EmbedBuilder()
             {
