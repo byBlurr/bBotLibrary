@@ -78,6 +78,7 @@ namespace LorisAngelBot
 
         private async Task ReadyAsync()
         {
+            DonateFile.Exists();
             RelationshipFile.Exists();
             TriviaFile.Exists();
             TriviaUsers.Exists();

@@ -20,6 +20,11 @@ namespace LorisAngelBot.Modules
         private async Task BlackjackAsync()
         {
             await Context.Message.DeleteAsync();
+            if (!DonateModule.IsDonator(Context.User.Id))
+            {
+                await DonateModule.SendDonateMessageAsync(Context.Channel as ITextChannel, "Blackjack is still in development and only members have access.\nSubscribe to be a member to gain access!");
+                return;
+            }
 
             if (BJGames.GetGame(Context.Guild.Id) == null)
             {
@@ -115,6 +120,11 @@ namespace LorisAngelBot.Modules
         private async Task BlackjackJoinAsync()
         {
             await Context.Message.DeleteAsync();
+            if (!DonateModule.IsDonator(Context.User.Id))
+            {
+                await DonateModule.SendDonateMessageAsync(Context.Channel as ITextChannel, "Blackjack is still in development and only members have access.\nSubscribe to be a member to gain access!");
+                return;
+            }
 
             BJTable table = BJGames.GetGame(Context.Guild.Id);
             if (table != null)

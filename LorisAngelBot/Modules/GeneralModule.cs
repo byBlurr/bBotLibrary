@@ -12,23 +12,6 @@ namespace LorisAngelBot.Modules
 {
     public class GeneralModule : ModuleBase
     {
-        [Command("donate")]
-        [Alias("beer", "buybeer")]
-        [RequireBotPermission(ChannelPermission.ManageMessages)]
-        [RequireBotPermission(ChannelPermission.SendMessages)]
-        private async Task DonateAsync()
-        {
-            await Context.Message.DeleteAsync();
-
-            EmbedBuilder embed = new EmbedBuilder()
-            {
-                Author = new EmbedAuthorBuilder() { Url = "https://www.buymeacoffee.com/blurr", IconUrl = "https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2ZpbGVfcGljdHVyZXMvMjAyMC8wOC9hMzM3NTlmMTM3MWU4MGI4MTZmMDk1MzE4NDliZTFhYS5wbmc=&size=300&name=blurr", Name = "Donate Here!" },
-                Description = "Buy me a beer so I can continue to add features and host the bot!\nAlternatively you can become a member and retrieve Lori's Angel benefits!",
-                Color = Color.DarkPurple
-            };
-            await Context.Channel.SendMessageAsync(null, false, embed.Build());
-        }
-
         [Command("who")]
         [RequireBotPermission(ChannelPermission.ManageMessages)]
         [RequireBotPermission(ChannelPermission.SendMessages)]
