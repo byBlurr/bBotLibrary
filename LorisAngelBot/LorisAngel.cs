@@ -41,6 +41,7 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("WHOIS", "`-whois @user`", "View details about the user!", CommandCategory.User, "Libby"));
 
             // BotRelated
+            commands.Add(new BotCommand("DONATE", "`-donate`, `-beer`, `-buybeer`", "Buy me a beer!", CommandCategory.BotRelated, ""));
             commands.Add(new BotCommand("INVITE", "`-invite`, `inv`", "Get the invite link to invite Loris Angel to your server!", CommandCategory.BotRelated, ""));
             commands.Add(new BotCommand("REQUEST", "`-request`", "Get the invite link to the support server where you can request new features or get help!", CommandCategory.BotRelated, ""));
             commands.Add(new BotCommand("PREFIX", "`-prefix <prefix>`", "Change the prefix to the bot for your server!", CommandCategory.BotRelated, ""));
