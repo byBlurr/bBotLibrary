@@ -3,6 +3,7 @@ using Discord.Net.Bot;
 using Discord.Net.Bot.Database.Configs;
 using Discord.WebSocket;
 using LorisAngelBot.Modules;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -90,10 +91,34 @@ namespace LorisAngelBot
             string stream = "https://www.twitch.tv/pengu";
 
             var status = Task.Run(async () => {
+                int i = 0;
                 while (true)
                 {
-                    await bot.SetGameAsync($"to {bot.Guilds.Count} servers {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
-                    await Task.Delay(2500);
+                    if (i == 0)
+                    {
+                        await bot.SetGameAsync($"to {bot.Guilds.Count} servers {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                        i++;
+                    }
+                    else if (i == 1)
+                    {
+                        await bot.SetGameAsync($"try -help {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                        i++;
+                    }
+                    else if (i == 2)
+                    {
+                        await bot.SetGameAsync($"try -donate {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                        i++;
+                    }
+                    else
+                    {
+                        Random rnd = new Random();
+                        BotConfig conf = BotConfig.Load();
+                        int j = rnd.Next(0, conf.Commands.Count);
+
+                        await bot.SetGameAsync($"try -{conf.Commands[j].Handle.ToLower()} {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                        i = 0;
+                    }
+                    await Task.Delay(10000);
                 }
             });
         }
