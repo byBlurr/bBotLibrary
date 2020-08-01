@@ -112,9 +112,10 @@ namespace LorisAngelBot.Modules
         {
             User = user;
 
-            Array values = Enum.GetValues(typeof(HashingAlgorithm));
-            Random random = new Random();
-            Algorithm = (HashingAlgorithm) values.GetValue(random.Next(values.Length));
+            //Array values = Enum.GetValues(typeof(HashingAlgorithm));
+            //Random random = new Random();
+            //Algorithm = (HashingAlgorithm) values.GetValue(random.Next(values.Length));
+            Algorithm = HashingAlgorithm.MD5;
 
             Attempts = 0;
 
