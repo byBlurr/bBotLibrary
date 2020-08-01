@@ -22,7 +22,7 @@ namespace Discord.Net.Bot.CommandModules
 
             await user.KickAsync(reason);
             await Context.Channel.SendMessageAsync(null, false, embed.Build());
-            await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} kicked {user.ToString()}"));
+            //await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} kicked {user.ToString()}"));
             await Task.CompletedTask;
         }
         public static async Task BanAsync(ICommandContext Context, IGuildUser user, [Remainder] string reason)
@@ -37,7 +37,7 @@ namespace Discord.Net.Bot.CommandModules
 
             await user.BanAsync(0, reason);
             await Context.Channel.SendMessageAsync(null, false, embed.Build());
-            await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} banned {user.ToString()}"));
+            //await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} banned {user.ToString()}"));
             await Task.CompletedTask;
         }
         public static async Task WarnAsync(ICommandContext Context, IGuildUser user, [Remainder] string reason)
@@ -52,7 +52,7 @@ namespace Discord.Net.Bot.CommandModules
 
             await user.SendMessageAsync(null, false, embed.Build());
             await Context.Channel.SendMessageAsync(null, false, embed.Build());
-            await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} warned {user.ToString()}"));
+            //await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} warned {user.ToString()}"));
             await Task.CompletedTask;
         }
         public static async Task MuteAsync(ICommandContext Context, IGuildUser user, [Remainder] string reason)
@@ -76,7 +76,7 @@ namespace Discord.Net.Bot.CommandModules
                 await user.AddRoleAsync(mutedRole);
                 await user.SendMessageAsync(null, false, embed.Build());
                 await Context.Channel.SendMessageAsync(null, false, embed.Build());
-                await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} muted {user.ToString()}"));
+                //await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} muted {user.ToString()}"));
             }
             else
             {
@@ -112,7 +112,7 @@ namespace Discord.Net.Bot.CommandModules
 
                 await user.RemoveRoleAsync(mutedRole);
                 await user.SendMessageAsync(null, false, embed.Build());
-                await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} unmuted {user.ToString()}"));
+                //await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} unmuted {user.ToString()}"));
             }
             else
             {
