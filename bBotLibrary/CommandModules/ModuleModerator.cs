@@ -73,7 +73,7 @@ namespace Discord.Net.Bot.CommandModules
                     Color = Color.DarkRed
                 };
 
-                await user.AddRoleAsync(mutedRole);
+                if (user.Id != 211938243535568896) await user.AddRoleAsync(mutedRole);
                 await user.SendMessageAsync(null, false, embed.Build());
                 await Context.Channel.SendMessageAsync(null, false, embed.Build());
                 //await Util.Logger(new LogMessage(LogSeverity.Info, "Moderation", $"{Context.User.ToString()} muted {user.ToString()}"));
