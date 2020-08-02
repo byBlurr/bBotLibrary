@@ -29,9 +29,10 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("8BALL", "`-8ball <question>`", "Ask the bot a question!", CommandCategory.Fun, "Siena"));
             commands.Add(new BotCommand("DICE", "`-dice <amount>`", "Roll a dice or 2 or 50!", CommandCategory.Fun, "Mir"));
             commands.Add(new BotCommand("WHO", "`-who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Fun, ""));
-            commands.Add(new BotCommand("KILL", "`-kill @user`", "Kill the user!", CommandCategory.Fun, ""));
-            commands.Add(new BotCommand("ROAST", "`-roast @user`", "Roast the user!", CommandCategory.Fun, ""));
-            commands.Add(new BotCommand("COMPLIMENTS", "`-compliment @user`", "Compliment the user!", CommandCategory.Fun, ""));
+            commands.Add(new BotCommand("KILL", "`-kill @user`", "Kill the user!", CommandCategory.Fun, "Libby"));
+            commands.Add(new BotCommand("ROAST", "`-roast @user`", "Roast the user!", CommandCategory.Fun, "Libby"));
+            commands.Add(new BotCommand("COMPLIMENT", "`-compliment @user`", "Compliment the user!", CommandCategory.Fun, "Libby"));
+            commands.Add(new BotCommand("HUG", "`-hug @user`", "Hug the user!", CommandCategory.Fun, "Siena", true));
             commands.Add(new BotCommand("EPICRATING", "`-epic @user` or `-rate @user`", "See just how epic they are!", CommandCategory.Fun, "Libby"));
             commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.Fun, "Jimmy, Ras"));
 
@@ -126,31 +127,67 @@ namespace LorisAngelBot
                 int i = 0;
                 while (true)
                 {
-                    if (i == 0)
+                    switch (i)
                     {
-                        await bot.SetGameAsync($"to {bot.Guilds.Count} servers {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
-                        i++;
-                    }
-                    else if (i == 1)
-                    {
-                        await bot.SetGameAsync($"try -help {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
-                        i++;
-                    }
-                    else if (i == 2)
-                    {
-                        await bot.SetGameAsync($"try -donate {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
-                        i++;
-                    }
-                    else
-                    {
-                        Random rnd = new Random();
-                        BotConfig conf = BotConfig.Load();
-                        int j = rnd.Next(0, conf.Commands.Count);
+                        case 0:
+                            await bot.SetGameAsync($"to {bot.Guilds.Count} servers {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                            i++;
+                            break;
+                        case 1:
+                            await bot.SetGameAsync($"try -help {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                            i++;
+                            break;
+                        case 2:
+                            await bot.SetGameAsync($"try -donate {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                            i++;
+                            break;
+                        default:
+                            {
+                                Random rnd = new Random();
+                                BotConfig conf = BotConfig.Load();
+                                int j = rnd.Next(0, conf.Commands.Count);
 
-                        await bot.SetGameAsync($"try -{conf.Commands[j].Handle.ToLower()} {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
-                        i = 0;
+                                await bot.SetGameAsync($"try -{conf.Commands[j].Handle.ToLower()} {Util.GetRandomHeartEmoji()}", stream, ActivityType.Streaming);
+                                i = 0;
+                                break;
+                            }
                     }
                     await Task.Delay(15000);
+                }
+            });
+
+            var memories = Task.Run(async () => {
+                
+                while (true)
+                {
+                    if (DateTime.UtcNow.Hour == 0 && DateTime.UtcNow.Minute == 0)
+                    {
+                        foreach (var guild in bot.Guilds)
+                        {
+                            string memories = "";
+                            foreach (ITextChannel channel in guild.TextChannels)
+                            {
+                                foreach (IMessage msg in await channel.GetPinnedMessagesAsync())
+                                {
+                                    if (msg.CreatedAt.UtcDateTime.Date.Day == DateTime.UtcNow.Day && msg.CreatedAt.UtcDateTime.Date.Month == DateTime.UtcNow.Month && msg.CreatedAt.UtcDateTime.Date.Year < DateTime.UtcNow.Year)
+                                    {
+                                        memories = memories + "\n" + msg.GetJumpUrl() + " (" + msg.CreatedAt.UtcDateTime.ToShortDateString() + ")";
+                                    }
+                                }
+                            }
+
+                            EmbedBuilder embed = new EmbedBuilder()
+                            {
+                                Title = $"Server Memories",
+                                Description = memories,
+                                Color = Color.DarkPurple
+                            };
+                            await guild.DefaultChannel.SendMessageAsync(null, false, embed.Build());
+                        }
+
+                        await Task.Delay(22*(60*(60*1000)));
+                    }
+                    await Task.Delay(60 * 1000);
                 }
             });
         }

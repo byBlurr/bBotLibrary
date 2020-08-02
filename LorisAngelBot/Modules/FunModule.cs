@@ -55,6 +55,28 @@ namespace LorisAngelBot.Modules
             await Context.Channel.SendMessageAsync(compliment);
         }
 
+        [Command("hug")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        private async Task HugAsync(IUser user)
+        {
+            await Context.Message.DeleteAsync();
+
+            ComplimentsFile file = ComplimentsFile.Load();
+            Random rnd = new Random();
+            int g = rnd.Next(0, file.HugGifs.Count);
+            string GIF = file.HugGifs[g];
+
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Title = $"{Context.User.Username} hugged {user.Username}",
+                ImageUrl = GIF,
+                Color = Color.DarkPurple,
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {Context.User.ToString()}" }
+            };
+            await Context.Channel.SendMessageAsync(null, false, embed.Build());
+        }
+
         [Command("epic")]
         [Alias("rate", "epicrating")]
         [RequireBotPermission(ChannelPermission.ManageMessages)]
@@ -178,10 +200,12 @@ namespace LorisAngelBot.Modules
         static readonly string Filename = "compliments.json";
 
         public List<string> Compliments { get; set; }
+        public List<string> HugGifs { get; set; }
 
         public ComplimentsFile()
         {
             Compliments = new List<string>();
+            HugGifs = new List<string>();
         }
 
         public static bool Exists()
