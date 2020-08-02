@@ -9,6 +9,8 @@ namespace Discord.Net.Bot
 {
     public class Util
     {
+        public static string DonateUrl = "https://www.buymeacoffee.com/blurr";
+
         /// Convert a string with mentions to a string with readable names
         public static async Task<string> GetReadableMentionsAsync(IGuild guild, string original)
         {

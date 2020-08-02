@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.Net.Bot;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,9 @@ namespace LorisAngelBot.Modules
         {
             EmbedBuilder embed = new EmbedBuilder()
             {
-                Author = new EmbedAuthorBuilder() { Url = "https://www.buymeacoffee.com/blurr", IconUrl = "https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2ZpbGVfcGljdHVyZXMvMjAyMC8wOC9hMzM3NTlmMTM3MWU4MGI4MTZmMDk1MzE4NDliZTFhYS5wbmc=&size=300&name=blurr", Name = "Donate Here!" },
+                Author = new EmbedAuthorBuilder() { Url = Util.DonateUrl, IconUrl = "https://img.buymeacoffee.com/api/?url=aHR0cHM6Ly9jZG4uYnV5bWVhY29mZmVlLmNvbS91cGxvYWRzL3Byb2ZpbGVfcGljdHVyZXMvMjAyMC8wOC9hMzM3NTlmMTM3MWU4MGI4MTZmMDk1MzE4NDliZTFhYS5wbmc=&size=300&name=blurr", Name = "Donate Here!" },
                 Description = $"{message}",
+                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomHeartEmoji()}  {Util.DonateUrl}" },
                 Color = Color.DarkPurple
             };
             await channel.SendMessageAsync(null, false, embed.Build());

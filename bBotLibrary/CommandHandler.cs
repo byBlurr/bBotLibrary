@@ -185,7 +185,7 @@ namespace Discord.Net.Bot
                         EmbedBuilder embed = new EmbedBuilder()
                         {
                             Title = "Command Error",
-                            Description = result.ErrorReason + $"\nTry typing `{bot.CurrentUser.Mention}` for help!",
+                            Description = result.ErrorReason + $"\nTry mentioning the bot for help!",
                             Color = new Color(230, 100, 75)
                         };
 
