@@ -15,7 +15,7 @@ namespace LorisAngelBot.Modules
             EmbedBuilder embed = new EmbedBuilder()
             {
                 Author = new EmbedAuthorBuilder() { Name = "Update", IconUrl = Context.Client.CurrentUser.GetAvatarUrl(), Url = Util.DonateUrl },
-                Description = $"{update}\nType '{Context.Client.CurrentUser.Mention} help new` to see new commands!\n\nConsider donating to help support development of Lori's Angel ({Util.DonateUrl}).",
+                Description = $"{update}\n**Type '{Context.Client.CurrentUser.Mention} help new` to see new commands!**\n\nConsider donating to help support development of Lori's Angel ({Util.DonateUrl}).",
                 Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Enjoy the update!" },
                 Color = Color.Gold
             };
