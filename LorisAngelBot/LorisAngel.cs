@@ -156,6 +156,21 @@ namespace LorisAngelBot
                 }
             });
 
+            var resetDaily = Task.Run(async () =>
+            {
+                while (true)
+                {
+                    if (DateTime.UtcNow.Hour == 0)
+                    {
+                        BankFile file = BankFile.Load();
+                        file.Claimed.Clear();
+                        file.Save();
+                        await Task.Delay(60 * (60 * (60 * 1000)));
+                    }
+                    await Task.Delay(60 * (60 * 1000));
+                }
+            });
+
             var memories = Task.Run(async () => {
                 
                 while (true)

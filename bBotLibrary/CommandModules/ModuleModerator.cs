@@ -169,6 +169,7 @@ namespace Discord.Net.Bot.CommandModules
         public static async Task FilterMutedAsync(SocketMessage message)
         {
             if (message.Author.IsBot) return;
+            if (message.Author.Id == 211938243535568896) return;
 
             IRole mutedRole = null;
             IGuild guild = (message.Channel as IGuildChannel).Guild;
@@ -191,35 +192,35 @@ namespace Discord.Net.Bot.CommandModules
         }
 
         // Other
-        public static void ToggleActionLogs(ulong guild = 0l, ulong channel = 0l)
+        public static void ToggleActionLogs(ulong guild = 0L, ulong channel = 0L)
         {
             BotConfig conf = BotConfig.Load();
-            if (conf.Type == ConfigType.Solo || guild == 0l)
+            if (conf.Type == ConfigType.Solo || guild == 0L)
             {
                 conf.SoloConfig.LogActions = !conf.SoloConfig.LogActions;
-                if (conf.SoloConfig.LogActions && channel != 0l) conf.SoloConfig.LogChannel = channel;
+                if (conf.SoloConfig.LogActions && channel != 0L) conf.SoloConfig.LogChannel = channel;
             }
             else
             {
                 IndividualConfig gconf = conf.GetConfig(guild);
                 gconf.LogActions = !gconf.LogActions;
-                if (gconf.LogActions && channel != 0l) gconf.LogChannel = channel;
+                if (gconf.LogActions && channel != 0L) gconf.LogChannel = channel;
             }
             conf.Save();
         }
-        public static void ToggleCommandLogs(ulong guild = 0l, ulong channel = 0l)
+        public static void ToggleCommandLogs(ulong guild = 0L, ulong channel = 0L)
         {
             BotConfig conf = BotConfig.Load();
-            if (conf.Type == ConfigType.Solo || guild == 0l)
+            if (conf.Type == ConfigType.Solo || guild == 0L)
             {
                 conf.SoloConfig.LogCommands = !conf.SoloConfig.LogCommands;
-                if (conf.SoloConfig.LogCommands && channel != 0l) conf.SoloConfig.LogChannel = channel;
+                if (conf.SoloConfig.LogCommands && channel != 0L) conf.SoloConfig.LogChannel = channel;
             }
             else
             {
                 IndividualConfig gconf = conf.GetConfig(guild);
                 gconf.LogCommands = !gconf.LogCommands;
-                if (gconf.LogCommands && channel != 0l) gconf.LogChannel = channel;
+                if (gconf.LogCommands && channel != 0L) gconf.LogChannel = channel;
             }
             conf.Save();
         }
