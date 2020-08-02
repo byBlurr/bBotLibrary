@@ -41,6 +41,12 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("DAILY", "`-daily`", "Claim your daily $50!", CommandCategory.Currency, "Libby", true));
             commands.Add(new BotCommand("RICHEST", "`-richest`", "See who has the most money!", CommandCategory.Currency, "Libby", true));
 
+            // Gaming
+            commands.Add(new BotCommand("STEAM LINK", "-steam link <profile_url>", "Link your Lori user to steam!", CommandCategory.Gaming, "", true));
+            commands.Add(new BotCommand("STEAM", "-steam", "View some steam information", CommandCategory.Gaming, "", true));
+            commands.Add(new BotCommand("FIND GAME", "-find game <mention users>", "Find a game that all mentioned users have in common!", CommandCategory.Gaming, "", true));
+            commands.Add(new BotCommand("PLAYTIME", "-playtime <game_title>", "Check your playtime on said game!", CommandCategory.Gaming, "", true));
+
             // Leaderboards
             commands.Add(new BotCommand("SCORE TRIVIA", "`-score trivia` or `-score trivia @user`", "Check the users score on trivia.", CommandCategory.Leaderboards));
             commands.Add(new BotCommand("TOP TRIVIA", "`-top trivia`", "Check the users with the highest scores on trivia.", CommandCategory.Leaderboards));
@@ -99,6 +105,7 @@ namespace LorisAngelBot
         {
             DonateFile.Exists();
             BankFile.Exists();
+            SteamFile.Exists();
             RelationshipFile.Exists();
             TriviaFile.Exists();
             TriviaUsers.Exists();
@@ -107,6 +114,9 @@ namespace LorisAngelBot
             ComplimentsFile.Exists();
             PunishFile.Exists();
             CrackFile.Exists();
+
+            // Setup Link API
+            SteamApiHandler.SetupClient(SteamFile.Load().API_KEY);
 
             await bot.SetStatusAsync(UserStatus.Online);
 
