@@ -17,27 +17,33 @@ namespace LorisAngelBot
             commands.Clear();
 
             // Games
-            commands.Add(new BotCommand("TRIVIA", "`-trivia` or `-trivia <category>`", "Request a trivia question!", CommandCategory.Games, "Siena, Libby", true));
-            commands.Add(new BotCommand("TICTACTOE", "`-ttt`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Games, "Libby", true));
+            commands.Add(new BotCommand("TRIVIA", "`-trivia` or `-trivia <category>`", "Request a trivia question!", CommandCategory.Games, "Siena, Libby"));
+            commands.Add(new BotCommand("TICTACTOE", "`-ttt`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Games, "Libby"));
             commands.Add(new BotCommand("BLACKJACK", "`-blackjack`", "Open a game of blackjack.", CommandCategory.Games, "Libby", true));
-            commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay", true));
-
+            commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay"));
+            
             // Fun
-            commands.Add(new BotCommand("QUOTE", "`-quote @user <message>`", "Create a fake quote (Use shift enter for new lines, will look like multiple messages)!", CommandCategory.Fun, "", true));
-            commands.Add(new BotCommand("CRACK", "`-crack`", "Retrieve a hashed password to crack!", CommandCategory.Fun, "", true));
+            commands.Add(new BotCommand("QUOTE", "`-quote @user <message>`", "Create a fake quote (Use shift enter for new lines, will look like multiple messages)!", CommandCategory.Fun, ""));
+            commands.Add(new BotCommand("CRACK", "`-crack`", "Retrieve a hashed password to crack!", CommandCategory.Fun, ""));
             commands.Add(new BotCommand("SHIP", "`-ship @user1 @user2`, `-ship name1 name2`, `-ship user2`, `-ship name2`", "Test how strong your relationship is!", CommandCategory.Fun, "Jimmy"));
             commands.Add(new BotCommand("8BALL", "`-8ball <question>`", "Ask the bot a question!", CommandCategory.Fun, "Siena"));
             commands.Add(new BotCommand("DICE", "`-dice <amount>`", "Roll a dice or 2 or 50!", CommandCategory.Fun, "Mir"));
             commands.Add(new BotCommand("WHO", "`-who <question>` (Mention people in the question)", "Ask a question, the bot will select a random user that is mentioned!", CommandCategory.Fun, ""));
-            commands.Add(new BotCommand("KILL", "`-kill @user`", "Kill the user!", CommandCategory.Fun, "", true));
-            commands.Add(new BotCommand("ROAST", "`-roast @user`", "Roast the user!", CommandCategory.Fun, "", true));
-            commands.Add(new BotCommand("COMPLIMENTS", "`-compliment @user`", "Compliment the user!", CommandCategory.Fun, "", true));
-            commands.Add(new BotCommand("EPICRATING", "`-epic @user` or `-rate @user`", "See just how epic they are!", CommandCategory.Fun, "Libby", true));
+            commands.Add(new BotCommand("KILL", "`-kill @user`", "Kill the user!", CommandCategory.Fun, ""));
+            commands.Add(new BotCommand("ROAST", "`-roast @user`", "Roast the user!", CommandCategory.Fun, ""));
+            commands.Add(new BotCommand("COMPLIMENTS", "`-compliment @user`", "Compliment the user!", CommandCategory.Fun, ""));
+            commands.Add(new BotCommand("EPICRATING", "`-epic @user` or `-rate @user`", "See just how epic they are!", CommandCategory.Fun, "Libby"));
             commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.Fun, "Jimmy, Ras"));
 
+            // Currency
+            commands.Add(new BotCommand("BANK", "`-bank`", "View how much money you have in the bank!", CommandCategory.Currency, "Libby", true));
+            commands.Add(new BotCommand("GIVE", "`-give @user <amount>`", "give another user some of your money!", CommandCategory.Currency, "Libby", true));
+            commands.Add(new BotCommand("DAILY", "`-daily`", "Claim your daily $50!", CommandCategory.Currency, "Libby", true));
+            commands.Add(new BotCommand("RICHEST", "`-richest`", "See who has the most money!", CommandCategory.Currency, "Libby", true));
+
             // Leaderboards
-            commands.Add(new BotCommand("SCORE TRIVIA", "`-score trivia` or `-score trivia @user`", "Check the users score on trivia.", CommandCategory.Leaderboards, newCommand: true));
-            commands.Add(new BotCommand("TOP TRIVIA", "`-top trivia`", "Check the users with the highest scores on trivia.", CommandCategory.Leaderboards, newCommand: true));
+            commands.Add(new BotCommand("SCORE TRIVIA", "`-score trivia` or `-score trivia @user`", "Check the users score on trivia.", CommandCategory.Leaderboards));
+            commands.Add(new BotCommand("TOP TRIVIA", "`-top trivia`", "Check the users with the highest scores on trivia.", CommandCategory.Leaderboards));
 
             // User
             commands.Add(new BotCommand("OLDEST", "`-oldest`", "Find out who the oldest user in the guild is!", CommandCategory.User, ""));
@@ -90,6 +96,7 @@ namespace LorisAngelBot
         private async Task ReadyAsync()
         {
             DonateFile.Exists();
+            BankFile.Exists();
             RelationshipFile.Exists();
             TriviaFile.Exists();
             TriviaUsers.Exists();
