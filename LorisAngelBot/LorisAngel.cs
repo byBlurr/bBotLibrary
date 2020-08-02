@@ -76,6 +76,8 @@ namespace LorisAngelBot
             bot.Ready += ReadyAsync;
             bot.MessageReceived += MessageReceivedAsync;
             bot.MessageReceived += ModuleModerator.FilterMutedAsync;
+            bot.JoinedGuild += JoinedGuildAsync;
+            bot.LeftGuild += LeftGuildAsync;
         }
 
         public async Task MessageReceivedAsync(SocketMessage msg)
@@ -141,6 +143,18 @@ namespace LorisAngelBot
                     await Task.Delay(15000);
                 }
             });
+        }
+
+        private async Task JoinedGuildAsync(SocketGuild guild)
+        {
+            var sg = bot.GetGuild(730573219374825523);
+            await sg.GetTextChannel(739308321655226469).SendMessageAsync("Joined guild " + guild.Name);
+        }
+
+        private async Task LeftGuildAsync(SocketGuild guild)
+        {
+            var sg = bot.GetGuild(730573219374825523);
+            await sg.GetTextChannel(739308321655226469).SendMessageAsync("Left guild " + guild.Name);
         }
     }
 

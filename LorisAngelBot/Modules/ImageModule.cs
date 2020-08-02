@@ -28,7 +28,15 @@ namespace LorisAngelBot.Modules
             string username = user.Username;
             if (user.Nickname != null) username = user.Nickname;
 
-            string image = Images.DrawQuote(username, user.GetAvatarUrl(ImageFormat.Png, 128), DateTime.UtcNow, quote, Color.White, user.IsBot);
+            IRole role = null;
+            foreach (ulong roleid in user.RoleIds)
+            {
+                var r = Context.Guild.GetRole(roleid);
+                if ((role == null || r.Position > role.Position) && !r.Color.ToString().Equals("#000000")) role = r;
+            }
+
+            Color roleColor = role != null ? Color.FromArgb(role.Color.R, role.Color.G, role.Color.B) : Color.White;
+            string image = Images.DrawQuote(username, user.GetAvatarUrl(ImageFormat.Png, 128), DateTime.UtcNow, quote, roleColor, user.IsBot);
             await Context.Channel.SendFileAsync(image);
             File.Delete(image);
         }
