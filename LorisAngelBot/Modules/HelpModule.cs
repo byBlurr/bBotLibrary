@@ -51,7 +51,7 @@ namespace LorisAngelBot.Modules
         [Alias("h", "?")]
         [RequireBotPermission(ChannelPermission.ManageMessages)]
         [RequireBotPermission(ChannelPermission.SendMessages)]
-        private async Task HelpAsync(string section = "")
+        private async Task HelpAsync([Remainder] string section = "")
         {
             await ModuleHelp.HelpAsync(Context, section);
         }
