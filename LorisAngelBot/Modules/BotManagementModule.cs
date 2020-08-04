@@ -29,5 +29,16 @@ namespace LorisAngelBot.Modules
                 }
             }
         }
+
+        [Command("dailyreset")]
+        private async Task ResetDailyAsync()
+        {
+            if (Context.User.Id != 211938243535568896) return;
+
+            BankFile file = BankFile.Load();
+            file.Claimed.Clear();
+            file.Save();
+            await Context.Channel.SendMessageAsync("Reset.");
+        }
     }
 }

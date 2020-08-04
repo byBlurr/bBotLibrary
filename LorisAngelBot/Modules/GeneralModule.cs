@@ -12,6 +12,15 @@ namespace LorisAngelBot.Modules
 {
     public class GeneralModule : ModuleBase
     {
+        [Command("region")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        private async Task RegionAsync()
+        {
+            await Context.Message.DeleteAsync();
+            await Context.Channel.SendMessageAsync("Guild Region: " + Util.ToUppercaseFirst(Context.Guild.VoiceRegionId));
+        }
+
         [Command("who")]
         [RequireBotPermission(ChannelPermission.ManageMessages)]
         [RequireBotPermission(ChannelPermission.SendMessages)]

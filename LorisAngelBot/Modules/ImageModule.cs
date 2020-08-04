@@ -14,7 +14,26 @@ namespace LorisAngelBot.Modules
 {
     public class ImageModule : ModuleBase
     {
+        [Command("podium")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
+        private async Task PodiumAsync(IUser user1, IUser user2, IUser user3 = null)
+        {
+            await Context.Message.DeleteAsync();
+
+            string path;
+            if (user3 == null) path = Images.DrawPodium(Context.User.GetAvatarUrl(size: 128), user1.GetAvatarUrl(size: 128), user2.GetAvatarUrl(size: 128));
+            else path = Images.DrawPodium(user1.GetAvatarUrl(size: 128), user2.GetAvatarUrl(size: 128), user3.GetAvatarUrl(size: 128));
+
+            await Context.Channel.SendFileAsync(path);
+            File.Delete(path);
+        }
+
         [Command("quote")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task QuoteAsync(IGuildUser user = null, [Remainder] string quote = "")
         {
             await Context.Message.DeleteAsync();
@@ -42,6 +61,9 @@ namespace LorisAngelBot.Modules
         }
 
         [Command("habbo")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        [RequireBotPermission(ChannelPermission.AttachFiles)]
         private async Task HabboQuoteAsync(string username, [Remainder] string quote)
         {
             await Context.Message.DeleteAsync();
@@ -53,6 +75,52 @@ namespace LorisAngelBot.Modules
 
     public class Images
     {
+        public static string DrawPodium(string url1, string url2, string url3)
+        {
+            int width = 1280;
+            int height = 720;
+
+            Random rnd = new Random();
+            string path = Path.Combine(AppContext.BaseDirectory, "images", "podium", $"{rnd.Next(10000, 99999)}.jpg");
+
+            Bitmap editedBitmap = new Bitmap(width, height);
+            Graphics graphicImage = Graphics.FromImage(editedBitmap);
+            graphicImage.SmoothingMode = SmoothingMode.AntiAlias;
+            
+            Bitmap background = new Bitmap(Path.Combine(AppContext.BaseDirectory, "images", "podium", $"background.png"));
+            graphicImage.DrawImage(background, 0, 0, width, height);
+            background.Dispose();
+
+            string imagePath = Path.Combine(AppContext.BaseDirectory, $"images/{rnd.Next(10000, 99999)}.png");
+
+            using (WebClient client = new WebClient()) client.DownloadFile(url1, imagePath);
+            Bitmap profilePic = new Bitmap(imagePath);
+            graphicImage.DrawImage(profilePic, 657, 438, 102, 102);
+            profilePic.Dispose();
+            File.Delete(imagePath);
+
+            using (WebClient client = new WebClient()) client.DownloadFile(url2, imagePath);
+            profilePic = new Bitmap(imagePath);
+            graphicImage.DrawImage(profilePic, 489, 487, 102, 102);
+            profilePic.Dispose();
+            File.Delete(imagePath);
+
+            using (WebClient client = new WebClient()) client.DownloadFile(url3, imagePath);
+            profilePic = new Bitmap(imagePath);
+            graphicImage.DrawImage(profilePic, 826, 524, 102, 102);
+            profilePic.Dispose();
+            File.Delete(imagePath);
+
+            Bitmap overlay = new Bitmap(Path.Combine(AppContext.BaseDirectory, "images", "podium", $"overlay.png"));
+            graphicImage.DrawImage(overlay, 0, 0, width, height);
+            overlay.Dispose();
+
+            editedBitmap.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
+            graphicImage.Dispose();
+            editedBitmap.Dispose();
+            return path;
+        }
+
         public static string DrawQuote(string username, string image, DateTime time, string quote, Color nameColour, bool isBot = false)
         {
             Random rnd = new Random();

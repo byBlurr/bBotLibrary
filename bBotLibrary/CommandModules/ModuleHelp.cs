@@ -48,7 +48,10 @@ namespace Discord.Net.Bot.CommandModules
             CategoryText = CategoryText.Split(",", 2)[1];
             if (hasNewCommands) CategoryText = $"{CategoryText}, New";
 
-            if (CommandHelpText.Length <= 0) CommandHelpText = $"Command Usage: {Prefix}help <category>\n\nCategories:\n{CategoryText}";
+            if (CommandHelpText.Length <= 0)
+            {
+                CommandHelpText = $"Command Usage: {Prefix}help <category>\n\nCategories:\n{CategoryText}\n\nKnown Errors:\nerror 50007 - Users privacy settings prevent dm's\nerror 403 - Bot does not have required permissions\nOther errors are tracked by the bot, and will be looked into.";
+            }
             else if (!isSpecificCommand) CommandHelpText = $"Command Usage: {Prefix}help <command>\n\n{Util.ToUppercaseFirst(section)} Commands:\n{CommandHelpText}";
 
             EmbedBuilder embed = new EmbedBuilder()

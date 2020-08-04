@@ -69,6 +69,7 @@ namespace LorisAngelBot.Modules
                 if (user.DiscordId == Context.User.Id)
                 {
                     steam.LinkedProfiles.Remove(user);
+                    steam.Save();
                     EmbedBuilder embed = new EmbedBuilder()
                     {
                         Title = "Unlinked Steam",

@@ -23,6 +23,7 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay"));
             
             // Fun
+            commands.Add(new BotCommand("PODIUM", "`-podium @user2 @user3` or `-podium @user1 @user2 @user3`", "Create a podium image!", CommandCategory.Fun, "", true));
             commands.Add(new BotCommand("QUOTE", "`-quote @user <message>`", "Create a fake quote (Use shift enter for new lines, will look like multiple messages)!", CommandCategory.Fun, ""));
             commands.Add(new BotCommand("CRACK", "`-crack`", "Retrieve a hashed password to crack!", CommandCategory.Fun, ""));
             commands.Add(new BotCommand("SHIP", "`-ship @user1 @user2`, `-ship name1 name2`, `-ship user2`, `-ship name2`", "Test how strong your relationship is!", CommandCategory.Fun, "Jimmy"));
@@ -34,7 +35,7 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("COMPLIMENT", "`-compliment @user`", "Compliment the user!", CommandCategory.Fun, "Libby"));
             commands.Add(new BotCommand("HUG", "`-hug @user`", "Hug the user!", CommandCategory.Fun, "Siena", true));
             commands.Add(new BotCommand("EPICRATING", "`-epic @user` or `-rate @user`", "See just how epic they are!", CommandCategory.Fun, "Libby"));
-            commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.Fun, "Jimmy, Ras"));
+            //commands.Add(new BotCommand("PUNISH", "`-punish @user`", "Punish them for their actions!", CommandCategory.Fun, "Jimmy, Ras"));
 
             // Currency
             commands.Add(new BotCommand("BANK", "`-bank`", "View how much money you have in the bank!", CommandCategory.Currency, "Libby", true));
@@ -65,6 +66,7 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("UPTIME", "`-uptime`", "Check how long the bot has been online.", CommandCategory.BotRelated, ""));
 
             // Tools
+            commands.Add(new BotCommand("REGION", "`-region`", "Check which region the current server is on!", CommandCategory.Tools, "", true));
             commands.Add(new BotCommand("BINARY", "`-binary <text>`", "Convert text to binary!", CommandCategory.Tools, ""));
             commands.Add(new BotCommand("USERS", "`-users`", "Will tell you how many members are in this guild!", CommandCategory.Tools, ""));
             commands.Add(new BotCommand("OLDEST", "`-oldest`", "Will check which user in the guild has the oldest account!", CommandCategory.Tools, ""));
@@ -170,41 +172,6 @@ namespace LorisAngelBot
                     await Task.Delay(60 * (60 * 1000));
                 }
             });
-
-            var memories = Task.Run(async () => {
-                
-                while (true)
-                {
-                    if (DateTime.UtcNow.Hour == 0 && DateTime.UtcNow.Minute == 0)
-                    {
-                        foreach (var guild in bot.Guilds)
-                        {
-                            string memories = "";
-                            foreach (ITextChannel channel in guild.TextChannels)
-                            {
-                                foreach (IMessage msg in await channel.GetPinnedMessagesAsync())
-                                {
-                                    if (msg.CreatedAt.UtcDateTime.Date.Day == DateTime.UtcNow.Day && msg.CreatedAt.UtcDateTime.Date.Month == DateTime.UtcNow.Month && msg.CreatedAt.UtcDateTime.Date.Year < DateTime.UtcNow.Year)
-                                    {
-                                        memories = memories + "\n" + msg.GetJumpUrl() + " (" + msg.CreatedAt.UtcDateTime.ToShortDateString() + ")";
-                                    }
-                                }
-                            }
-
-                            EmbedBuilder embed = new EmbedBuilder()
-                            {
-                                Title = $"Server Memories",
-                                Description = memories,
-                                Color = Color.DarkPurple
-                            };
-                            await guild.DefaultChannel.SendMessageAsync(null, false, embed.Build());
-                        }
-
-                        await Task.Delay(22*(60*(60*1000)));
-                    }
-                    await Task.Delay(60 * 1000);
-                }
-            });
         }
 
         private async Task JoinedGuildAsync(SocketGuild guild)
@@ -228,6 +195,7 @@ namespace LorisAngelBot
             CommandHandler handler = new LCommandHandler();
             handler.RestartEveryMs = 21600000; // Every 6 hours
             StartBot(handler);
+            
         }
     }
 }
