@@ -1,4 +1,5 @@
 ﻿using Discord;
+using Discord.Commands;
 using Discord.Net.Bot;
 using Discord.Net.Bot.CommandModules;
 using Discord.Net.Bot.Database.Configs;
@@ -18,7 +19,7 @@ namespace LorisAngelBot
 
             // Games
             commands.Add(new BotCommand("TRIVIA", "`-trivia` or `-trivia <category>`", "Request a trivia question!", CommandCategory.Games, "Siena, Libby"));
-            commands.Add(new BotCommand("TICTACTOE", "`-ttt`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Games, "Libby"));
+            commands.Add(new BotCommand("TICTACTOE", "`-ttt @player2` or `-ttt @player2 <bet>`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Games, "Libby"));
             commands.Add(new BotCommand("BLACKJACK", "`-blackjack`", "Open a game of blackjack.", CommandCategory.Games, "Libby", true));
             commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay"));
             
@@ -92,7 +93,7 @@ namespace LorisAngelBot
         public async Task MessageReceivedAsync(SocketMessage msg)
         {
             if (msg.Author.IsBot) return;
-            CensorModule.CheckMessage(msg);
+            await CensorModule.CheckMessageAsync(new SocketCommandContext(bot, msg as SocketUserMessage));
 
             if (TriviaGames.GetGame(msg.Author.Id) != null)
             {
@@ -107,6 +108,7 @@ namespace LorisAngelBot
 
         private async Task ReadyAsync()
         {
+            BotManagementFile.Exists();
             DonateFile.Exists();
             BankFile.Exists();
             SteamFile.Exists();

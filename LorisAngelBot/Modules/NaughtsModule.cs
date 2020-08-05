@@ -17,17 +17,18 @@ namespace LorisAngelBot.Modules
         [RequireBotPermission(ChannelPermission.ManageMessages)]
         [RequireBotPermission(ChannelPermission.SendMessages)]
         [RequireBotPermission(ChannelPermission.AttachFiles)]
-        private async Task NaughtsAsync(IUser playerTwo)
+        private async Task NaughtsAsync(IUser playerTwo, int bet = 0)
         {
             await Context.Message.DeleteAsync();
             IUser playerOne = Context.User as IUser;
+            if (bet < 0) bet = 0;
 
-            if (playerTwo.IsBot)
+            if (playerTwo.IsBot || playerOne.Id == playerTwo.Id)
             {
                 EmbedBuilder embed = new EmbedBuilder()
                 {
                     Title = "TicTacToe | Naughts & Crosses",
-                    Description = "You can not play against a bot!",
+                    Description = "You can not play against a bot or yourself!",
                     Color = Discord.Color.DarkPurple,
                     Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {playerOne.Username}#{playerOne.Discriminator}" }
                 };
@@ -37,8 +38,32 @@ namespace LorisAngelBot.Modules
 
             if (NaughtsGames.GetBoard(Context.Guild.Id) == null)
             {
-                var board = NaughtsGames.CreateNewGame(Context.Guild.Id, playerOne, playerTwo);
-                if (board != null)
+                bool canAffordBets = true;
+                if (bet > 0)
+                {
+                    canAffordBets = false;
+                    bool canAfford1 = false;
+                    bool canAfford2 = false;
+
+                    BankFile bank = BankFile.Load();
+                    foreach (BankAccount account in bank.Accounts)
+                    {
+                        if (account.Id == playerOne.Id)
+                        {
+                            canAfford1 = account.Balance >= bet;
+                        }
+                        else if (account.Id == playerTwo.Id)
+                        {
+                            canAfford2 = account.Balance >= bet;
+                        }
+                    }
+
+                    Console.WriteLine(canAfford1 + " : " + canAfford2);
+                    canAffordBets = (canAfford1 && canAfford2);
+                }
+
+                var board = NaughtsGames.CreateNewGame(Context.Guild.Id, playerOne, playerTwo, bet);
+                if (board != null && canAffordBets)
                 {
                     var msg = await Context.Channel.SendFileAsync(board.DrawBoard(), $"**TicTacToe | Naughts & Crosses**\n" +
                         $"Next Up: **{board.Players[0].SelectedState.ToString().ToUpper()} ({board.Players[0].User.Mention})**\n" +
@@ -47,6 +72,17 @@ namespace LorisAngelBot.Modules
 
                     board.MessageId = msg.Id;
                     NaughtsGames.UpdateGame(Context.Guild.Id, board);
+                }
+                else if (!canAffordBets)
+                {
+                    EmbedBuilder embed = new EmbedBuilder()
+                    {
+                        Title = "TicTacToe | Naughts & Crosses",
+                        Description = $"One or both users can not afford the bet of ${bet}!",
+                        Color = Discord.Color.DarkPurple,
+                        Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Requested by {playerOne.Username}#{playerOne.Discriminator}" }
+                    };
+                    await Context.Channel.SendMessageAsync(null, false, embed.Build());
                 }
             }
             else
@@ -126,14 +162,37 @@ namespace LorisAngelBot.Modules
                         {
                             // We have a winner
                             IUser winner;
-                            if (board.Players[0].SelectedState == winnerState) winner = board.Players[0].User;
-                            else winner = board.Players[1].User;
+                            IUser loser;
+                            if (board.Players[0].SelectedState == winnerState)
+                            {
+                                winner = board.Players[0].User;
+                                loser = board.Players[1].User;
+                            }
+                            else
+                            {
+                                winner = board.Players[1].User;
+                                loser = board.Players[0].User;
+                            }
 
                             var oldMsg = await Context.Channel.GetMessageAsync(board.MessageId);
                             if (oldMsg != null) await oldMsg.DeleteAsync();
 
+                            BankFile bank = BankFile.Load();
+                            foreach (BankAccount account in bank.Accounts)
+                            {
+                                if (account.Id == winner.Id)
+                                {
+                                    account.Balance += board.Bet;
+                                }
+                                else if (account.Id == loser.Id)
+                                {
+                                    account.Balance -= board.Bet;
+                                }
+                            }
+                            bank.Save();
+
                             var msg = await Context.Channel.SendFileAsync(board.DrawBoard(), $"**TicTacToe | Naughts & Crosses**\n" +
-                                $"Well Done, {winner.Username} has won the game!");
+                                $"Well Done, {winner.Username} has won the game!\n\n{winner.Username}: +${board.Bet}\n{loser.Username}: -${board.Bet}");
                             NaughtsGames.EndGame(Context.Guild.Id);
                         }
                     }
@@ -184,9 +243,9 @@ namespace LorisAngelBot.Modules
     {
         private static List<NaughtsBoard> Games = new List<NaughtsBoard>();
 
-        public static NaughtsBoard CreateNewGame(ulong guild, IUser playerOne, IUser playerTwo)
+        public static NaughtsBoard CreateNewGame(ulong guild, IUser playerOne, IUser playerTwo, int bet)
         {
-            NaughtsBoard board = new NaughtsBoard(guild, playerOne, playerTwo);
+            NaughtsBoard board = new NaughtsBoard(guild, playerOne, playerTwo, bet);
             Games.Add(board);
             return board;
         }
@@ -234,11 +293,13 @@ namespace LorisAngelBot.Modules
         public NaughtsTile[,] Board;
         public NaughtsPlayer[] Players;
         public int CurrentPlayer = 0;
+        public int Bet = 0;
         
 
-        public NaughtsBoard(ulong guild, IUser playerOne, IUser playerTwo)
+        public NaughtsBoard(ulong guild, IUser playerOne, IUser playerTwo, int bet)
         {
             Guild = guild;
+            Bet = bet;
 
             Board = new NaughtsTile[3, 3];
             for (int x = 0; x < Board.GetLength(0); x++)
