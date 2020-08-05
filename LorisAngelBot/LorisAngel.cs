@@ -92,6 +92,7 @@ namespace LorisAngelBot
         public async Task MessageReceivedAsync(SocketMessage msg)
         {
             if (msg.Author.IsBot) return;
+            CensorModule.CheckMessage(msg);
 
             if (TriviaGames.GetGame(msg.Author.Id) != null)
             {
