@@ -30,7 +30,7 @@ namespace Discord.Net.Bot.CommandModules
 
                 if (command.Handle.ToLower() == section.ToLower())
                 {
-                    string help = $"**{command.Handle}**\nUsage:\n{command.Usage}\n{command.Description}";
+                    string help = $"**{command.Handle.ToUpper()}**\nUsage:\n{command.Usage}\n{command.Description}";
                     if (command.New) help = $"**NEW** - {help}";
                     if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
 
