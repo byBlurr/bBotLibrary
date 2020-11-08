@@ -22,8 +22,10 @@ namespace LorisAngelBot
             commands.Add(new BotCommand("TICTACTOE", "`-ttt @player2` or `-ttt @player2 <bet>`", "Start a game of Tic Tac Toe (Naughts and Crosses)", CommandCategory.Games, "Libby"));
             commands.Add(new BotCommand("BLACKJACK", "`-blackjack`", "Open a game of blackjack.", CommandCategory.Games, "Libby", true));
             commands.Add(new BotCommand("SNAKE", "`-snake @player2 @player3 @player4`", "Start a game of snake! Up to 4 players! [BETA]", CommandCategory.Games, "Tay"));
-            
+
             // Fun
+            commands.Add(new BotCommand("PUNISH", "`-punish @user2`", "Punish them for their actions! ;)", CommandCategory.Fun, "", true));
+            commands.Add(new BotCommand("PUNISHME", "`-podium @user2`", "Get punished by the user! ;)", CommandCategory.Fun, "", true));
             commands.Add(new BotCommand("PODIUM", "`-podium @user2 @user3` or `-podium @user1 @user2 @user3`", "Create a podium image!", CommandCategory.Fun, "", true));
             commands.Add(new BotCommand("QUOTE", "`-quote @user <message>`", "Create a fake quote (Use shift enter for new lines, will look like multiple messages)!", CommandCategory.Fun, ""));
             commands.Add(new BotCommand("CRACK", "`-crack`", "Retrieve a hashed password to crack!", CommandCategory.Fun, ""));
@@ -196,6 +198,7 @@ namespace LorisAngelBot
         static void Main(string[] args)
         {
             CommandHandler handler = new LCommandHandler();
+            handler.ExecutableName = "LorisAngelBot";
             handler.RestartEveryMs = 21600000; // Every 6 hours
             StartBot(handler);
             

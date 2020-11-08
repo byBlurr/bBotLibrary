@@ -18,7 +18,9 @@ namespace Discord.Net.Bot
         private CommandService commands;
         protected static DiscordSocketClient bot;
         private IServiceProvider map;
+
         public int RestartEveryMs = 60000 * 6;
+        public string ExecutableName;
 
         public void SetUp(IServiceProvider provider, ConfigType ctype)
         {
@@ -87,7 +89,7 @@ namespace Discord.Net.Bot
                 await Task.Delay(RestartEveryMs);
 
                 // Code to restart bot
-                Process.Start("D:\\Coding and Development\\bProjects\\bBotLibrary\\LorisAngelBot\\Current\\LorisAngelBot.exe");
+                Process.Start(AppContext.BaseDirectory + ExecutableName + ".exe");
                 // Close this instance
                 Environment.Exit(0);
             });

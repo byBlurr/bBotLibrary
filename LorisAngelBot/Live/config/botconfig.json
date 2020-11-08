@@ -1,0 +1,642 @@
+{
+  "Type": 1,
+  "Token": "NzI5Njk2Nzg4MDk3MDA3NzE3.XwkLcg.echpCNBtfQ-93fcnZaNSKtGplBI",
+  "PrintVerbose": false,
+  "LastStartup": "2020-08-14T15:36:55.9114864Z",
+  "SoloConfig": {
+    "Guild": 0,
+    "Prefix": "-",
+    "LogCommands": false,
+    "LogActions": false,
+    "LogChannel": 0
+  },
+  "Configs": [
+    {
+      "Guild": 725744164389781566,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 728256155306164251,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 714353279965855864,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 722198321585848341,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 436877292149669888,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 730141564688400565,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 730573219374825523,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 493040244074217473,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 110373943822540800,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 717699918474772543,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 334047354846183426,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 734940871396556891,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 607196837727698946,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 714180467422789683,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 695386777804079124,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 702996548233068554,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789429137277089,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789650382618704,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 724542919968686091,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789455246819368,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789474922299403,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789496632016906,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789523781484656,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789543335329803,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789564675948705,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789609119055893,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789584947281927,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 737789628148613202,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 682908628377927699,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 713468126171365388,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 584741368128208925,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 704031169750237381,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 714409592381112320,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 532823340088295425,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 577891925118681114,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 634333573381488661,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 333949691962195969,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 679338357884715035,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    },
+    {
+      "Guild": 740619109183651882,
+      "Prefix": "-",
+      "LogCommands": false,
+      "LogActions": false,
+      "LogChannel": 0
+    }
+  ],
+  "Commands": [
+    {
+      "Handle": "TRIVIA",
+      "Usage": "`-trivia` or `-trivia <category>`",
+      "Description": "Request a trivia question!",
+      "Category": 2,
+      "ExtraInfo": "Siena, Libby",
+      "New": false
+    },
+    {
+      "Handle": "TICTACTOE",
+      "Usage": "`-ttt @player2` or `-ttt @player2 <bet>`",
+      "Description": "Start a game of Tic Tac Toe (Naughts and Crosses)",
+      "Category": 2,
+      "ExtraInfo": "Libby",
+      "New": false
+    },
+    {
+      "Handle": "BLACKJACK",
+      "Usage": "`-blackjack`",
+      "Description": "Open a game of blackjack.",
+      "Category": 2,
+      "ExtraInfo": "Libby",
+      "New": true
+    },
+    {
+      "Handle": "SNAKE",
+      "Usage": "`-snake @player2 @player3 @player4`",
+      "Description": "Start a game of snake! Up to 4 players! [BETA]",
+      "Category": 2,
+      "ExtraInfo": "Tay",
+      "New": false
+    },
+    {
+      "Handle": "PODIUM",
+      "Usage": "`-podium @user2 @user3` or `-podium @user1 @user2 @user3`",
+      "Description": "Create a podium image!",
+      "Category": 1,
+      "ExtraInfo": "",
+      "New": true
+    },
+    {
+      "Handle": "QUOTE",
+      "Usage": "`-quote @user <message>`",
+      "Description": "Create a fake quote (Use shift enter for new lines, will look like multiple messages)!",
+      "Category": 1,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "CRACK",
+      "Usage": "`-crack`",
+      "Description": "Retrieve a hashed password to crack!",
+      "Category": 1,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "SHIP",
+      "Usage": "`-ship @user1 @user2`, `-ship name1 name2`, `-ship user2`, `-ship name2`",
+      "Description": "Test how strong your relationship is!",
+      "Category": 1,
+      "ExtraInfo": "Jimmy",
+      "New": false
+    },
+    {
+      "Handle": "8BALL",
+      "Usage": "`-8ball <question>`",
+      "Description": "Ask the bot a question!",
+      "Category": 1,
+      "ExtraInfo": "Siena",
+      "New": false
+    },
+    {
+      "Handle": "DICE",
+      "Usage": "`-dice <amount>`",
+      "Description": "Roll a dice or 2 or 50!",
+      "Category": 1,
+      "ExtraInfo": "Mir",
+      "New": false
+    },
+    {
+      "Handle": "WHO",
+      "Usage": "`-who <question>` (Mention people in the question)",
+      "Description": "Ask a question, the bot will select a random user that is mentioned!",
+      "Category": 1,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "KILL",
+      "Usage": "`-kill @user`",
+      "Description": "Kill the user!",
+      "Category": 1,
+      "ExtraInfo": "Libby",
+      "New": false
+    },
+    {
+      "Handle": "ROAST",
+      "Usage": "`-roast @user`",
+      "Description": "Roast the user!",
+      "Category": 1,
+      "ExtraInfo": "Libby",
+      "New": false
+    },
+    {
+      "Handle": "COMPLIMENT",
+      "Usage": "`-compliment @user`",
+      "Description": "Compliment the user!",
+      "Category": 1,
+      "ExtraInfo": "Libby",
+      "New": false
+    },
+    {
+      "Handle": "HUG",
+      "Usage": "`-hug @user`",
+      "Description": "Hug the user!",
+      "Category": 1,
+      "ExtraInfo": "Siena",
+      "New": true
+    },
+    {
+      "Handle": "EPICRATING",
+      "Usage": "`-epic @user` or `-rate @user`",
+      "Description": "See just how epic they are!",
+      "Category": 1,
+      "ExtraInfo": "Libby",
+      "New": false
+    },
+    {
+      "Handle": "BANK",
+      "Usage": "`-bank`",
+      "Description": "View how much money you have in the bank!",
+      "Category": 10,
+      "ExtraInfo": "Libby",
+      "New": true
+    },
+    {
+      "Handle": "GIVE",
+      "Usage": "`-give @user <amount>`",
+      "Description": "give another user some of your money!",
+      "Category": 10,
+      "ExtraInfo": "Libby",
+      "New": true
+    },
+    {
+      "Handle": "DAILY",
+      "Usage": "`-daily`",
+      "Description": "Claim your daily $50!",
+      "Category": 10,
+      "ExtraInfo": "Libby",
+      "New": true
+    },
+    {
+      "Handle": "RICHEST",
+      "Usage": "`-richest`",
+      "Description": "See who has the most money!",
+      "Category": 10,
+      "ExtraInfo": "Libby",
+      "New": true
+    },
+    {
+      "Handle": "STEAM LINK",
+      "Usage": "`-steam link <profile_url>`",
+      "Description": "Link your Lori user to steam!",
+      "Category": 11,
+      "ExtraInfo": "",
+      "New": true
+    },
+    {
+      "Handle": "STEAM",
+      "Usage": "`-steam`",
+      "Description": "View some steam information",
+      "Category": 11,
+      "ExtraInfo": "",
+      "New": true
+    },
+    {
+      "Handle": "FIND GAME",
+      "Usage": "`-find game <mention users>`",
+      "Description": "Find a game that all mentioned users have in common!",
+      "Category": 11,
+      "ExtraInfo": "",
+      "New": true
+    },
+    {
+      "Handle": "PLAYTIME",
+      "Usage": "`-playtime <game_title>`",
+      "Description": "Check your playtime on said game!",
+      "Category": 11,
+      "ExtraInfo": "",
+      "New": true
+    },
+    {
+      "Handle": "SCORE TRIVIA",
+      "Usage": "`-score trivia` or `-score trivia @user`",
+      "Description": "Check the users score on trivia.",
+      "Category": 3,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "TOP TRIVIA",
+      "Usage": "`-top trivia`",
+      "Description": "Check the users with the highest scores on trivia.",
+      "Category": 3,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "OLDEST",
+      "Usage": "`-oldest`",
+      "Description": "Find out who the oldest user in the guild is!",
+      "Category": 7,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "AVATAR",
+      "Usage": "`-avatar @user`",
+      "Description": "View the users avatar!",
+      "Category": 7,
+      "ExtraInfo": "Libby",
+      "New": false
+    },
+    {
+      "Handle": "WHOIS",
+      "Usage": "`-whois @user`",
+      "Description": "View details about the user!",
+      "Category": 7,
+      "ExtraInfo": "Libby",
+      "New": false
+    },
+    {
+      "Handle": "DONATE",
+      "Usage": "`-donate`, `-beer`, `-buybeer`",
+      "Description": "Buy me a beer!",
+      "Category": 6,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "INVITE",
+      "Usage": "`-invite`, `inv`",
+      "Description": "Get the invite link to invite Loris Angel to your server!",
+      "Category": 6,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "REQUEST",
+      "Usage": "`-request`",
+      "Description": "Get the invite link to the support server where you can request new features or get help!",
+      "Category": 6,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "PREFIX",
+      "Usage": "`-prefix <prefix>`",
+      "Description": "Change the prefix to the bot for your server!",
+      "Category": 6,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "UPTIME",
+      "Usage": "`-uptime`",
+      "Description": "Check how long the bot has been online.",
+      "Category": 6,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "REGION",
+      "Usage": "`-region`",
+      "Description": "Check which region the current server is on!",
+      "Category": 8,
+      "ExtraInfo": "",
+      "New": true
+    },
+    {
+      "Handle": "BINARY",
+      "Usage": "`-binary <text>`",
+      "Description": "Convert text to binary!",
+      "Category": 8,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "USERS",
+      "Usage": "`-users`",
+      "Description": "Will tell you how many members are in this guild!",
+      "Category": 8,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "OLDEST",
+      "Usage": "`-oldest`",
+      "Description": "Will check which user in the guild has the oldest account!",
+      "Category": 8,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "REVERSE",
+      "Usage": "`-reverse <message>`",
+      "Description": "Reverse the message!",
+      "Category": 8,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "KICK",
+      "Usage": "`-kick @user <reason>`",
+      "Description": "Kick the member from the guild!",
+      "Category": 4,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "BAN",
+      "Usage": "`-ban @user <reason>`",
+      "Description": "Ban the member from the guild!",
+      "Category": 4,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "MUTE",
+      "Usage": "`-mute @user <reason>`",
+      "Description": "Mute the member!",
+      "Category": 4,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "UNMUTE",
+      "Usage": "`-unmute @user`",
+      "Description": "Unmute the member!",
+      "Category": 4,
+      "ExtraInfo": "",
+      "New": false
+    },
+    {
+      "Handle": "CREATEMUTE",
+      "Usage": "`-createmute`",
+      "Description": "Create the mute role!",
+      "Category": 4,
+      "ExtraInfo": "",
+      "New": false
+    }
+  ]
+}

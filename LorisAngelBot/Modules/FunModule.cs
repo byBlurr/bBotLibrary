@@ -49,10 +49,20 @@ namespace LorisAngelBot.Modules
             if (user == null) user = Context.User as IUser;
 
             Random rnd = new Random();
-            List<string> compliments = ComplimentsFile.Load().Compliments;
-            int d = rnd.Next(0, compliments.Count);
-            string compliment = compliments[d].Replace("USER", Util.ToUppercaseFirst(user.Mention));
-            await Context.Channel.SendMessageAsync(compliment);
+            if (Context.User.Id != user.Id)
+            {
+                List<string> compliments = ComplimentsFile.Load().Compliments;
+                int d = rnd.Next(0, compliments.Count);
+                string compliment = compliments[d].Replace("USER", Util.ToUppercaseFirst(user.Mention));
+                await Context.Channel.SendMessageAsync(compliment);
+            }
+            else
+            {
+                List<string> roasts = RoastsFile.Load().Roasts;
+                int d = rnd.Next(0, roasts.Count);
+                string roast = roasts[d].Replace("USER", Util.ToUppercaseFirst(user.Mention));
+                await Context.Channel.SendMessageAsync(roast);
+            }
         }
 
         [Command("hug")]
@@ -114,6 +124,22 @@ namespace LorisAngelBot.Modules
             int r = rnd.Next(0, punishments.Count);
 
             string punishment = punishments[r].Replace("USER1", Util.ToUppercaseFirst(Context.User.Mention)).Replace("USER2", Util.ToUppercaseFirst(user.Mention));
+
+            await Context.Channel.SendMessageAsync(punishment);
+        }
+
+        [Command("punishme")]
+        [RequireBotPermission(ChannelPermission.ManageMessages)]
+        [RequireBotPermission(ChannelPermission.SendMessages)]
+        private async Task PunishMeAsync(IUser user)
+        {
+            await Context.Message.DeleteAsync();
+
+            Random rnd = new Random();
+            List<string> punishments = PunishFile.Load().Punishments;
+            int r = rnd.Next(0, punishments.Count);
+
+            string punishment = punishments[r].Replace("USER1", Util.ToUppercaseFirst(user.Mention)).Replace("USER2", Util.ToUppercaseFirst(Context.User.Mention));
 
             await Context.Channel.SendMessageAsync(punishment);
         }

@@ -1,0 +1,1396 @@
+{
+  "General": [
+    {
+      "Question": "Who created this bot?",
+      "Answer": "Blurr",
+      "Options": [
+        "Knight",
+        "Kruze",
+        "Frazzle"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the legal age to buy alcohol in England?",
+      "Answer": "18",
+      "Options": [
+        "16",
+        "21",
+        "20"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many eyes does a bee have?",
+      "Answer": "5",
+      "Options": [
+        "2",
+        "4",
+        "1"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which animal can be seen on the Porsche logo?",
+      "Answer": "Horse",
+      "Options": [
+        "Snake",
+        "Lizard",
+        "Cheetah"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which country produces the most coffee in the world?",
+      "Answer": "Brazil",
+      "Options": [
+        "USA",
+        "India",
+        "Ghana"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which country invented tea?",
+      "Answer": "China",
+      "Options": [
+        "England",
+        "India",
+        "Spain"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which kind of alcohol is Russia notoriously known for?",
+      "Answer": "Vodka",
+      "Options": [
+        "Rum",
+        "Dark Fruit Cider",
+        "Champagne"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the national dish of Spain?",
+      "Answer": "Paella",
+      "Options": [
+        "Gazpacho",
+        "Tortilla Española",
+        "Gambas al ajillo"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which European nation was said to invent hot dogs?",
+      "Answer": "Germany",
+      "Options": [
+        "England",
+        "Spain",
+        "Belgium"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which country is responsible for giving us pizza and pasta?",
+      "Answer": "Italy",
+      "Options": [
+        "Germany",
+        "India",
+        "England"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the name of the world’s longest river?",
+      "Answer": "The Nile",
+      "Options": [
+        "River Thames",
+        "Amazon",
+        "Yangtze"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the capital of Australia?",
+      "Answer": "Canberra",
+      "Options": [
+        "Sydney",
+        "Melbourne",
+        "Queensland"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which of these countries does NOT have a London?",
+      "Answer": "Australia",
+      "Options": [
+        "England",
+        "Canada",
+        "USA"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Whats the fastest land animal in the world?",
+      "Answer": "Cheetah",
+      "Options": [
+        "Quarter Horse",
+        "Lion",
+        "Blackbuck"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Who was one of the writers of Seinfeld?",
+      "Answer": "Larry David",
+      "Options": [
+        "Martin scorese",
+        "Harvey Weinstein",
+        "Adam McKay"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many Harry Potter books and movies are there?",
+      "Answer": "7 books and 8 movies",
+      "Options": [
+        "8 books and 7 movies",
+        "7 books and 7 movies",
+        "6 movies and 7 books"
+      ],
+      "Seconds": 13
+    },
+  ],
+  "Sports": [
+    {
+      "Question": "Who won the 2014 Fifa World Cup in Brazil?",
+      "Answer": "Germany",
+      "Options": [
+        "Brazil",
+        "England",
+        "Netherlands"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many players are on a Football/Soccer side?",
+      "Answer": "11",
+      "Options": [
+        "8",
+        "10",
+        "12"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "How many players are on a Rugby side?",
+      "Answer": "15",
+      "Options": [
+        "11",
+        "8",
+        "16"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "What is Usain Bolt’s 100m world record time?",
+      "Answer": "9.58",
+      "Options": [
+        "9.47",
+        "10.01",
+        "9.55"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "Which England footballer was famously never given a yellow card?",
+      "Answer": "Lineker",
+      "Options": [
+        "Rooney",
+        "Lampard",
+        "Giggs"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "How many times has Roger Federer won the French Open?",
+      "Answer": "1",
+      "Options": [
+        "2",
+        "3",
+        "4"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "The LA Lakers and New York Knicks play which sport?",
+      "Answer": "NBA",
+      "Options": [
+        "NFL",
+        "AFL",
+        "MLB"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "Katarina Johnson-Thompson is world champion in which sport?",
+      "Answer": "Heptathlon",
+      "Options": [
+        "Triaphlon",
+        "Taekwondo",
+        "Modern Pentathlon"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "Which country did F1 legend Ayrton Senna come from?",
+      "Answer": "Brazil",
+      "Options": [
+        "Argentina",
+        "Spain",
+        "USA"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "A penalty in football/soccer is taken how many yards away from the goal?",
+      "Answer": "12",
+      "Options": [
+        "10",
+        "8",
+        "15"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "Who did Cristiano Ronaldo make his Premier League debut against in 2003?",
+      "Answer": "Bolton Wanderers",
+      "Options": [
+        "Manchester United",
+        "Liverpool FC",
+        "Wolverhampton Wanderers FC"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "In what year did Andy Murray win Wimbledon for the first time?",
+      "Answer": "2013",
+      "Options": [
+        "2012",
+        "2015",
+        "2010"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which country will host the 2024 Olympic and Paralympic Games?",
+      "Answer": "France",
+      "Options": [
+        "Brazil",
+        "Russia",
+        "Qatar"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Who did England beat in the 2019 cricket World Cup final?",
+      "Answer": "New Zealand",
+      "Options": [
+        "Australia",
+        "Ireland",
+        "Wales"
+      ],
+      "Seconds": 13
+    }
+  ],
+  "Motorsports": [
+    {
+      "Question": "Who was the MotoGP Champion in 2009?",
+      "Answer": "Valentino Rossi",
+      "Options": [
+        "Jorge Lorenzo",
+        "Casey Stoner",
+        "Marc Márquez"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Where was the FIM Motocross of Nations hosted in 2019?",
+      "Answer": "The Netherlands",
+      "Options": [
+        "England",
+        "France",
+        "Switzerland"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many times has Jorge Lorenzo been MotoGP Champion?",
+      "Answer": "3",
+      "Options": [
+        "2",
+        "5",
+        "6"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the fastest average speed at the Isle of Man TT?",
+      "Answer": "135.452mph",
+      "Options": [
+        "134.632mph",
+        "152.456mph",
+        "153.645mph"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Who was the first winner of the Isle of Man TT?",
+      "Answer": "Charles Collier",
+      "Options": [
+        "Joey Dunlop",
+        "Peter Hickman",
+        "Ben Birchall"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many times has Joey Dunlop won the Isle of Man TT?",
+      "Answer": "26",
+      "Options": [
+        "23",
+        "19",
+        "17"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many times has Michael Dunlop won the Isle of Man TT?",
+      "Answer": "19",
+      "Options": [
+        "23",
+        "26",
+        "17"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many F1 championships has Lewis Hamilton won?",
+      "Answer": "6",
+      "Options": [
+        "8",
+        "5",
+        "4"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which circuit has the highest capacity for spectators?",
+      "Answer": "Circuit de la Sarthe",
+      "Options": [
+        "Shanghai International Circuit",
+        "Indianapolis Motor Speedway",
+        "Brands Hatch"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Juan Pablo Montoya still holds the record for the fastest average lap speed in an F1 car. At which track did he reach 231.5mph in 2005?",
+      "Answer": "Monza",
+      "Options": [
+        "Suzuka",
+        "Mugello",
+        "Interlagos"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Arrabiata 1 & 2 can be found at which circuit?",
+      "Answer": "Mugello",
+      "Options": [
+        "Misano",
+        "Magione",
+        "Monza"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which British track is the oldest race track in the world?",
+      "Answer": "Brooklands",
+      "Options": [
+        "Cadwell Park",
+        "Donington Park",
+        "Brands Hatch"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "At which corner at which track did Ayrton Senna say he could speak to God?",
+      "Answer": "Eau Rouge - Spa",
+      "Options": [
+        "Parabolica - Monza",
+        "Bico do Pato - Interlagos",
+        "Senna 'S' - Autódromo"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Pikes Peak International Hill Climb, aka The Race to the Clouds has how many turns over the 20km course?",
+      "Answer": "156",
+      "Options": [
+        "172",
+        "98",
+        "72"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "274 people have died at the world's most dangerous 'race track' on the Isle of Man but who holds the Senior TT lap record?",
+      "Answer": "Peter Hickman",
+      "Options": [
+        "Joey Dunlop",
+        "John McGuinness",
+        "Guy Martin"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which production car holds the fastest lap at the notorious Nürburgring?",
+      "Answer": "Lamborghini Aventador LP770-4 SVJ",
+      "Options": [
+        "Porsche 918 Spyder",
+        "Nissan GT-R Nismo",
+        "McLaren P1"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which track is home to the famous 'Corkscrew' corner?",
+      "Answer": "Laguna Seca",
+      "Options": [
+        "Sachsenring",
+        "Suzuka",
+        "Spa"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Who holds the MotoGP lap record at Mugello?",
+      "Answer": "Marc Marquez",
+      "Options": [
+        "Valentino Rossi",
+        "Nicky Hayden",
+        "Casey Stoner"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Who won the 2006 MotoGP Championship?",
+      "Answer": "Nicky Hayden",
+      "Options": [
+        "Dani Pedrosa",
+        "Valentino Rossi",
+        "Casey Stoner"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "How many podium finishes has Nicky Hayden had in the MotoGP class?",
+      "Answer": "28",
+      "Options": [
+        "30",
+        "26",
+        "24"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When did MotoGP last race at Laguna Seca?",
+      "Answer": "2013",
+      "Options": [
+        "2012",
+        "2010",
+        "2009"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When did Valentino Rossi last win a MotoGP Championship?",
+      "Answer": "2009",
+      "Options": [
+        "2008",
+        "2012",
+        "2014"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When was the last time a rider won the MotoGP Championship that was not Spanish?",
+      "Answer": "Casey Stoner (AUS) - 2011",
+      "Options": [
+        "Valentino Rossi (ITA) - 2009",
+        "Nicky Hayden (USA) - 2006",
+        "Cal Crutchlow (GBR) - 2015"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which of the following is NOT an Italian MotoGP rider?",
+      "Answer": "Fabio Quartararo",
+      "Options": [
+        "Valentino Rossi",
+        "Marco Simoncelli",
+        "Andrea Dovizioso"
+      ],
+      "Seconds": 13
+    }
+  ],
+  "Gaming": [
+    {
+      "Question": "Vanilla Minecraft - How many doors are crafted with 6 wooden planks?",
+      "Answer": "3",
+      "Options": [
+        "1",
+        "6",
+        "5"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Rainbow Six: Siege - Which of the following is NOT a unit?",
+      "Answer": "MI5",
+      "Options": [
+        "SAS",
+        "REU",
+        "Jaeger Corps"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Rainbow 6: Siege - What is the operator Mira's full name?",
+      "Answer": "Dr. Elena María Álvarez",
+      "Options": [
+        "Liu Tze Long",
+        "Meghan Castellano",
+        "Tina Lin Tsang"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When is Steam's birthday?",
+      "Answer": "12 September 2003",
+      "Options": [
+        "16 September 2004",
+        "10 September 2002",
+        "25 September 2004"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "What year was Ubisoft founded?",
+      "Answer": "1986",
+      "Options": [
+        "1994",
+        "2001",
+        "1998"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "What year was Rockstar Games founded?",
+      "Answer": "1998",
+      "Options": [
+        "1995",
+        "2002",
+        "1988"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "What year was Electronic Arts founded?",
+      "Answer": "1982",
+      "Options": [
+        "1992",
+        "2005",
+        "1989"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Where are the Rockstar North headquaters?",
+      "Answer": "Scotland",
+      "Options": [
+        "North London",
+        "San Francisco",
+        "Canada"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Where are the Activision headquaters?",
+      "Answer": "California",
+      "Options": [
+        "Scotland",
+        "Monaco",
+        "Montreal"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Where are the Ubisoft headquaters?",
+      "Answer": "Montreuil",
+      "Options": [
+        "Montreal",
+        "Monaco",
+        "Milan"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Who are the developers of Tom Clancy's Rainbow Six: Siege?",
+      "Answer": "Ubisoft Montreal",
+      "Options": [
+        "Ubisoft Paris",
+        "Electronic Arts",
+        "Activision"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "How many playable characters are there in the Grand Theft Auto V single player mode?",
+      "Answer": "3",
+      "Options": [
+        "1",
+        "2",
+        "4"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which of the following games series is NOT Tom Clancy's?",
+      "Answer": "Sniper: Ghost Warrior",
+      "Options": [
+        "Rainbow Six",
+        "Ghost Recon",
+        "The Division"
+      ],
+      "Seconds": 10
+    }
+  ],
+  "Movies": [
+    {
+      "Question": "Who was the director of Star Wars: The Force Awakens?",
+      "Answer": "J.J. Abrams",
+      "Options": [
+        "Carrie Fisher",
+        "Rian Johnson",
+        "George Lucas"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "How much did Disney buy the Star Wars franchise for?",
+      "Answer": "$4.05 billion",
+      "Options": [
+        "$4.8 billion",
+        "$2.3 billion",
+        "$3.1 billion"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "How much did Avengers: Endgame gross at the box office?",
+      "Answer": "$2.8 billion",
+      "Options": [
+        "$3.1 billion",
+        "$2.1 billion",
+        "$3 billion"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which character is played by Chris Hemsworth in the Avengers series?",
+      "Answer": "Thor",
+      "Options": [
+        "Captain America",
+        "Star-Lord",
+        "Groot"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "What is the earliest surviving motion-picture film, showing actual consecutive action?",
+      "Answer": "Roundhay Garden Scene",
+      "Options": [
+        "Arrival of a Train",
+        "Departure of Miss Staples",
+        "Horse Racing Show"
+      ],
+      "Seconds": 13
+    }
+  ],
+  "Music": [
+    {
+      "Question": "What was the name of the group Justin Timberlake used to be part of?",
+      "Answer": "N' Sync",
+      "Options": [
+        "The Ordinary Boys",
+        "Scouting For Girls",
+        "The Thrills"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which country did AC/DC originate in?",
+      "Answer": "Australia",
+      "Options": [
+        "England",
+        "Scotland",
+        "Ireland"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What genre of music did Taylor Swift start in?",
+      "Answer": "Country",
+      "Options": [
+        "Pop",
+        "Rap",
+        "Reggae"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which musical legend is Jay-Z married to?",
+      "Answer": "Beyonce",
+      "Options": [
+        "Elton John",
+        "Rihanna",
+        "Selena Gomez"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many Grammys does John Legend have?",
+      "Answer": "10",
+      "Options": [
+        "11",
+        "6",
+        "8"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which British group had a member by the name of Mel B?",
+      "Answer": "Spice Girls",
+      "Options": [
+        "N-Dubz",
+        "Pussycat Dolls",
+        "Little Mix"
+      ],
+      "Seconds": 13
+    }
+  ],
+  "Science": [
+    {
+      "Question": "Humans and chimpanzees share roughly how much DNA?",
+      "Answer": "98%",
+      "Options": [
+        "100%",
+        "66%",
+        "74%"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many light hours away is the sun from Neptune?",
+      "Answer": "4.1",
+      "Options": [
+        "101.5",
+        "16.2",
+        "45.9"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the most abundant gas in the Earth’s atmosphere?",
+      "Answer": "Nitrogen",
+      "Options": [
+        "Oxygen",
+        "Argon",
+        "Carbon Dioxide"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Roughly how long does it take for the sun’s light to reach Earth?",
+      "Answer": "8 minutes",
+      "Options": [
+        "8 hours",
+        "8 days",
+        "8 seconds"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which famous British physicist wrote A Brief History of Time?",
+      "Answer": "Stephen Hawking",
+      "Options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "Charles Messier"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "At what temperature are Celsius and Fahrenheit equal?",
+      "Answer": "-40",
+      "Options": [
+        "40",
+        "-15",
+        "0"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What modern-day country was Marie Curie born in?",
+      "Answer": "Poland",
+      "Options": [
+        "Germany",
+        "The Netherlands",
+        "Czech Republic"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the biggest planet in our solar system?",
+      "Answer": "Jupiter",
+      "Options": [
+        "Saturn",
+        "The Sun",
+        "Uranus"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What name is given for the number of protons found in the nucleus of an atom?",
+      "Answer": "Atomic number",
+      "Options": [
+        "Pronucleas Number",
+        "Equal Number",
+        "Identical Number"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many vertebrae does the average human possess?",
+      "Answer": "33",
+      "Options": [
+        "32",
+        "30",
+        "29"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What was the name of the first man-made satellite launched by the Soviet Union in 1957?",
+      "Answer": "Sputnik 1",
+      "Options": [
+        "Sputnik 100",
+        "1-Sputnik",
+        "100-Sputnik"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which oath of ethics taken by doctors is named after an Ancient Greek physician?",
+      "Answer": "Hippocratic Oath",
+      "Options": [
+        "Herophilos Oath",
+        "Erasistratus Oath",
+        "Empedocles Oath"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is a material that will not carry an electrical charge called?",
+      "Answer": "Insulator",
+      "Options": [
+        "Slator",
+        "Inslator",
+        "Sulator"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which Apollo moon mission was the first to carry a lunar rover?",
+      "Answer": "Apollo 15",
+      "Options": [
+        "Apollo 20",
+        "Apollo 13",
+        "Apollo 17"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many teeth does an adult human have?",
+      "Answer": "32",
+      "Options": [
+        "30",
+        "34",
+        "35"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the study of mushrooms called?",
+      "Answer": "Mycology",
+      "Options": [
+        "Mythology",
+        "Shroomology",
+        "Fyngology"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "On the periodic table, what symbol stands for silver?",
+      "Answer": "Ag",
+      "Options": [
+        "Si",
+        "Sv",
+        "Av"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which two planets lack moons?",
+      "Answer": "Mercury and Venus",
+      "Options": [
+        "Mars and Venus",
+        "Jupiter and Saturn",
+        "Mars and Saturn"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "How many hearts do octopuses have?",
+      "Answer": "Three",
+      "Options": [
+        "Two",
+        "Five",
+        "Eight"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "In electronics, what does DC stand for?",
+      "Answer": "Direct Current",
+      "Options": [
+        "Dimmer Current",
+        "Delta Current",
+        "Demagnetized Current"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What was the name of the first supersonic passenger airliner?",
+      "Answer": "Concorde",
+      "Options": [
+        "Lightning",
+        "Skyray",
+        "Super Sabre"
+      ],
+      "Seconds": 13
+    }
+  ],
+  "Art": [
+    {
+      "Question": "Who created the Mona Lisa?",
+      "Answer": "Leonardo da Vinci",
+      "Options": [
+        "Pablo Picasso",
+        "Andy Warhol",
+        "Vincent Van Gogh "
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which two cities provide the setting for Charles Dickens’ ‘A Tale of Two Cities’?",
+      "Answer": "London and Paris",
+      "Options": [
+        "Brussels and Amsterdam",
+        "Paris and Monaco",
+        "Amsterdam and Milan"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "The Mona Lisa is on display in which Paris museum?",
+      "Answer": "Louvre",
+      "Options": [
+        "Rodin",
+        "Rmn-Grand",
+        "Carnavalet"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which artist painted the Poppy Field in 1873?",
+      "Answer": "Claude Monet",
+      "Options": [
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Aleister Crowley"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "What is the name of the fourth book in the Harry Potter series?",
+      "Answer": "Harry Potter and the Goblet of Fire",
+      "Options": [
+        "Harry Potter and the Cursed Child",
+        "Harry Potter and the Deathly Hallows",
+        "Harry Potter and the Prisoner of Azkaban"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "The Creation of Adam is one of nine scenes featured on the ceiling of which Rome landmark?",
+      "Answer": "The Sistine Chapel",
+      "Options": [
+        "Colosseum",
+        "Roman Forum",
+        "Trevi Fountain"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which Shakespeare play is the following quote from? 'The course of true love never did run smooth'",
+      "Answer": "A Midsummer Night's Dream",
+      "Options": [
+        "Hamlet",
+        "Romeo and Juliet",
+        "Julius Caesar"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Who wrote the Curious Incident of the Dog in the Night Time?",
+      "Answer": "Mark Haddon",
+      "Options": [
+        "Amin Maalouf",
+        "Hector-Henri Malot",
+        "Julian Clare May"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "In which century did Leonardo da Vinci paint The Last Supper?",
+      "Answer": "15th Century",
+      "Options": [
+        "17th Century",
+        "20th Century",
+        "18th Century"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "The Tate is a network of four art museums; two are based in London, give the other two English locations?",
+      "Answer": "Liverpool and Cornwall",
+      "Options": [
+        "Manchester and Blackpool",
+        "Cornwall and Kent",
+        "Sheffield and Bath"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What are the names of the three ‘Darling’ children in J.M. Barrie’s ‘Peter Pan’?",
+      "Answer": "Wendy, John and Michael",
+      "Options": [
+        "John, Michael and William",
+        "William, John and Wendy",
+        "Wendy, William and Michael"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Who created the famous sculpture 'The Thinker'?",
+      "Answer": "Auguste Rodin",
+      "Options": [
+        "Alexandros of Antioch",
+        "Michelangelo",
+        "Ian Walters"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which Emily Brontë novel is the inspiration for a Kate Bush song?",
+      "Answer": "Wuthering Heights",
+      "Options": [
+        "No Coward",
+        "The Night is Darkening Round Me",
+        "Gondal's Queen"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Sir Quentin Saxby Blake is an English cartoonist, illustrator and children's writer best known for illustrating books by which author?",
+      "Answer": "Roald Dahl",
+      "Options": [
+        "George Orwell",
+        "Zadie Smith",
+        "Charlotte Bronte"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which Shakespearean play features the characters of Goneril, Regan and Cordelia?",
+      "Answer": "King Lear",
+      "Options": [
+        "Romeo and Juliet",
+        "The Tempest",
+        "Twelfth Night"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "In which city would you find The Van Gogh Museum?",
+      "Answer": "Amsterdam",
+      "Options": [
+        "London",
+        "Manchester",
+        "Brussels"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which two primary colours could you mix together to make purple when painting?",
+      "Answer": "Red and Blue",
+      "Options": [
+        "Blue and Green",
+        "Green and Red",
+        "Blue and Yellow"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "The Hunger Games young adult series was written by which author?",
+      "Answer": "Suzanne Collins",
+      "Options": [
+        "Gary Ross",
+        "Billy Ray",
+        "Peter Craig"
+      ],
+      "Seconds": 12
+    },
+    {
+      "Question": "Who created the Angel of the North?",
+      "Answer": "Antony Gormley",
+      "Options": [
+        "Eric Gill",
+        "Henry Moore",
+        "Thomas Heatherwick"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which famous work of literature opens with these lines? 'Two households, both alike in dignity, in fair Verona, where we lay our scene…'",
+      "Answer": "Romeo and Juliet",
+      "Options": [
+        "Commonwealth",
+        "Arcadia",
+        "The History of Love"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "‘Guernica’, ‘The Weeping Woman’ and ‘Le Rêve’ are all works by the same artist. Can you name them?",
+      "Answer": "Pablo Picasso",
+      "Options": [
+        "Vincent van Gogh",
+        "Leonardo da Vinci",
+        "Gustav Klimt"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "What is the name of the pig in E.B. White’s Charlotte’s Web?",
+      "Answer": "Wilbur",
+      "Options": [
+        "Wilbert",
+        "Wilpar",
+        "Wilnort"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "Which book has the following opening line been taken from? 'These two very old people are the father and mother of Mr. Bucket.'",
+      "Answer": "Charlie and the Chocolate Factory",
+      "Options": [
+        "Matilda",
+        "The Witches",
+        "James and the Giant Peach"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which artist cut off the lobe of his own ear and later shot himself?",
+      "Answer": "Vincent van Gogh",
+      "Options": [
+        "Leonardo da Vinci",
+        "Harry Matisse",
+        "Gustav Klimt"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "How many lines are there in a sonnet?",
+      "Answer": "14",
+      "Options": [
+        "10",
+        "12",
+        "15"
+      ],
+      "Seconds": 10
+    },
+    {
+      "Question": "What artist sold a balloon dog for $58.4 million?",
+      "Answer": "Jeff Koons",
+      "Options": [
+        "Mark Rothko",
+        "Jasper Johns",
+        "50 Cent"
+      ],
+      "Seconds": 10
+    }
+  ],
+  "Anime": [
+
+  ],
+  "History": [
+
+  ],
+  "Computing": [
+    {
+      "Question": "How many bits in a byte?",
+      "Answer": "8",
+      "Options": [
+        "6",
+        "7",
+        "10"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which of the following is not part of a Hard Drive Disks physical structure?",
+      "Answer": "Partition",
+      "Options": [
+        "Main Spindle",
+        "Head Stack Assembly",
+        "Platter"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which of the following is not a type of storage device?",
+      "Answer": "Disk Image",
+      "Options": [
+        "RAM (Random Access Memory)",
+        "USB Flash Memory",
+        "Solid State Drive"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which of the following is a hashing algorithm",
+      "Answer": "MD5",
+      "Options": [
+        "HA5",
+        "MH5",
+        "CB-SEC"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the name of an attack that the attack tries multiple passwords with the hope of eventually guessing correctly?",
+      "Answer": "Brute-Force Attack",
+      "Options": [
+        "Dictionary Attack",
+        "Malware Attack",
+        "Consistent Attack"
+      ],
+      "Seconds": 17
+    },
+    {
+      "Question": "What are the words of the acronym CD-ROM?",
+      "Answer": "Compact Disc Read Only Memory",
+      "Options": [
+        "Circular Disc Read Only Memory",
+        "Circular Disc Read Only Meme",
+        "Compact Disc Read Only Meme"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When working in Microsoft Internet Explorer, in 2013, what is the shortcut to open the window to your favorites?",
+      "Answer": "Ctrl-B",
+      "Options": [
+        "Ctrl-S",
+        "Ctrl-F",
+        "Ctrl-Alt-F"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "What is the conversion of the base-2 number, 00000111, into base-10?",
+      "Answer": "7",
+      "Options": [
+        "2",
+        "6",
+        "3"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When was the first personal computer made?",
+      "Answer": "1974",
+      "Options": [
+        "1956",
+        "1933",
+        "1981"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When was the first silicon chip invented?",
+      "Answer": "1961",
+      "Options": [
+        "1965",
+        "1972",
+        "1978"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "When was the first cpu invented?",
+      "Answer": "1971",
+      "Options": [
+        "1962",
+        "1973",
+        "1968"
+      ],
+      "Seconds": 13
+    },
+    {
+      "Question": "Which is the correct definition for an API?",
+      "Answer": "A set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service.",
+      "Options": [
+        "Artificial intelligence used to access and analyse data from websites.",
+        "A application used to get data from or send data to a server.",
+        "Ariticial Practical Intelligence, used to practically simulate human like features such as walking, running and jumping in a humanoid robot."
+      ],
+      "Seconds": 15
+    }
+  ]
+}
