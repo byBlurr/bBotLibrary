@@ -144,7 +144,7 @@ namespace Discord.Net.Bot
             }
 
             // Send the log
-            Console.WriteLine($"{DateTime.Now} [{lmsg.Severity,8}] {lmsg.Source}: {lmsg.Message}");
+            Console.WriteLine($"{DateTime.Now,22} [{lmsg.Severity,8}] {lmsg.Source,10}: {lmsg.Message}");
 
             // Reset the foreground color
             Console.ForegroundColor = cc;
