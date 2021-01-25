@@ -38,7 +38,16 @@ namespace Discord.Net.Bot
 
     public enum SadEmoji
     {
-
+        [StringValue("🤔")] THINKING,
+        [StringValue("🤨")] RAISED_EYEBROW,
+        [StringValue("😐")] NEUTRAL,
+        [StringValue("😑")] STRAIGHT,
+        [StringValue("😶")] SPEECHLESS,
+        [StringValue("😒")] UNAMUSED,
+        [StringValue("😬")] GRIMACING,
+        [StringValue("🤥")] LYING,
+        [StringValue("😔")] SAD,
+        [StringValue("🤒")] SICK,
     }
 
     public enum ConfigType
