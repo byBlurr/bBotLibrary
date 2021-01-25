@@ -1,4 +1,7 @@
-﻿namespace Discord.Net.Bot.Database.Configs
+﻿using System;
+using System.Collections.Generic;
+
+namespace Discord.Net.Bot.Database.Configs
 {
     public class IndividualConfig
     {
@@ -7,6 +10,8 @@
         public bool LogCommands { get; set; }
         public bool LogActions { get; set; }
         public ulong LogChannel { get; set; }
+        public Boolean Censor { get; set; }
+        public List<string> CensoredWords { get; private set; }
 
         public IndividualConfig()
         {
@@ -15,6 +20,16 @@
             LogCommands = false;
             LogActions = false;
             LogChannel = 0L;
+            Censor = false;
+            CensoredWords = new List<string>();
+        }
+
+        public void AddCensoredWord(string word)
+        {
+            if (!CensoredWords.Contains(word))
+            {
+                CensoredWords.Add(word);
+            }
         }
     }
 }

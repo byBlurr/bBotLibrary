@@ -21,6 +21,7 @@ namespace Discord.Net.Bot
         [StringValue("😇")] HALO,
         [StringValue("😍")] HEARTEYES,
         [StringValue("😀")] GRIN,
+        [StringValue("❄️")] SNOWFLAKE,
     }
 
     public enum HeartEmoji
@@ -42,8 +43,7 @@ namespace Discord.Net.Bot
     public enum CommandCategory
     {
         Main, Fun, Games, Leaderboards, Moderation, Help, BotRelated, User, Tools, NSFW,
-        Currency,
-        Gaming
+        Currency, Gaming, Server, Region, Statistics, Achievements, Badges
     }
 
     public class StringValue : Attribute

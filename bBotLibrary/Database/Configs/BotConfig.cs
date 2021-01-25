@@ -20,11 +20,13 @@ namespace Discord.Net.Bot.Database.Configs
         public IndividualConfig SoloConfig { get; set; }
         public List<IndividualConfig> Configs { get; set; }
         public List<BotCommand> Commands { get; set; }
+        public string DatabasePassword { get; set; }
 
         public BotConfig()
         {
             Type = ConfigType.Solo;
             Token = "";
+            DatabasePassword = "";
             PrintVerbose = false;
             LastStartup = DateTime.UtcNow;
             SoloConfig = new IndividualConfig();
@@ -70,6 +72,10 @@ namespace Discord.Net.Bot.Database.Configs
                 Console.WriteLine("Bot Token: ");
                 Console.WriteLine("Create a bot at https://discord.com/developers \n");
                 config.Token = Console.ReadLine();
+                Console.Clear();
+
+                Console.WriteLine("If you are using a MySql Database enter the password here, if not press enter: ");
+                config.DatabasePassword = Console.ReadLine();
                 Console.Clear();
 
                 Console.WriteLine("Print Verbose: ");

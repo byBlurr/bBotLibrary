@@ -8,6 +8,7 @@ namespace Discord.Net.Bot.CommandModules
 {
     public class ModuleHelp
     {
+        // TODO: UPDATE TO USE NEW USAGE PARAMS
         public static async Task HelpAsync(ICommandContext Context, string section = "")
         {
             await Context.Message.DeleteAsync();
@@ -65,5 +66,110 @@ namespace Discord.Net.Bot.CommandModules
             await Context.Channel.SendMessageAsync(null, false, embed.Build());
             
         }
+    }
+
+    public class CommandUsage
+    {
+        public string Handle { get; set; }
+        public List<CommandArgument> Arguments { get; set; }
+
+        public CommandUsage(string handle, List<CommandArgument> arguments)
+        {
+            Handle = handle;
+            Arguments = arguments;
+        }
+
+        public override string ToString()
+        {
+            string helptext;
+
+            helptext = Handle;
+            foreach (CommandArgument arg in Arguments)
+            {
+                helptext += $" {arg.ToString()}";
+            }
+
+            return helptext;
+        }
+
+        public string ToExample()
+        {
+            string helptext;
+
+            helptext = Handle;
+            foreach (CommandArgument arg in Arguments)
+            {
+                helptext += $" {arg.ToExample()}";
+            }
+
+            return helptext;
+        }
+    }
+
+    public class CommandArgument
+    {
+        public CommandArgumentType ArgumentType { get; set; }
+        public bool Optional { get; set; }
+        public string Example { get; set; }
+
+        public CommandArgument(CommandArgumentType type, bool optional, string example = null)
+        {
+            ArgumentType = type;
+            Optional = optional;
+            Example = example ?? string.Empty;
+        }
+
+        public override string ToString()
+        {
+            string display;
+
+            if (Optional) display = "[";
+            else display = "<";
+
+            display += Util.ToUppercaseFirst(ArgumentType.ToString());
+
+            if (Optional) display += "]";
+            else display += ">";
+
+            return display;
+        }
+
+        public string ToExample()
+        {
+            string display;
+
+            if (Example != string.Empty) display = Example;
+            else
+            {
+                switch (ArgumentType)
+                {
+                    case CommandArgumentType.USER:
+                        display = "@Blurr";
+                        break;
+                    case CommandArgumentType.ID:
+                        display = "729696788097007717";
+                        break;
+                    case CommandArgumentType.TEXT:
+                        display = "The frog jumped over the pond.";
+                        break;
+                    case CommandArgumentType.NUMBER:
+                        display = "18";
+                        break;
+                    case CommandArgumentType.TOGGLE:
+                        display = "true";
+                        break;
+                    default:
+                        display = "Unknown Type";
+                        break;
+                }
+            }
+
+            return display;
+        }
+    }
+
+    public enum CommandArgumentType
+    {
+        USER, ID, TEXT, NUMBER, TOGGLE
     }
 }
