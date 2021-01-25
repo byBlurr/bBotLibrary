@@ -80,7 +80,7 @@ namespace Discord.Net.Bot
                 }
             }
 
-            await Util.Logger(new LogMessage(LogSeverity.Info, "Gateway", $"Successfully connected to {bot.Guilds.Count} guilds"));
+            await Util.LoggerAsync(new LogMessage(LogSeverity.Info, "Gateway", $"Successfully connected to {bot.Guilds.Count} guilds"));
             conf.LastStartup = DateTime.UtcNow;
             conf.Save();
 
@@ -137,7 +137,7 @@ namespace Discord.Net.Bot
                     {
                         if (result.ErrorReason.Contains("Collection was modified")) return;
 
-                        await Util.Logger(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
+                        await Util.LoggerAsync(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
 
                         EmbedBuilder embed = new EmbedBuilder()
                         {

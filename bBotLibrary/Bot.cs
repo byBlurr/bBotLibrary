@@ -23,7 +23,7 @@ namespace Discord.Net.Bot
             });
 
             Console.Clear();
-            client.Log += Util.Logger;
+            client.Log += Util.LoggerAsync;
 
             await client.LoginAsync(TokenType.Bot, config.Token);
             await client.StartAsync();

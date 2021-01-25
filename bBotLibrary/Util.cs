@@ -85,7 +85,7 @@ namespace Discord.Net.Bot
                 Description = message
             };
 
-            if (printConsole) await Logger(new LogMessage(LogSeverity.Error, source, message));
+            if (printConsole) await LoggerAsync(new LogMessage(LogSeverity.Error, source, message));
             await channel.SendMessageAsync(null, false, embed.Build());
         }
 
@@ -114,7 +114,7 @@ namespace Discord.Net.Bot
         }
 
         /// Send a log message to the console
-        public static Task Logger(LogMessage lmsg)
+        public static Task LoggerAsync(LogMessage lmsg)
         {
             bool PRINT_VERBOSE = BotConfig.Load().PrintVerbose;
 
