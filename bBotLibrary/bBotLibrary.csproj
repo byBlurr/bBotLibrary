@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.2.0.9</Version>
+    <Version>2.2.0.10</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
@@ -14,12 +14,12 @@
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
     <PackageTags>discord, discordapp, bot, library, core, discord.net, disc, blurr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>- Fixed issue with censored words
-- Added more command categories
+    <PackageReleaseNotes>- Added sad emojis
+- Tidied up console
 
 For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
-    <AssemblyVersion>2.2.0.9</AssemblyVersion>
-    <FileVersion>2.2.0.9</FileVersion>
+    <AssemblyVersion>2.2.0.10</AssemblyVersion>
+    <FileVersion>2.2.0.10</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
