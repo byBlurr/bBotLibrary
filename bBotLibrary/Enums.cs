@@ -36,6 +36,11 @@ namespace Discord.Net.Bot
         [StringValue("💘")] CUPID,
     }
 
+    public enum SadEmoji
+    {
+
+    }
+
     public enum ConfigType
     {
         Solo, Individual

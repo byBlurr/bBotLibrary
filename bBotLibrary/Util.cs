@@ -64,6 +64,15 @@ namespace Discord.Net.Bot
             return EnumUtil.GetString(randomEmoji);
         }
 
+        public static string GetRandomSadEmoji()
+        {
+            Array values = Enum.GetValues(typeof(SadEmoji));
+            Random random = new Random();
+            SadEmoji randomEmoji = (SadEmoji)values.GetValue(random.Next(values.Length));
+
+            return EnumUtil.GetString(randomEmoji);
+        }
+
         /// Returns the strink with an upper case first letter
         public static string ToUppercaseFirst(string s)
         {
