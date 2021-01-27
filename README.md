@@ -5,10 +5,7 @@ This package was created to speed up creation of bots for myself. Released to he
 If outdated, feel free to contribute and create a pull request to update to latest Discord.Net version.
 
 ### Example project
-https://github.com/byBlurr/bBotLibrary/tree/master/bModerator/ModeratorBot.cs
+An example project that uses the Discord.Net.Bot package is Lori's Angel. Lori's Angel is a bot that adds fun commands and games such as connect 4 with rendered game boards. You can invite Lori's Angel to your Discord Guild here: https://discordapp.com/oauth2/authorize?client_id=729696788097007717&scope=bot&permissions=44032
+View the source code of Lori's Angel: https://github.com/byBlurr/lorisangel
 
-
-### Lori's Angel Bot
-Lori's Angel is a public bot that uses the library. The aim of the bot is to add anything that is requested by the users of the bot, so get requesting!
-
-You can invite the bot to your server: https://discordapp.com/oauth2/authorize?client_id=729696788097007717&scope=bot&permissions=8
+Another example project that is just a basic bot will be added to the solution soon.
