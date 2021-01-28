@@ -1,7 +1,6 @@
+# bBotLibrary
 [![NuGet](https://img.shields.io/nuget/v/Discord.Net.Bot)](https://www.nuget.org/packages/Discord.Net.Bot/)
 [![Nuget](https://img.shields.io/nuget/dt/Discord.Net.Bot)](https://www.nuget.org/packages/Discord.Net.Bot/)
-
-# bBotLibrary
 Discord.Net.Bot - A small library used to make a base bot in seconds.
 
 This package was created to speed up creation of bots for myself. Released to help anyone else who would benefit. Uses NuGet package Discord.Net but has no affiliation with Discord.Net. If outdated, feel free to contribute and create a pull request to update to latest Discord.Net version.
