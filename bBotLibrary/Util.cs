@@ -161,5 +161,17 @@ namespace Discord.Net.Bot
             // Task completed
             return Task.CompletedTask;
         }
+
+        // Get the first message in a channel
+        public static async Task<IMessage> GetFirstMessageAsync(IMessageChannel channel)
+        {
+            return (await channel.GetMessagesAsync(0, Direction.After, 1).FlattenAsync()).FirstOrDefault();
+        }
+
+        // Get the last message in a channel
+        public static async Task<IMessage> GetLastMessageAsync(IMessageChannel channel)
+        {
+            return (await channel.GetMessagesAsync(1).FlattenAsync()).FirstOrDefault();
+        }
     }
 }
