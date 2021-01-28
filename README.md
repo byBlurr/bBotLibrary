@@ -1,3 +1,6 @@
+[![NuGet](https://img.shields.io/nuget/v/Discord.Net.Bot)](https://www.nuget.org/packages/Discord.Net.Bot/)
+[![Nuget](https://img.shields.io/nuget/dt/Discord.Net.Bot)](https://www.nuget.org/packages/Discord.Net.Bot/)
+
 # bBotLibrary
 Discord.Net.Bot - A small library used to make a base bot in seconds.
 
