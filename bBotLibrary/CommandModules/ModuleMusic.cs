@@ -1,6 +1,5 @@
 ﻿using Discord.Audio;
 using Discord.Commands;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Discord.Net.Bot.CommandModules
@@ -15,7 +14,7 @@ namespace Discord.Net.Bot.CommandModules
             {
                 IAudioClient audioClient = await channel.ConnectAsync();
             }
-            else await Util.SendErrorAsync((Context.Channel as ITextChannel), "Music Error", "Unable to find the channel to join?");
+            else await MessageUtil.SendErrorAsync((Context.Channel as ITextChannel), "Music Error", "Unable to find the channel to join?");
         }
 
         /**

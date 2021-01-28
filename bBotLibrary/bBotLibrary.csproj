@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.2.0.10</Version>
+    <Version>2.2.0.11</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
@@ -14,12 +14,11 @@
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
     <PackageTags>discord, discordapp, bot, library, core, discord.net, disc, blurr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>- Added sad emojis
-- Tidied up console
+    <PackageReleaseNotes>- Reorganised utilities
 
 For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
-    <AssemblyVersion>2.2.0.10</AssemblyVersion>
-    <FileVersion>2.2.0.10</FileVersion>
+    <AssemblyVersion>2.2.0.11</AssemblyVersion>
+    <FileVersion>2.2.0.11</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

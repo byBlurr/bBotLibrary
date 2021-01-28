@@ -25,8 +25,8 @@ namespace Discord.Net.Bot.CommandModules
             {
                 if (command.Category.ToString().ToLower() == section.ToLower() || (section.ToLower() == "new" && command.New))
                 {
-                    if (CommandHelpText.Length > 0) CommandHelpText = CommandHelpText + ", " + Util.ToUppercaseFirst(command.Handle);
-                    else CommandHelpText = Util.ToUppercaseFirst(command.Handle);
+                    if (CommandHelpText.Length > 0) CommandHelpText = CommandHelpText + ", " + StringUtil.ToUppercaseFirst(command.Handle);
+                    else CommandHelpText = StringUtil.ToUppercaseFirst(command.Handle);
                 }
 
                 if (command.Handle.ToLower() == section.ToLower())
@@ -42,7 +42,7 @@ namespace Discord.Net.Bot.CommandModules
                 if (!Categories.Contains(command.Category))
                 {
                     Categories.Add(command.Category);
-                    CategoryText = $"{CategoryText}, {Util.ToUppercaseFirst(command.Category.ToString())}";
+                    CategoryText = $"{CategoryText}, {StringUtil.ToUppercaseFirst(command.Category.ToString())}";
                 }
                 if (command.New) hasNewCommands = true;
             }
@@ -53,14 +53,14 @@ namespace Discord.Net.Bot.CommandModules
             {
                 CommandHelpText = $"Command Usage: {Prefix}help <category>\n\nCategories:\n{CategoryText}\n\nKnown Errors:\nerror 50007 - Users privacy settings prevent dm's\nerror 403 - Bot does not have required permissions\nOther errors are tracked by the bot, and will be looked into.";
             }
-            else if (!isSpecificCommand) CommandHelpText = $"Command Usage: {Prefix}help <command>\n\n{Util.ToUppercaseFirst(section)} Commands:\n{CommandHelpText}";
+            else if (!isSpecificCommand) CommandHelpText = $"Command Usage: {Prefix}help <command>\n\n{StringUtil.ToUppercaseFirst(section)} Commands:\n{CommandHelpText}";
 
             EmbedBuilder embed = new EmbedBuilder()
             {
                 Title = "Bot Command Help",
                 Description = CommandHelpText,
                 Color = Color.DarkPurple,
-                Footer = new EmbedFooterBuilder() { Text = $"{Util.GetRandomEmoji()}  Bot Prefix: {Prefix}" }
+                Footer = new EmbedFooterBuilder() { Text = $"{EmojiUtil.GetRandomEmoji()}  Bot Prefix: {Prefix}" }
             };
 
             await Context.Channel.SendMessageAsync(null, false, embed.Build());
@@ -126,7 +126,7 @@ namespace Discord.Net.Bot.CommandModules
             if (Optional) display = "[";
             else display = "<";
 
-            display += Util.ToUppercaseFirst(ArgumentType.ToString());
+            display += StringUtil.ToUppercaseFirst(ArgumentType.ToString());
 
             if (Optional) display += "]";
             else display += ">";

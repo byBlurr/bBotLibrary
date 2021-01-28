@@ -158,7 +158,7 @@ namespace Discord.Net.Bot.CommandModules
                 Description = $"Created: {created}"
             };
 
-            await Util.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 12500);
+            await MessageUtil.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 12500);
             await Task.CompletedTask;
         }
 
