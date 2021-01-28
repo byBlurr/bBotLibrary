@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-namespace Discord.Net.Bot.Utility
+namespace Discord.Net.Bot
 {
-    public class Channel
+    public class ChannelUtil
     {
         // Get the first message in a channel
         public static async Task<IMessage> GetFirstMessageAsync(IMessageChannel channel) => (await channel.GetMessagesAsync(0, Direction.After, 1).FlattenAsync()).FirstOrDefault();
