@@ -9,3 +9,9 @@ An example project that uses the Discord.Net.Bot package is Lori's Angel. Lori's
 View the source code of Lori's Angel: https://github.com/byBlurr/lorisangel
 
 Another example project that is just a basic bot will be added to the solution soon.
+
+### Bigger Updates
+#### Changes that you will need to change if you have updated recently
+Check Lori's Angel to see how to make the changes...
+- New BotCommand changes mean you will need to update the CommandHandler.RegisterCommands() override.
+- New util classes instead of one big class, you will need to go through all occurances of the Util class and change them to the correct Util class. No method names were changed, the Util classes are as follows Util, EmojiUtil, StringUtil, ChannelUtil and MessageUtil
