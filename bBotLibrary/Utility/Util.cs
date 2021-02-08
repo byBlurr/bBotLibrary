@@ -39,11 +39,11 @@ namespace Discord.Net.Bot
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     break;
                 case LogSeverity.Info:
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     break;
                 case LogSeverity.Verbose:
                     if (!PRINT_VERBOSE) return Task.CompletedTask;
-                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     break;
                 case LogSeverity.Debug:
                     Console.ForegroundColor = ConsoleColor.Green;
