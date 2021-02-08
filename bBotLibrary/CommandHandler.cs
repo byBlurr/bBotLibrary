@@ -112,42 +112,49 @@ namespace Discord.Net.Bot
             if (pMsg.Author.IsBot) return;
             var cmd = Task.Run(async () =>
             {
-                SocketUserMessage message = pMsg as SocketUserMessage;
-                if (message == null) return;
-                var context = new SocketCommandContext(bot, message);
-
-                string prefix = "";
-                BotConfig config = BotConfig.Load();
-                if (configType == ConfigType.Solo)
-                    prefix = config.SoloConfig.Prefix;
-                else
-                    prefix = config.GetConfig((message.Channel as IGuildChannel).GuildId).Prefix;
-
-                if (message.Content.StartsWith(bot.CurrentUser.Mention) && message.Content.Length == bot.CurrentUser.Mention.Length)
+                try
                 {
-                    await ModuleHelp.HelpAsync(context, "");
-                    return;
-                }
+                    SocketUserMessage message = pMsg as SocketUserMessage;
+                    if (message == null) return;
+                    var context = new SocketCommandContext(bot, message);
 
-                int argPos = 0;
-                if (message.HasStringPrefix(prefix, ref argPos) || message.HasMentionPrefix(bot.CurrentUser, ref argPos))
-                {
-                    var result = await commands.ExecuteAsync(context, argPos, map);
-                    if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
+                    string prefix = "";
+                    BotConfig config = BotConfig.Load();
+                    if (configType == ConfigType.Solo)
+                        prefix = config.SoloConfig.Prefix;
+                    else
+                        prefix = config.GetConfig((message.Channel as IGuildChannel).GuildId).Prefix;
+
+                    if (message.Content.StartsWith(bot.CurrentUser.Mention) && message.Content.Length == bot.CurrentUser.Mention.Length)
                     {
-                        if (result.ErrorReason.Contains("Collection was modified")) return;
-
-                        await Util.LoggerAsync(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
-
-                        EmbedBuilder embed = new EmbedBuilder()
-                        {
-                            Title = "Command Error",
-                            Description = result.ErrorReason,
-                            Color = Color.DarkRed
-                        };
-
-                        await context.Channel.SendMessageAsync(null, false, embed.Build());
+                        await ModuleHelp.HelpAsync(context, "");
+                        return;
                     }
+
+                    int argPos = 0;
+                    if (message.HasStringPrefix(prefix, ref argPos) || message.HasMentionPrefix(bot.CurrentUser, ref argPos))
+                    {
+                        var result = await commands.ExecuteAsync(context, argPos, map);
+                        if (!result.IsSuccess && result.ErrorReason != "Unknown command.")
+                        {
+                            if (result.ErrorReason.Contains("Collection was modified")) return;
+
+                            await Util.LoggerAsync(new LogMessage(LogSeverity.Warning, "Commands", result.ErrorReason, null));
+
+                            EmbedBuilder embed = new EmbedBuilder()
+                            {
+                                Title = "Command Error",
+                                Description = result.ErrorReason,
+                                Color = Color.DarkRed
+                            };
+
+                            await context.Channel.SendMessageAsync(null, false, embed.Build());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await Util.LoggerAsync(new LogMessage(LogSeverity.Error, "CommandHandler", ex.Message, ex));
                 }
             });
         }
