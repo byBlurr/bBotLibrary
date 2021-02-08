@@ -22,6 +22,9 @@ namespace Discord.Net.Bot
         {
             bool PRINT_VERBOSE = BotConfig.Load().PrintVerbose;
 
+            // These unknown dispatches are known... they spam the console on bots in a high number of servers.
+            if (!PRINT_VERBOSE && lmsg.Message.Contains("Unknown Dispatch") && (lmsg.Message.Contains("INTEGRATION") || lmsg.Message.Contains("INVITE"))) return Task.CompletedTask;
+
             // Set the foreground color based on severity
             var cc = Console.ForegroundColor;
             switch (lmsg.Severity)
