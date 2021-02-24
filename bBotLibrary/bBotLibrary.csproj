@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.2.0.12</Version>
+    <Version>2.2.0.13</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
@@ -14,12 +14,11 @@
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
     <PackageTags>discord, discordapp, bot, library, core, discord.net, disc, blurr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>- Fix potential issues
-- Reduce console clutter
+    <PackageReleaseNotes>- Fix minor issue
 
 For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
-    <AssemblyVersion>2.2.0.12</AssemblyVersion>
-    <FileVersion>2.2.0.12</FileVersion>
+    <AssemblyVersion>2.2.0.13</AssemblyVersion>
+    <FileVersion>2.2.0.13</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

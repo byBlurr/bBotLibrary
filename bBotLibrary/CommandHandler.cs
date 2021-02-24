@@ -152,6 +152,10 @@ namespace Discord.Net.Bot
                         }
                     }
                 }
+                catch (NullReferenceException ex)
+                {
+                    return;
+                }
                 catch (Exception ex)
                 {
                     await Util.LoggerAsync(new LogMessage(LogSeverity.Error, "CommandHandler", ex.Message, ex));
