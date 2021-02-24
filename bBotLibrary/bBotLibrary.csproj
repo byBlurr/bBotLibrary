@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.2.0.13</Version>
+    <Version>2.3.0.0</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
@@ -14,15 +14,15 @@
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
     <PackageTags>discord, discordapp, bot, library, core, discord.net, disc, blurr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>- Fix minor issue
+    <PackageReleaseNotes>Update to Discord.Net version 2.3
 
 For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
-    <AssemblyVersion>2.2.0.13</AssemblyVersion>
-    <FileVersion>2.2.0.13</FileVersion>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <FileVersion>2.3.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.2.0" />
+    <PackageReference Include="Discord.Net" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
     <PackageReference Include="MySql.Data" Version="8.0.23" />
   </ItemGroup>

@@ -82,7 +82,7 @@ namespace Test
             };
 
             // Send a temporary message with the embed we created, timer set to 10 seconds
-            await Util.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);
+            await MessageUtil.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);
             await Task.CompletedTask;
         }
     }
