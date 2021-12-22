@@ -25,13 +25,13 @@ namespace Discord.Net.Bot.CommandModules
             {
                 if (command.Category.ToString().ToLower() == section.ToLower() || (section.ToLower() == "new" && command.New))
                 {
-                    if (CommandHelpText.Length > 0) CommandHelpText = CommandHelpText + ", " + StringUtil.ToUppercaseFirst(command.Handle);
-                    else CommandHelpText = StringUtil.ToUppercaseFirst(command.Handle);
+                    if (CommandHelpText.Length > 0) CommandHelpText = CommandHelpText + ", " + StringUtil.ToUppercaseFirst(command.Name);
+                    else CommandHelpText = StringUtil.ToUppercaseFirst(command.Name);
                 }
 
-                if (command.Handle.ToLower() == section.ToLower())
+                if (command.Name.ToLower() == section.ToLower())
                 {
-                    string help = $"**{command.Handle.ToUpper()}**\nUsage:\n{command.Usage}\n{command.Description}";
+                    string help = $"**{command.Name.ToUpper()}**\nUsage:\n{command.Usage}\n{command.Description}";
                     if (command.New) help = $"**NEW** - {help}";
                     if (command.ExtraInfo != "") help = $"{help}\nFeature requested by: {command.ExtraInfo}";
 
