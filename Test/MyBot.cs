@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.Net.Bot;
+using Discord.Net.Bot.CommandModules;
 using Discord.Net.Bot.Database.Configs;
 using Discord.WebSocket;
 using System.Collections.Generic;
@@ -29,7 +30,13 @@ namespace Test
             commands.Clear();
 
             // Add any commands that need adding, this information will be used by the help module
-            commands.Add(new BotCommand("WHO", "who @user", "Retreive information on a member for the server.", CommandCategory.User));
+            List<CommandArgument> arguments = new List<CommandArgument> { new CommandArgument(CommandArgumentType.USER, false, "@Blurr#1337") };
+            CommandUsage[] whoUsage = { new CommandUsage("who", arguments) };
+            commands.Add(new BotCommand("who", whoUsage, "Retreive information on a member for the server.", CommandCategory.Main));
+
+            // Adding a command with no arguments
+            CommandUsage[] testUsage = { new CommandUsage("test") };
+            commands.Add(new BotCommand("test", testUsage, "Test Command.", CommandCategory.Main));
         }
 
         // Override the SetupHandlers method, no need to call the base method

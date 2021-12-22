@@ -78,6 +78,11 @@ namespace Discord.Net.Bot.CommandModules
             Handle = handle;
             Arguments = arguments;
         }
+        public CommandUsage(string handle)
+        {
+            Handle = handle;
+            Arguments = new List<CommandArgument>(0);
+        }
 
         public override string ToString()
         {
