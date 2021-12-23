@@ -35,8 +35,8 @@ namespace Test
             commands.Add(new BotCommand("who", whoUsage, "Retreive information on a member for the server.", CommandCategory.Main));
 
             // Adding a command with no arguments
-            CommandUsage[] testUsage = { new CommandUsage("test") };
-            commands.Add(new BotCommand("test", testUsage, "Test Command.", CommandCategory.Main));
+            //CommandUsage[] testUsage = { new CommandUsage("test") };
+            //commands.Add(new BotCommand("test", testUsage, "Test Command.", CommandCategory.Main));
         }
 
         // Override the SetupHandlers method, no need to call the base method
@@ -59,15 +59,12 @@ namespace Test
         }
     }
 
-    public class MyCommandModule : ModuleBase
+    public class MyCommandModule : ModuleBase   
     {
         [Command("who")]
         [Alias("whodis", "whoisthis")]
         private async Task WhoCommandAsync(IUser user)
         {
-            // Delete the message containing the command
-            await Context.Message.DeleteAsync();
-
             // Collect the information that we want
             string name = user.Username + "#" + user.Discriminator;
             string ava = user.GetAvatarUrl().Replace("128", "2048");
@@ -87,6 +84,9 @@ namespace Test
                 Color = embedCol, 
                 Description = $"Created: {created}"
             };
+
+            // Delete the message containing the command
+            await Context.Message.DeleteAsync();
 
             // Send a temporary message with the embed we created, timer set to 10 seconds
             await MessageUtil.SendTemporaryMessageAsync(Context.Channel as ITextChannel, null, false, embed.Build(), null, 10000);

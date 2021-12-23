@@ -34,7 +34,7 @@ namespace Discord.Net.Bot
             bot.JoinedGuild += JoinGuildAsync;
             bot.MessageReceived += HandleCommandAsync;
             bot.MessageUpdated += HandleEditCommandAsync;
-            bot.MessagesBulkDeleted += BulkDeleteAsync;
+            //bot.MessagesBulkDeleted += BulkDeleteAsync;
             SetupHandlers(bot);
 
             BotConfig conf = BotConfig.Load();

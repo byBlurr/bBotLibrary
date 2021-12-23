@@ -2,10 +2,12 @@
 using Discord.Net.Bot.Database.Configs;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Discord.Net.Bot.CommandModules
 {
+
     public class ModuleHelp
     {
         // TODO: UPDATE TO USE NEW USAGE PARAMS
@@ -73,17 +75,17 @@ namespace Discord.Net.Bot.CommandModules
         public string Handle { get; set; }
         public List<CommandArgument> Arguments { get; set; }
 
+        [JsonConstructor]
         public CommandUsage(string handle, List<CommandArgument> arguments)
         {
             Handle = handle;
             Arguments = arguments;
         }
-        public CommandUsage(string handle)
+        /*public CommandUsage(string handle)
         {
             Handle = handle;
-            Arguments = new List<CommandArgument>(0);
-        }
-
+            Arguments = new List<CommandArgument>();
+        }*/
         public override string ToString()
         {
             string helptext;

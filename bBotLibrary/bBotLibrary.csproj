@@ -22,7 +22,7 @@ For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseN
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.3.0" />
+    <PackageReference Include="Discord.Net" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
     <PackageReference Include="MySql.Data" Version="8.0.23" />
   </ItemGroup>
