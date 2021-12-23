@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Discord.Net.Bot</AssemblyName>
     <RootNamespace>Discord.Net.Bot</RootNamespace>
-    <Version>2.3.0.0</Version>
+    <Version>3.0.0</Version>
     <Authors>Blurr</Authors>
     <Product />
     <Company />
@@ -14,11 +14,11 @@
     <RepositoryUrl>https://github.com/byBlurr/bBotLibrary</RepositoryUrl>
     <PackageTags>discord, discordapp, bot, library, core, discord.net, disc, blurr</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>Update to Discord.Net version 2.3
+    <PackageReleaseNotes>Update to Discord.Net version 3.0.0 and .NET 6.0
 
 For all changes, head to https://github.com/byBlurr/bBotLibrary</PackageReleaseNotes>
-    <AssemblyVersion>2.3.0.0</AssemblyVersion>
-    <FileVersion>2.3.0.0</FileVersion>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
